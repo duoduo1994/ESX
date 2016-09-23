@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HunChe_TuiJianCheDuiActivity" >
+
+    <include
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        layout="@layout/item_tou" />
+<ScrollView 
+    android:layout_height="0dp"
+    android:layout_weight="0.84"
+    android:layout_width="match_parent"
+    
+    >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+         <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="心形展示"
+            android:textColor="#696969" />
+        
+        <ListView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chedui_xingxin_zhanshi"
+            ></ListView>
+          <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="V形展示"
+            android:textColor="#696969" />
+        
+        <ListView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chedui_vxin_zhanshi"
+            ></ListView>
+    </LinearLayout>
+</ScrollView>
+       
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/woyaoyuyue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:background="#7bb618"
+            android:text="我 要 预  约 "
+            android:textColor="#fff" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,201 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WoDeQingTieActivity" >
+
+    <include
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/item_tou" />
+
+    <ScrollView
+        android:id="@+id/svsvsv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:id="@+id/ll_all_pre"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.92"
+            android:orientation="vertical" >
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/watch_yulan"
+                android:textColor="@color/titile_color" />
+
+
+            <LinearLayout style="@style/ll_qingtiexinxi_style" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/xinxi_name" />
+
+                <EditText
+                    android:id="@+id/et_name_qingtiexinxi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:background="@drawable/et_focused_bg"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:maxLength="11"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_qingtiexinxi_style" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/xinxi_tel" />
+
+                <EditText
+                    android:id="@+id/et_tel_qingtiexinxi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:background="@drawable/et_focused_bg"
+                    android:maxLength="11"
+                    android:gravity="center"
+                    android:numeric="integer"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_qingtiexinxi_style" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="喜宴时间" />
+
+                <TextView
+                    android:id="@+id/et_extime_qingtiexinxi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:background="@mipmap/edittext_bg"
+                    android:gravity="center"
+                     android:paddingLeft="5dp"
+                    android:maxLength="11"
+                    android:text="请选择时间"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+             <LinearLayout style="@style/ll_qingtiexinxi_style" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="喜宴地点" />
+
+                <TextView
+                    android:id="@+id/et_address_qingtiexinxi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:singleLine="true"
+                    android:background="@mipmap/edittext_bg"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:text="地点"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+            <!-- 请帖信息页主人姓名和新郎新娘的不同布局 -->
+
+
+            <!-- <RelativeLayout style="@style/ll_qingtiexinxi_style" > -->
+            <!-- </RelativeLayout> -->
+
+            <LinearLayout style="@style/ll_qingtiexinxi_style" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/xinxi_qingtiemode" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4" >
+
+                    <ImageView
+                        android:id="@+id/et_qingtiemode_qingtiexinxi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:layout_toRightOf="@+id/tv_mode_choosed"
+                        android:src="@mipmap/choosemode" />
+
+                    <TextView
+                        android:id="@+id/tv_mode_choosed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="模板"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </LinearLayout>
+
+   <TextView
+       android:id="@+id/textView1"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="50dp"
+       android:gravity="center_horizontal"
+       android:textSize="10sp"
+       android:text="*短信费由通讯运营商收取，收费和普通短信一致" />
+
+            <LinearLayout
+                android:id="@+id/qingtie_fasong"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btn_send_qingtiexinxi"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/bg_button"
+                    android:text="发送" />
+
+                <Button
+                    android:id="@+id/btn_preview_qingtiexinxi"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@mipmap/bg_button"
+                    android:text="预览" />
+            </LinearLayout>
+
+         
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

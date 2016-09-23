@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="com.example.administrator.activity.YiJianFanKuiActivity" />
+        <activity android:name="com.example.administrator.activity.MainActivity" />
+        <activity android:name="com.example.administrator.activity.HomeActivity" />
+        <activity android:name="com.example.administrator.activity.GuideActivity" />
+        <activity android:name="com.example.administrator.activity.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.administrator.activity.CanJu_Activity" />
+        <activity android:name="com.example.administrator.activity.HunChe_GongSiJianJieActivity" />
+        <activity android:name="com.example.administrator.activity.HunChe_TuiJianCheDuiActivity" />
+        <activity android:name="com.example.administrator.activity.HunChe_HunCheZhuangShiActivity" />
+        <activity android:name="com.example.administrator.activity.HunCheActivity" />
+        <activity android:name="com.example.administrator.activity.ReserveActivity" />
+        <activity android:name="com.example.administrator.activity.ReserveWinActivity" />
+        <activity android:name="com.example.administrator.activity.WeddinghallActivity" />
+        <activity android:name="com.example.administrator.activity.CaseActivity" />
+        <activity android:name="com.example.administrator.activity.HunQing" />
+        <activity android:name="com.example.administrator.activity.GeWu_YanYiActivity" />
+        <activity android:name="com.example.administrator.activity.ShiRen_DingZhiActivity" />
+        <activity android:name="com.example.administrator.activity.TaoCan_LieBiaoActivity" />
+        <activity android:name="com.example.administrator.activity.QingDian_LiYiActivity" />
+        <activity android:name="com.example.administrator.activity.HunQing_TaoCan_XiangQingActivity" />
+        <activity android:name="com.example.administrator.activity.HunQing_TaoCanXiangQingActivity" />
+        <activity
+            android:name="com.example.administrator.activity.ChouJiang"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.administrator.activity.ChouJiangShouYe"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.administrator.activity.ChouJiangYanZheng"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.administrator.activity.winner"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.example.administrator.activity.JiaMengActivity" />
+        <activity android:name="com.example.administrator.activity.JoinInActivity" />
+        <activity android:name="com.example.administrator.activity.ChuShiJiaMeng" />
+        <activity android:name="com.example.administrator.activity.JoinInGongSi" />
+        <activity android:name="com.example.administrator.activity.CookActivity" />
+        <activity android:name="com.example.administrator.activity.ChuShi_GeRenXQActivity" />
+        <activity android:name="com.example.administrator.activity.ChuShi_TuanDuiXQActivity" />
+        <activity android:name="com.example.administrator.activity.XiYan" />
+        <activity android:name="com.example.administrator.activity.FeastSetActivity" />
+        <activity android:name="com.example.administrator.activity.ViewPagerDemo" />
+        <activity android:name="com.example.administrator.activity.ChuShiJiaGeBiaoActivity" />
+        <activity android:name="com.example.administrator.activity.LoginInActivity" />
+        <activity android:name="com.example.administrator.activity.HunCheZhanShi" />
+        <activity android:name="com.example.administrator.activity.XcWedingActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <include
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/item_tou" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#bbbbbbbb" />
+
+    <ListView
+        android:id="@+id/list_sch"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92" />
+    <ImageView 
+        android:id="@+id/myhalllist_back"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92"
+        android:visibility="gone"
+        android:background="@mipmap/backsch"
+        />
+
+</LinearLayout>

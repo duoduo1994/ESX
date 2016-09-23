@@ -1,0 +1,245 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".YuDingQueRengActivity" >
+<include
+        layout="@layout/item_tou"
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:background="#FFFFFF" />
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.92"
+    android:orientation="vertical" >
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.06" >
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+             android:textColor="#696969"
+            android:layout_marginRight="30dp"
+            android:text="姓名" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:background="@null"
+            android:textColor="#adadad"
+            android:textSize="15sp"
+            android:text="请输入姓名" >
+
+        </EditText>
+
+    </LinearLayout>
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+
+         <TextView
+
+             android:layout_width="0dp"
+              android:textColor="#696969"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:gravity="right"
+             android:layout_marginRight="30dp"
+             android:text="电话" />
+
+         <EditText
+            android:id="@+id/edit_tel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:background="@null"
+            android:textColor="#adadad"
+            android:textSize="15sp"
+            android:text="请输入电话" >
+
+        </EditText>
+     
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+
+          <TextView
+
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="right"
+               android:textColor="#696969"
+              android:layout_marginRight="30dp"
+              android:text="主餐桌数" />
+<EditText
+            android:id="@+id/edit_zhu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:background="@null"
+            android:textColor="#adadad"
+            android:textSize="15sp"
+            android:text="请输入桌数" >
+
+        </EditText>
+        <TextView
+
+              android:layout_width="0dp"
+            android:layout_weight="1" android:textColor="#696969"
+            android:layout_height="wrap_content"
+            android:text="桌" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                 android:textColor="#696969"
+                android:gravity="right"
+                android:layout_marginRight="30dp"
+                android:text="副餐桌数" />
+<EditText
+            android:id="@+id/edit_fu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:background="@null"
+            android:textColor="#adadad"
+            android:textSize="15sp"
+            android:text="请输入桌数" >
+
+        </EditText>
+       <TextView
+
+              android:layout_width="0dp"
+            android:layout_weight="1" android:textColor="#696969"
+            android:layout_height="wrap_content"
+            android:text="桌" />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+        
+             <TextView
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:gravity="right"
+                  android:textColor="#696969"
+                 android:layout_marginRight="30dp"
+                 android:text="开始日期"
+                />
+
+            <Button
+                android:id="@+id/et_start_time"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:background="#f0f0f0"
+                android:text="2010-10-01"
+                 android:textColor="#696969"
+                android:drawableRight="@mipmap/date"
+                />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+            
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                 android:textColor="#696969"
+                android:layout_marginRight="30dp"
+                android:text="结束日期"
+             />
+
+            <Button
+                android:id="@+id/et_end_time"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                 android:textColor="#696969"
+                android:layout_height="wrap_content"
+                android:background="#f0f0f0"
+                android:drawableRight="@mipmap/date"
+                android:text="2016-10-03"
+                />
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08" >
+
+          <TextView
+              android:id="@+id/textView1"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="right"
+               android:textColor="#696969"
+              android:layout_marginRight="30dp"
+              android:text="联系地址" />
+
+        <TextView
+            android:id="@+id/textView2"
+              android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+             android:textColor="#adadad"
+            android:text="请输入联系地址" />
+         
+    </LinearLayout>
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2" >
+    </LinearLayout>
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="wrap_content"
+         android:layout_height="0dp"
+         android:layout_margin="15dp"
+         android:layout_weight="0.1"
+         android:background="@mipmap/bg_button"
+         android:textColor="#fff"
+         android:text="确定" />
+    
+</LinearLayout>
+    
+</LinearLayout>

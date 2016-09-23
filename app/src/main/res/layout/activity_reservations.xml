@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/asdfawrefsarf"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/yuding_biaoti"
+        layout="@layout/item_tou" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e6e6e6"
+        android:visibility="visible" />
+
+    <ScrollView
+        android:id="@+id/awefasdfasdfasdfasdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/wo_de_yu_ding1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="姓名:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_UserInfo_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:background="@null"
+                    android:hint="请输入真实姓名"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+       <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="性别:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <RadioGroup
+                    android:id="@+id/rg_UserInfo_Sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dip"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_Sex_Male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:checked="true"
+                        android:text="男"
+                        android:textColor="#7b7b7b" />
+
+                    <RadioButton
+                        android:id="@+id/rb_Sex_Woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="女"
+                        android:textColor="#7b7b7b" />
+                </RadioGroup>
+            </LinearLayout>
+           <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="手机:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_UserInfo_Age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:background="@null"
+                    android:hint="请输入常用联系电话"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+           <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="联系地址:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_UserInfo_Site"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:background="@null"
+                    android:hint="请输入家庭地址"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+               <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="喜宴类别:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/xishitang_xuanze"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@mipmap/xiala" />
+            </LinearLayout>
+
+          <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:layout_weight="3"
+                    android:text="喜事堂名称:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ets_UserInfo_Sites"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="4"
+                    android:background="@null"
+                    android:hint="请选择地址"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/xzxst"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="3"
+                    android:text="选择喜事堂"
+                    android:textColor="#5b5b5b"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="主餐桌数:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_UserInfo_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:background="@mipmap/bg_inputs"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:maxLength="2"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="副餐桌数:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_UserInfo_FTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:background="@mipmap/bg_inputs"
+                    android:inputType="number"
+                      android:maxLength="2"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="菜系选择:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/caixi_xuanze"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/xiala" />
+            </LinearLayout>
+
+              <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="主餐时间"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+
+                <Spinner
+                    android:id="@+id/zhucanshijian_xuanze"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/xiala"/>
+            </LinearLayout>
+
+          <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="#e6e6e6" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dip"
+                    android:text="喜宴日期:"
+                    android:textColor="#4f4f4f"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/dateBtn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dip"
+                    android:layout_weight="0.3"
+                    android:background="@mipmap/bg_inputs"
+                    android:drawableRight="@mipmap/date"
+                    android:padding="4dp"
+                    android:textColor="#4f4f4f" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#e6e6e6"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical" >
+
+                <Button
+                    android:id="@+id/reserva_tion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/tab_selector_tv_hong"
+                    android:text="立即预定"
+                    android:textColor="#f5f5f5" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+   <include layout="@layout/item_tou"
+       android:id="@+id/g_eng_d_uo"
+     android:layout_width="match_parent"
+     android:layout_height="50dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e6e6e6"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92"
+        android:id="@+id/geng_d_yi_jian"
+          android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.42"
+            android:layout_margin="20dp"
+            
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/yijian_fankui_et"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="match_parent"
+                android:background="@mipmap/pinglun_kuang"
+                android:gravity="top"
+                android:hint="请填写您的宝贵意见，感谢您的参与"
+                android:ems="10" >
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/yijian_fan_kui_tijiao"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/tab_selector_tv_hong"
+                android:text="提交" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
