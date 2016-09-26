@@ -1,10 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
-    <TextView
+    <include
+        layout="@layout/item_tou"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="4asdfasdfasdf"
-        android:textSize="50sp"/>
+        android:layout_height="45dp"
+         />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#209b04"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_margin="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/myphoto"
+            android:layout_weight="0.3" />
+
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/white"
+                android:text="name"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/white"
+                android:text="账号"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/tiaozhuan" />
+
+</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/feedback_gray"
+        />
+    <LinearLayout
+        android:id="@+id/order"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/myallorder" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="5"
+            android:text="我的订单"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+         <TextView
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="查看全部订单"
+            android:layout_height="25dp" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@mipmap/tiaozhuan" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/feedback_gray"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/feedback_gray"
+        />
+    <LinearLayout
+        android:id="@+id/order2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/myallorder" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="5"
+            android:text="我的资产"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="查看余额明细"
+            android:layout_height="25dp" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@mipmap/tiaozhuan" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/feedback_gray"
+        />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:text="账户余额：8888.00"
+            />
+        <TextView
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="冻结金额：2000.00"
+            />
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="0dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@mipmap/myallorder"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/feedback_gray"
+        />
+    <com.example.administrator.utils.ElasticScrollView
+        android:id="@+id/elasticScrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.72"
+        android:fillViewport="true" >
+    </com.example.administrator.utils.ElasticScrollView>
 </LinearLayout>

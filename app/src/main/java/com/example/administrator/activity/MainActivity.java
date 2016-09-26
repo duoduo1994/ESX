@@ -22,7 +22,6 @@ public class MainActivity extends FragmentActivity {
     private Tab2 tab2;
     private Tab3 tab3;
     private Tab4 tab4;
-    private Tab5 tab5;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,39 +48,33 @@ public class MainActivity extends FragmentActivity {
         switch (i) {
             case R.id.radio_1:
                 if (!tab1.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(tab2).hide(tab3).hide(tab4).hide(tab5).add(R.id.fragment_main, tab1).commit();
+                    getSupportFragmentManager().beginTransaction().hide(tab2).hide(tab3).hide(tab4).add(R.id.fragment_main, tab1).commit();
                 } else {
-                    getSupportFragmentManager().beginTransaction().show(tab1).hide(tab2).hide(tab3).hide(tab4).hide(tab5).commit();
+                    getSupportFragmentManager().beginTransaction().show(tab1).hide(tab2).hide(tab3).hide(tab4).commit();
                 }
                 break;
             case R.id.radio_2:
                 if (!tab2.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab3).hide(tab4).hide(tab5).add(R.id.fragment_main, tab2).commit();
+                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab3).hide(tab4).add(R.id.fragment_main, tab2).commit();
                 } else {
-                    getSupportFragmentManager().beginTransaction().show(tab2).hide(tab1).hide(tab3).hide(tab4).hide(tab5).commit();
+                    getSupportFragmentManager().beginTransaction().show(tab2).hide(tab1).hide(tab3).hide(tab4).commit();
                 }
                 break;
             case R.id.radio_3:
                 if (!tab3.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab4).hide(tab5).add(R.id.fragment_main, tab3).commit();
+                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab4).add(R.id.fragment_main, tab3).commit();
                 } else {
-                    getSupportFragmentManager().beginTransaction().show(tab3).hide(tab1).hide(tab2).hide(tab4).hide(tab5).commit();
+                    getSupportFragmentManager().beginTransaction().show(tab3).hide(tab1).hide(tab2).hide(tab4).commit();
                 }
                 break;
             case R.id.radio_4:
                 if (!tab4.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab3).hide(tab5).add(R.id.fragment_main, tab4).commit();
+                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab3).add(R.id.fragment_main, tab4).commit();
                 } else {
-                    getSupportFragmentManager().beginTransaction().show(tab4).hide(tab1).hide(tab2).hide(tab3).hide(tab5).commit();
+                    getSupportFragmentManager().beginTransaction().show(tab4).hide(tab1).hide(tab2).hide(tab3).commit();
                 }
                 break;
-            case R.id.radio_5:
-                if (!tab5.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab3).hide(tab4).add(R.id.fragment_main, tab5).commit();
-                } else {
-                    getSupportFragmentManager().beginTransaction().show(tab5).hide(tab1).hide(tab2).hide(tab3).hide(tab4).commit();
-                }
-                break;
+
         }
     }
 
@@ -90,9 +83,8 @@ public class MainActivity extends FragmentActivity {
         tab2 = new Tab2();
         tab3 = new Tab3();
         tab4 = new Tab4();
-        tab5 = new Tab5();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_main, tab1).add(R.id.fragment_main, tab2).add(R.id.fragment_main, tab3).add(R.id.fragment_main, tab4).add(R.id.fragment_main, tab5).hide(tab2).hide(tab3).hide(tab5).hide(tab4).commit();
+                .replace(R.id.fragment_main, tab1).add(R.id.fragment_main, tab2).add(R.id.fragment_main, tab3).add(R.id.fragment_main, tab4).hide(tab2).hide(tab3).hide(tab4).commit();
 //        butt.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
