@@ -253,7 +253,7 @@ public class XiYan extends BaseActivity implements OnClickListener {
         System.out.println(1 + "FGHJKL");
 
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "MenuHandler.ashx?Action=Meals");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "MenuHandler.ashx?Action=Meals",1);
         RequestParams requestParams = new RequestParams();
         String in = Integer.toString(selectIndex);
         requestParams.addBodyParameter("Starlevel", in);

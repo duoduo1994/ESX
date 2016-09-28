@@ -122,7 +122,7 @@ public class HunChe_TuiJianCheDuiActivity extends BaseActivity {
 	private int ciShu = 0;
 
 	private void getCarList() {
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WedingCarHandler.ashx?Action=getCarList");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WedingCarHandler.ashx?Action=getCarList",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

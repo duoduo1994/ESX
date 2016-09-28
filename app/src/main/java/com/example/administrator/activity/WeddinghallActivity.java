@@ -423,7 +423,7 @@ public class WeddinghallActivity extends BaseActivity {
         dialog = new LoadingDialog(WeddinghallActivity.this, "正在加载中...");
         dialog.showDialog();
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "HallsHandler.ashx?Action=getVillageAllInfoByCityID");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "HallsHandler.ashx?Action=getVillageAllInfoByCityID",1);
         RequestParams requestParams = new RequestParams();
         requestParams.addBodyParameter("CityID", "1");
         Observable.create(new Observable.OnSubscribe<String>() {
@@ -570,7 +570,7 @@ public class WeddinghallActivity extends BaseActivity {
 
         ll.setVisibility(View.VISIBLE);
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "HallsHandler.ashx?Action=getdetail");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "HallsHandler.ashx?Action=getdetail",1);
         RequestParams requestParams = new RequestParams();
         requestParams.addBodyParameter("ID", hallId);
         Observable.create(new Observable.OnSubscribe<String>() {

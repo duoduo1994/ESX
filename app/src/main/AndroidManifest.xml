@@ -75,7 +75,14 @@
         <activity android:name="com.example.administrator.activity.ChuShiJiaGeBiaoActivity" />
         <activity android:name="com.example.administrator.activity.LoginInActivity" />
         <activity android:name="com.example.administrator.activity.HunCheZhanShi" />
-        <activity android:name="com.example.administrator.activity.XcWedingActivity"></activity>
+        <activity android:name="com.example.administrator.activity.XcWedingActivity" />
+        <activity
+            android:name="com.example.administrator.activity.TaocanActivity"
+            android:label="@string/title_activity_taocan"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name="com.example.administrator.activity.HotTaocanActivity"></activity>
     </application>
 
 </manifest>

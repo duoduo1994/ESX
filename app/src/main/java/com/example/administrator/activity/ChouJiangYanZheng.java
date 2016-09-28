@@ -145,7 +145,7 @@ public class ChouJiangYanZheng extends BaseActivity {
 
 				String UserTel = (String) LocalStorage.get("UserTel");
 
-				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiangYanZheng.this,"HandlerDraw.ashx?Action=SignUp");
+				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiangYanZheng.this,"HandlerDraw.ashx?Action=SignUp",1);
 				RequestParams requestParams = new RequestParams();
 				requestParams.addBodyParameter("DrowID", yz);
 				requestParams.addBodyParameter("JoinTel", UserTel);

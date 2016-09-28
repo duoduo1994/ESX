@@ -181,7 +181,7 @@ public class ChuShi_TuanDuiXQActivity extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=CooksGrp");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=CooksGrp",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("CooksGrpID", pkCookGrpID2);
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -300,7 +300,7 @@ public class ChuShi_TuanDuiXQActivity extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase",1);
 		RequestParams p = new RequestParams();
 		p.addBodyParameter("CookGrpID", String.valueOf(ID));
 		p.addBodyParameter("fkCusTel", tel);

@@ -402,7 +402,7 @@ public class JoinInActivity extends BaseActivity implements ProConst {
 	private void contract() {
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetCookContract");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetCookContract",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -594,7 +594,7 @@ public class JoinInActivity extends BaseActivity implements ProConst {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HallsHandler.ashx?Action=getCounty");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HallsHandler.ashx?Action=getCounty",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("CityID", "1");
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -727,7 +727,7 @@ public class JoinInActivity extends BaseActivity implements ProConst {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetMaxOrderNums");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetMaxOrderNums",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -855,7 +855,7 @@ public class JoinInActivity extends BaseActivity implements ProConst {
 	private void cook_style() {
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=bookPage");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=bookPage",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

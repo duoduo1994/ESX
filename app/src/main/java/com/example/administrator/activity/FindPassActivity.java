@@ -182,7 +182,7 @@ public class FindPassActivity extends BaseActivity implements ProConst {
 
 
 
-				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(FindPassActivity.this,"LoginCheckHandler.ashx?Action=Code");
+				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(FindPassActivity.this,"LoginCheckHandler.ashx?Action=Code",1);
 				RequestParams requestParams = new RequestParams();
 				requestParams.addBodyParameter("UserTel", mobile);
 				Observable.create(new Observable.OnSubscribe<String>() {
@@ -225,11 +225,6 @@ public class FindPassActivity extends BaseActivity implements ProConst {
 
 					}
 				});
-
-
-
-
-
 
 //				RequestParams params = new RequestParams();
 //				params.add("UserTel", mobile);
@@ -330,11 +325,7 @@ public class FindPassActivity extends BaseActivity implements ProConst {
 			dialog = new LoadingDialog(v.getContext(), "正在获取，请稍候...");
 			dialog.showDialog();
 
-
-
-
-
-			XUtilsHelper xUtilsHelper1 = new XUtilsHelper(FindPassActivity.this,"LoginCheckHandler.ashx?Action=ForgetPwd");
+			XUtilsHelper xUtilsHelper1 = new XUtilsHelper(FindPassActivity.this,"LoginCheckHandler.ashx?Action=ForgetPwd",1);
 			RequestParams params = new RequestParams();
 			params.addBodyParameter("UserTel", UserTel);
 			params.addBodyParameter("UserCode", UserCode);
@@ -384,7 +375,7 @@ public class FindPassActivity extends BaseActivity implements ProConst {
 											HomeActivity.class);
 									startActivity(intent);
 									LoginInActivity.a.finish();
-									HomeActivity.homethis.finish();
+									HomeActivity._instance.finish();
 									FindPassActivity.this.finish();
 									break;
 								case VALIDATION_TIME_OUT:// -2
@@ -436,13 +427,6 @@ public class FindPassActivity extends BaseActivity implements ProConst {
 
 				}
 			});
-
-
-
-
-
-
-
 
 //			RequestParams params = new RequestParams();
 //			params.add("UserTel", UserTel);

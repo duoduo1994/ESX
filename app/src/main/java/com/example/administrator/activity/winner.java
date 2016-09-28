@@ -140,7 +140,7 @@ public class winner extends ListActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=GetAll");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=GetAll",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("DrowID", id);
 		Observable.create(new Observable.OnSubscribe<String>() {

@@ -63,7 +63,7 @@ static Activity t;
         String tel = (String) LocalStorage.get("UserTel").toString();
         String passEnt = MD5Util.string2MD5((String) LocalStorage.get("UserPass").toString());
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(t,"LoginCheckHandler.ashx?Action=UserLogin");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(t,"LoginCheckHandler.ashx?Action=UserLogin",1);
         RequestParams p = new RequestParams();
         p.addBodyParameter("UserPass",passEnt );
         p.addBodyParameter("UserTel", tel);
@@ -108,7 +108,7 @@ static Activity t;
 
 
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(t,"LoginCheckHandler.ashx?Action=UserExit");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(t,"LoginCheckHandler.ashx?Action=UserExit",1);
         RequestParams p = new RequestParams();
         p.addBodyParameter("UserTel", tel);
         p.addBodyParameter("CustPhyAddr", HomeActivity.strUniqueId);

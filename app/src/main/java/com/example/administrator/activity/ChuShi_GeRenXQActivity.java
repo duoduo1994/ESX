@@ -207,7 +207,7 @@ public class ChuShi_GeRenXQActivity extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=GetDetail");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=GetDetail",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("PkCookID", msg);
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -337,7 +337,7 @@ public class ChuShi_GeRenXQActivity extends BaseActivity {
 	private void shangChuan() {
 		String tel = (String) LocalStorage.get("UserTel").toString();
 		System.out.println("!!!!!!!!!!!!!!" + tel);
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_Cook");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_Cook",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("CookID", String.valueOf(ci.getPkCookID()));
 		requestParams.addBodyParameter("fkCusTel", tel);

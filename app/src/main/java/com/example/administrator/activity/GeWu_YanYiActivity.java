@@ -110,7 +110,7 @@ public class GeWu_YanYiActivity extends BaseActivity {
 
 	private void getMsg() {
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=SongAndDance");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=SongAndDance",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

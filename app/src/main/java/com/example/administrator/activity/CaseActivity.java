@@ -194,7 +194,7 @@ public class CaseActivity extends BaseActivity implements OnItemClickListener {
 
 	private void initDatas() {
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

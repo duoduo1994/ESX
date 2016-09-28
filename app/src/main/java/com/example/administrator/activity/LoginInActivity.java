@@ -245,7 +245,7 @@ public class LoginInActivity extends BaseActivity implements ProConst {
         dialog.showDialog();
         // TODO Auto-generated method stub
         String passEnt = MD5Util.string2MD5(UserPass);
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetCase");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetCase",1);
         RequestParams params = new RequestParams();
         params.addBodyParameter("UserTel", UserTel);
         params.addBodyParameter("CustPhyAddr", HomeActivity.strUniqueId);

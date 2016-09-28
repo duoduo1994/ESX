@@ -106,7 +106,7 @@ public class ChouJiangShouYe extends BaseActivity {
 		System.out.println(UserTel);
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=Create");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=Create",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("CreatorTel", UserTel);
 		requestParams.addBodyParameter("CustPhyAddr", strUniqueId);

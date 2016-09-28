@@ -214,7 +214,7 @@ public class ChouJiang extends BaseActivity {
 				String UserTel = (String) LocalStorage.get("UserTel");
 
 
-				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiang.this,"HandlerDraw.ashx?Action=SelectOne");
+				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiang.this,"HandlerDraw.ashx?Action=SelectOne",1);
 				RequestParams params = new RequestParams();
 				params.addBodyParameter("DrowID", id);
 				params.addBodyParameter("DrawLevel", Grade);
@@ -466,7 +466,7 @@ public class ChouJiang extends BaseActivity {
 			public void singleClick(View arg0) {
 				System.out.println(1);
 				String UserTel = (String) LocalStorage.get("UserTel");
-				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiang.this,"HandlerDraw.ashx?Action=GetApplyCount");
+				XUtilsHelper xUtilsHelper1 = new XUtilsHelper(ChouJiang.this,"HandlerDraw.ashx?Action=GetApplyCount",1);
 				RequestParams param = new RequestParams();
 				param.addBodyParameter("DrowID", id);
 
@@ -706,7 +706,7 @@ public class ChouJiang extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=Stop");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"HandlerDraw.ashx?Action=Stop",1);
 		RequestParams params = new RequestParams();
 		params.addBodyParameter("DrowID", id);
 		params.addBodyParameter("CreatorTel", UserTel);

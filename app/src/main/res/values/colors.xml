@@ -124,6 +124,7 @@
     <color name="sc_hometab_text_s">#ff222222</color>
     <color name="sc_hometab_text">#ff666666</color>
     <color name="p_bg">#fff1f3f5</color>
+    <color name="orange">#f99421</color>
     <color name="p_text1">#ff727272</color>
     <color name="p_text2">#ff343434</color>
     <color name="text_drag_refresh_big">#ff999999</color>

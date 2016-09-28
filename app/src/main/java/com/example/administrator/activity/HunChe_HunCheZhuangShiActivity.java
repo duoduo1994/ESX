@@ -111,7 +111,7 @@ public class HunChe_HunCheZhuangShiActivity extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WedingCarHandler.ashx?Action=getDecorate");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WedingCarHandler.ashx?Action=getDecorate",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

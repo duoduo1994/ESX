@@ -79,7 +79,7 @@ public class TaoCan_LieBiaoActivity extends BaseActivity {
 
     private void getMsg() {
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetSetMealList");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetSetMealList",1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {

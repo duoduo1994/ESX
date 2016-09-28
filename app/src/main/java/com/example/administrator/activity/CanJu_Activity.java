@@ -135,7 +135,7 @@ public class CanJu_Activity extends FragmentActivity implements
 		String tel = (String) LocalStorage.get("UserTel").toString();
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetCase",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("StarLevel", String.valueOf(level));
 		requestParams.addBodyParameter("fkCusTel", tel);
@@ -313,7 +313,7 @@ public class CanJu_Activity extends FragmentActivity implements
 
 	private void getMsg() {
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WaresHandle.ashx?Action=GetDetail");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"WaresHandle.ashx?Action=GetDetail",1);
 		RequestParams requestParams = new RequestParams();
 
 

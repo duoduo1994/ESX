@@ -54,7 +54,7 @@ public class XUtilsHelper {
      * @ param handler
      *            消息处理对象，用于请求完成后的怎么处理返回的结果数据
      */
-    public XUtilsHelper(Context context, String url) {
+    public XUtilsHelper(Context context, String url,int isnew) {
         this.context = context;
         try {
             // 保存网络资源文件名，要在转码之前保存，否则是乱码
@@ -73,8 +73,12 @@ public class XUtilsHelper {
             e.printStackTrace();
         }
         this.httpUtils = XutilsHttpClient.getInstence(context);
-
-        this.url="http://120.27.141.95:8086/ashx/"+url;
+if(isnew==1){
+    this.url="http://120.27.141.95:8086/ashx/"+url;
+}else{
+    this.url="http://120.27.141.95:8221/ashx/"+url;
+}
+//        http://120.27.141.95:8086/ashx/CooksHandler.ashx?Action=GroupAndSingleInfo
         this.progressDialog = new ProgressDialog(context);
         this.params = new RequestParams("GBK"); // 编码与服务器端字符编码一致为gbk
     }

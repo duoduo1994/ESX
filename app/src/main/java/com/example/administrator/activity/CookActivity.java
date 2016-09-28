@@ -157,7 +157,7 @@ public class CookActivity extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=GroupAndSingleInfo");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"CooksHandler.ashx?Action=GroupAndSingleInfo",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -168,7 +168,6 @@ public class CookActivity extends BaseActivity {
 		}).subscribe(new Subscriber<String>() {
 			@Override
 			public void onCompleted() {
-
 			}
 
 			@Override
@@ -179,7 +178,7 @@ public class CookActivity extends BaseActivity {
 							getString(R.string.conn_failed));
 
 						}
-						;
+
 						if (isFalse) {
 							getMsg();
 							ciShu++;

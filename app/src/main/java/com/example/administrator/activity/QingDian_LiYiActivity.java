@@ -151,7 +151,7 @@ public class QingDian_LiYiActivity extends BaseActivity {
     private void getMsg() {
 
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=Ceremony");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=Ceremony",1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {

@@ -23,7 +23,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:text="Text"
-        android:textColor="#7bb618"
+        android:textColor="@color/white"
         android:textSize="20dp" />
 
     <ImageView

@@ -112,7 +112,7 @@ public class HunQing_TaoCan_XiangQingActivity extends BaseActivity {
 	}
 
 	private void getMsg() {
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetSetMealDetails");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"weddingHandler.ashx?Action=GetSetMealDetails",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("WeddingItemID", ID);
 		Observable.create(new Observable.OnSubscribe<String>() {

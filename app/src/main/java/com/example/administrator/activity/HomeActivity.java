@@ -31,15 +31,15 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class HomeActivity extends FragmentActivity {
 	private FragmentHome home;// 首页
-	private FragmentAddress me;// 个人中心
-	private FragmentNotify shopping;// 订单
-	private RadioGroup myTabRg;
+//	private FragmentAddress me;// 个人中心
+//	private FragmentNotify shopping;// 订单
+//	private RadioGroup myTabRg;
 	public static HomeActivity _instance;
 	private boolean isFirst = true;
 	private String a;
 	private SharedPreferences sharedPreferences;
 	private Editor editor;
-	static Activity homethis;
+
 	public static boolean quan = false;
 	public static int a12;
 	public static String strUniqueId;
@@ -59,13 +59,13 @@ public class HomeActivity extends FragmentActivity {
 		System.out.println(strUniqueId+"id值");
 		// Toast.makeText(HomeActivity.this, "识别码为"+strUniqueId, 1).show();
 		a12 = getStatusBarHeight();
-		homethis = HomeActivity.this;
+
 		// manager = (NotificationManager)
 		// getSystemService(Context.NOTIFICATION_SERVICE);
 		PackageManager packageManager = this.getPackageManager();
 		home = new FragmentHome();
-		shopping = new FragmentNotify();
-		me = new FragmentAddress();
+//		shopping = new FragmentNotify();
+//		me = new FragmentAddress();
 		try {
 			sharedPreferences = getSharedPreferences("banben", MODE_PRIVATE);
 			isFirst = sharedPreferences.getBoolean("first", true);
@@ -93,41 +93,41 @@ public class HomeActivity extends FragmentActivity {
 		// 替换选择项对应的界面
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.main_content, home).commit();
-		myTabRg = (RadioGroup) findViewById(R.id.tab_menu);
+//		myTabRg = (RadioGroup) findViewById(R.id.tab_menu);
 		// 监听RadioGroup选中项改变事件
-		myTabRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				// TODO Auto-generated method stub
-				switch (checkedId) {
-				case R.id.iv_menu_0://
-					if(!home.isAdded()){
-						getSupportFragmentManager().beginTransaction().hide(me).hide(shopping).add(R.id.main_content, home).commit();
-						
-					}else{
-						getSupportFragmentManager().beginTransaction().show(home).hide(me).hide(shopping).commit();
-					}
-					break;
-
-				case R.id.iv_menu_1:
-					if(!shopping.isAdded()){
-						getSupportFragmentManager().beginTransaction().hide(me).hide(home).add(R.id.main_content, shopping).add(R.id.main_content, me).commit();
-					}else{
-						getSupportFragmentManager().beginTransaction().show(shopping).hide(me).hide(home).commit();
-						
-					}
-					break;
-				case R.id.iv_menu_2:
-					if(!me.isAdded()){
-						getSupportFragmentManager().beginTransaction().hide(home).hide(shopping).add(R.id.main_content, shopping).add(R.id.main_content, me).commit();
-					}else{
-						
-						getSupportFragmentManager().beginTransaction().hide(home).hide(shopping).show(me).commit();
-					}
-					break;
-				}
-			}
-		});
+//		myTabRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//			@Override
+//			public void onCheckedChanged(RadioGroup group, int checkedId) {
+//				// TODO Auto-generated method stub
+//				switch (checkedId) {
+//				case R.id.iv_menu_0://
+//					if(!home.isAdded()){
+//						getSupportFragmentManager().beginTransaction().hide(me).hide(shopping).add(R.id.main_content, home).commit();
+//
+//					}else{
+//						getSupportFragmentManager().beginTransaction().show(home).hide(me).hide(shopping).commit();
+//					}
+//					break;
+//
+//				case R.id.iv_menu_1:
+//					if(!shopping.isAdded()){
+//						getSupportFragmentManager().beginTransaction().hide(me).hide(home).add(R.id.main_content, shopping).add(R.id.main_content, me).commit();
+//					}else{
+//						getSupportFragmentManager().beginTransaction().show(shopping).hide(me).hide(home).commit();
+//
+//					}
+//					break;
+//				case R.id.iv_menu_2:
+//					if(!me.isAdded()){
+//						getSupportFragmentManager().beginTransaction().hide(home).hide(shopping).add(R.id.main_content, shopping).add(R.id.main_content, me).commit();
+//					}else{
+//
+//						getSupportFragmentManager().beginTransaction().hide(home).hide(shopping).show(me).commit();
+//					}
+//					break;
+//				}
+//			}
+//		});
 
 		return;
 	}

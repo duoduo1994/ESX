@@ -1,10 +1,7 @@
 package com.example.administrator.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -14,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.administrator.activity.CookActivity;
 import com.example.administrator.activity.HomeActivity;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.XUtilsHelper;
@@ -22,23 +20,30 @@ import com.lidroid.xutils.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+
+import static android.R.id.list;
+
 
 /**
  * Created by ${WuQiLian} on 2016/9/6.
  */
-public class Tab1 extends Fragment implements View.OnClickListener{
+public class Tab1 extends Fragment implements View.OnClickListener {
     private View view;
-    private LinearLayout xiangCun,siren,niqing,tiexing;
+    private LinearLayout xiangCun, siren, niqing, tiexing;
     private ViewPager viewPager;
-    /** 首页轮播的界面的资源 */
+    /**
+     * 首页轮播的界面的资源
+     */
     private int[] resId = {R.mipmap.shouye6, R.mipmap.shouye1,
             R.mipmap.shouye2, R.mipmap.shouye3, R.mipmap.shouye4,
-            R.mipmap.shouye5, R.mipmap.shouye6, R.mipmap.shouye1 };
+            R.mipmap.shouye5, R.mipmap.shouye6, R.mipmap.shouye1};
     private ImageView[] tips;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,25 +61,55 @@ public class Tab1 extends Fragment implements View.OnClickListener{
         siren.setOnClickListener(this);
         niqing.setOnClickListener(this);
         tiexing.setOnClickListener(this);
+
         init();
         addImage();
         return view;
     }
+
     private List<ImageView> ali;
+    private List<String> ivUrl;
     private ImageView iv;
     ViewPagerAdapter vpa;
-    private void init(){
+
+    private void init() {
+
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(),"CooksHandler.ashx?Action=GroupAndSingleInfo",1);
+        RequestParams requestParams = new RequestParams();
+
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                xUtilsHelper1.sendPost(requestParams,subscriber);
+            }
+        }).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onNext(String s) {
+
+            }
+        });
         ViewGroup group = (ViewGroup) view.findViewById(R.id.viewGroup1);
-        tips = new ImageView[6];
-        for (int i = 0; i < tips.length; i++) {
+        tips = new ImageView[resId.length-2];
+        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length-2).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+
             ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(new ViewGroup.LayoutParams(20, 20));
-            if (i == 0) {
+            if (integer == 0) {
                 imageView.setBackgroundResource(R.mipmap.red_point);
             } else {
                 imageView.setBackgroundResource(R.mipmap.dot_unselected);
             }
-            tips[i] = imageView;
+            tips[integer] = imageView;
 
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -82,15 +117,19 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             layoutParams.leftMargin = 10;// 设置点点点view的左边距
             layoutParams.rightMargin = 10;// 设置点点点view的右边距
             group.addView(imageView, layoutParams);
-        }
+            }
+        });
 
         ali = new ArrayList();
-        for (int i = 0; i < resId.length; i++) {
-            iv = new ImageView(getActivity());
-            iv.setImageResource(resId[i]);
-            iv.setScaleType(ImageView.ScaleType.FIT_XY);
-            ali.add(iv);
-        }
+        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                iv = new ImageView(getActivity());
+                iv.setImageResource(resId[integer]);
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                ali.add(iv);
+            }
+        });
         vpa = new ViewPagerAdapter(ali,
                 getActivity());
         viewPager.setAdapter(vpa);
@@ -121,26 +160,27 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             }
         });
     }
+
     /**
      * 停止定时任务
      */
     private void stopTask() {
         // TODO Auto-generated method stub
         isTaskRun = false;
-        mTimer.cancel();
+        subscriber.unsubscribe();
     }
+
     /**
      * 处理Page的切换逻辑
      */
     private void setCurrentItem() {
         if (pageIndex == 0) {
-            pageIndex = 6;
+            pageIndex = resId.length-2;
             viewPager.setCurrentItem(pageIndex, false);
-        } else if (pageIndex == 7) {
+        } else if (pageIndex == resId.length-1) {
             pageIndex = 1;
             viewPager.setCurrentItem(pageIndex, false);
         } else {
-
             viewPager.setCurrentItem(pageIndex, true);// 取消动画
         }
         setImageBackground(pageIndex - 1);
@@ -156,35 +196,24 @@ public class Tab1 extends Fragment implements View.OnClickListener{
         }
     }
 
-    private Timer mTimer;
-    private TimerTask mTask;
     private int pageIndex = 1;
     private boolean isTaskRun;
-    // 处理EmptyMessage(0)
-    @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            // TODO Auto-generated method stub
-            setCurrentItem();
-        }
-    };
+    Subscription subscriber;
     /**
      * 开启定时任务
      */
     private void startTask() {
         // TODO Auto-generated method stub
         isTaskRun = true;
-        mTimer = new Timer();
-        mTask = new TimerTask() {
+        subscriber = Observable.interval(3, TimeUnit.SECONDS).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
             @Override
-            public void run() {
+            public void call(Long aLong) {
                 pageIndex++;
-                mHandler.sendEmptyMessage(0);
+                setCurrentItem();
             }
-        };
-        mTimer.schedule(mTask, 2 * 1000, 2 * 1000);// 这里设置自动切换的时间，单位是毫秒，2*1000表示2秒
+        });
     }
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.xiangcun_xiyan:
@@ -204,15 +233,14 @@ public class Tab1 extends Fragment implements View.OnClickListener{
     }
 
 
-
-    private void addImage(){
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(),"");
+    private void addImage() {
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(), "",1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                xUtilsHelper1.sendPost(requestParams,subscriber);
+                xUtilsHelper1.sendPost(requestParams, subscriber);
             }
         }).subscribe(new Subscriber<String>() {
             @Override
@@ -231,16 +259,6 @@ public class Tab1 extends Fragment implements View.OnClickListener{
             }
         });
 
-
-
-
-
     }
-
-
-
-
-
-
 
 }

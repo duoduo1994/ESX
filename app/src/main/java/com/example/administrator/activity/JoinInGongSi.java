@@ -228,7 +228,7 @@ public class JoinInGongSi extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetCompanyCgy");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=GetCompanyCgy",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -393,7 +393,7 @@ public class JoinInGongSi extends BaseActivity {
 		System.out.println(nameID + "," + FeastDatetime + "," + Gongsi + ","
 				+ RealName + "," + Tel + "," + hyName);
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=CompanyJoin");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"JoinHandler.ashx?Action=CompanyJoin",1);
 		RequestParams params = new RequestParams();
 		params.addBodyParameter("dateTime", FeastDatetime);
 		params.addBodyParameter("Company", Gongsi);
@@ -525,7 +525,7 @@ public class JoinInGongSi extends BaseActivity {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,dizhi);
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,dizhi,1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {

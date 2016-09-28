@@ -12,6 +12,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="Button_horizontal">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
@@ -43,102 +44,99 @@
     </style>
 
 
+    <style name="AnimFade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/hold</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+    </style>
 
-        <style name="AnimFade" parent="@android:style/Animation.Activity">
-            <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
-            <item name="android:activityOpenExitAnimation">@anim/hold</item>
-            <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
-            <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
-        </style>
-        <style
-            name="linearlayout_shuiping">
-            <item name="android:layout_width">0dp</item>
-            <item name="android:orientation">horizontal</item>
-            <item name="android:layout_height">match_parent</item>
-        </style>
-        <style name="linearlayout_chuizhi">
-            <item name="android:layout_width">match_parent</item>
-            <item name="android:orientation">vertical</item>
-            <item name="android:layout_height">0dp</item>
-        </style>
+    <style name="linearlayout_shuiping">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 
-        <style name="tv_qingtie_preview_style">
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:padding">8dp</item>
-            <item name="android:textSize">18dp</item>
-            <item name="android:textColor">#696969</item>
-        </style>
+    <style name="linearlayout_chuizhi">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
 
-        <style name="loading_dialog" parent="android:style/Theme.Dialog">
-            <item name="android:windowFrame">@null</item>
-            <item name="android:windowNoTitle">true</item>
-            <item name="android:windowIsFloating">true</item>
-            <item name="android:windowIsTranslucent">true</item>
-            <item name="android:windowBackground">@android:color/transparent</item>
-        </style>
+    <style name="tv_qingtie_preview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">#696969</item>
+    </style>
 
-        <!--<style name="loading_dialogtu" parent="android:style/Theme.Dialog">-->
-            <!--<item name="android:windowNoTitle">true</item>-->
-            <!--<item name="android:windowFullscreen">true</item>-->
-            <!--<item name="android:windowIsTranslucent">true</item>-->
-            <!--<item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>-->
-            <!--<item name="android:windowBackground">@android:color/black</item>-->
-        <!--</style>-->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
-        <style name="Anim_style2" parent="android:Theme.NoTitleBar">
-            <item name="android:windowAnimationStyle">@style/AnimFade</item>
-        </style>
+    <!--<style name="loading_dialogtu" parent="android:style/Theme.Dialog">-->
+    <!--<item name="android:windowNoTitle">true</item>-->
+    <!--<item name="android:windowFullscreen">true</item>-->
+    <!--<item name="android:windowIsTranslucent">true</item>-->
+    <!--<item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>-->
+    <!--<item name="android:windowBackground">@android:color/black</item>-->
+    <!--</style>-->
 
-        <style name="tv_register_style">
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">match_parent</item>
-            <item name="android:gravity">center</item>
-            <item name="android:textSize">16dp</item>
-            <item name="android:textColor">#696969</item>
-        </style>
+    <style name="Anim_style2" parent="android:Theme.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/AnimFade</item>
+    </style>
 
-        <style name="et_register_style">
-            <item name="android:layout_width">match_parent</item>
-            <item name="android:layout_height">match_parent</item>
-            <item name="android:background">@null</item>
-            <item name="android:textSize">15sp</item>
-            <item name="android:ems">10</item>
-        </style>
+    <style name="tv_register_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#696969</item>
+    </style>
 
-        <style name="tv_qingtiexinxi_style">
-            <item name="android:layout_width">0dp</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:layout_centerVertical">true</item>
-            <item name="android:layout_marginLeft">20dp</item>
-            <item name="android:textSize">12sp</item>
-            <item name="android:textColor">#696969</item>
-        </style>
+    <style name="et_register_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:ems">10</item>
+    </style>
 
-        <style name="et_qingtiexinxi_style">
-            <item name="android:background">@drawable/et_focus</item>
-            <item name="android:ems">7</item>
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:layout_alignParentRight">true</item>
-            <item name="android:layout_marginRight">30dp</item>
-            <item name="android:layout_margin">10dp</item>
-        </style>
+    <style name="tv_qingtiexinxi_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#696969</item>
+    </style>
 
-        <style name="ll_qingtiexinxi_style">
-            <item name="android:paddingRight">30dp</item>
-            <item name="android:layout_margin">10dp</item>
-            <item name="android:paddingLeft">30dp</item>
-            <item name="android:layout_width">match_parent</item>
-            <item name="android:layout_height">50dp</item>
-            <item name="android:gravity">center</item>
-        </style>
+    <style name="et_qingtiexinxi_style">
+        <item name="android:background">@drawable/et_focus</item>
+        <item name="android:ems">7</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
 
-
+    <style name="ll_qingtiexinxi_style">
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 
-
-        <!--
+    <!--
             Base application theme, dependent on API level. This theme is replaced
             by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
@@ -147,8 +145,8 @@
 
 
         -->
-        <style name="AppBaseTheme" parent="android:Theme.Light">
-            <!--
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
                 Theme customizations available in newer API levels can go in
                 res/values-vXX/styles.xml, while customizations related to
                 backward-compatibility can go here.
@@ -158,45 +156,58 @@
 
 
             -->
-        </style>
-        <style name="AppTheme.Dialog" parent="android:Theme.Holo.Light.Dialog">
-            <item name="android:windowNoTitle">true</item>
-            <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 
-        </style>
+    <style name="AppTheme.Dialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+
+    </style>
 
 
+    <style name="weekName">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/room_rating_bar</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
 
-        <style name="weekName">
-            <item name="android:layout_width">0.0dip</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:layout_gravity">center</item>
-            <item name="android:layout_weight">1.0</item>
-            <item name="android:gravity">center</item>
-            <item name="android:textColor">#808080</item>
-            <item name="android:textSize">14sp</item>
-        </style>
+    <style name="mypopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <!-- 指定显示的动画xml -->
 
-        <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
-            <item name="android:progressDrawable">@drawable/room_rating_bar</item>
-            <item name="android:minHeight">30dp</item>
-            <item name="android:maxHeight">30dp</item>
-        </style>
-        <style name="mypopwindow_anim_style">
-            <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
-            <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+    <!-- checkbox样式 -->
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+    <!-- checkbox2样式 -->
+    <style name="CustomCheckboxTheme2" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style2</item>
+    </style>
 
-            <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
-            <!-- 指定消失的动画xml -->
-        </style>
-        <!-- checkbox样式 -->
-        <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
-            <item name="android:button">@drawable/checkbox_style</item>
-        </style>
-        <!-- checkbox2样式 -->
-        <style name="CustomCheckboxTheme2" parent="@android:style/Widget.CompoundButton.CheckBox">
-            <item name="android:button">@drawable/checkbox_style2</item>
-        </style>
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="radiobutton_style">
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/radiobutton_selector</item>
+    </style>
 
 </resources>

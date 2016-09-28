@@ -233,7 +233,7 @@ public class ReserveActivity extends BaseActivity implements ProConst, TextWatch
 
     private void getMsg() {
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "BookHandler.ashx?Action=bookPage");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "BookHandler.ashx?Action=bookPage",1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {
@@ -278,7 +278,7 @@ public class ReserveActivity extends BaseActivity implements ProConst, TextWatch
         } else {
             System.out.println(LocalStorage.get("UserTel").toString()
                     + "_________");
-            XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "BookHandler.ashx?Action=bookAllInfo");
+            XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "BookHandler.ashx?Action=bookAllInfo",1);
             RequestParams requestParams = new RequestParams();
 
             requestParams.addBodyParameter("fkCusTel", LocalStorage.get("UserTel").toString());

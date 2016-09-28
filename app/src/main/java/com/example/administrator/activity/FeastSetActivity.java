@@ -385,7 +385,7 @@ public class FeastSetActivity extends BaseActivity implements ProConst {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=ReplaceSetMeal");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=ReplaceSetMeal",1);
 		RequestParams p = new RequestParams();
 		p.addBodyParameter("fkCusTel", tel);
 		p.addBodyParameter("DishNameIDs", IDcai);
@@ -610,7 +610,7 @@ public class FeastSetActivity extends BaseActivity implements ProConst {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_SetMeal");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_SetMeal",1);
 		RequestParams p = new RequestParams();
 
 		p.addBodyParameter("fkCusTel", tel);
@@ -845,7 +845,7 @@ public class FeastSetActivity extends BaseActivity implements ProConst {
 		tel = (String) LocalStorage.get("UserTel").toString();
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_CustomSetMeal");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"BookHandler.ashx?Action=AddIntoOrder&Type=Type_CustomSetMeal",1);
 		RequestParams p = new RequestParams();
 		p.addBodyParameter("fkCusTel", tel);
 		p.addBodyParameter("DishNameIDs", IDcai);
@@ -1082,7 +1082,7 @@ public class FeastSetActivity extends BaseActivity implements ProConst {
 
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"MenuHandler.ashx?Action=GetAllDish");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"MenuHandler.ashx?Action=GetAllDish",1);
 		RequestParams requestParams = new RequestParams();
 
 		Observable.create(new Observable.OnSubscribe<String>() {
@@ -1320,7 +1320,7 @@ public class FeastSetActivity extends BaseActivity implements ProConst {
 		ld.showDialog();
 
 
-		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"MenuHandler.ashx?Action=getMenuByID");
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"MenuHandler.ashx?Action=getMenuByID",1);
 		RequestParams requestParams = new RequestParams();
 		requestParams.addBodyParameter("SetMealID", ID);
 		Observable.create(new Observable.OnSubscribe<String>() {

@@ -114,7 +114,7 @@ public class ShiRen_DingZhiActivity extends BaseActivity {
     private int ciShu = 0;
 
     private void getMsg() {
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=PersonalTailor");
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=PersonalTailor",1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {

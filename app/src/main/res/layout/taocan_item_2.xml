@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<TextView
+    android:layout_width="0dp"
+    android:layout_weight="3"
+    android:text="配菜名称"
+    android:id="@+id/tv_dishname_taocandetail_2"
+    android:layout_gravity="center_vertical"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:text="单品weight"
+        android:id="@+id/tv_dishweight_taocandetail_2"
+        android:layout_width="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        />
+    <TextView
+        android:textColor="@color/orange"
+        android:text="(库存133件)"
+        android:id="@+id/tv_storage_taocandetail_2"
+        android:layout_gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        />
+    <ImageView
+        android:id="@+id/iv_ischecked_taocandetail_2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:src="@drawable/checked_selector"
+        />
+</LinearLayout>
