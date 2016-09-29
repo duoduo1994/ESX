@@ -11,6 +11,7 @@ import cn.sharesdk.framework.ShareSDK;
 import android.app.Application;
 import android.content.Context;
 import android.os.Vibrator;
+import android.support.multidex.MultiDex;
 
 /**
  * 文件名：主Application
@@ -33,5 +34,10 @@ public class LocationApplication extends Application {
      	JPushInterface.init(this);
      	LocalStorage.initContext(getApplicationContext());
      	ShareSDK.initSDK(this);
+    }
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+                 MultiDex.install(this) ;
     }
 }

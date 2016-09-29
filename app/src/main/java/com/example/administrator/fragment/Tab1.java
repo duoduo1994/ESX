@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.Target;
 import com.example.administrator.activity.CookActivity;
 import com.example.administrator.activity.HomeActivity;
+import com.example.administrator.activity.MainActivity;
+import com.example.administrator.entity.ToppicBean;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.RetrofitUtil;
 import com.example.administrator.net.XUtilsHelper;
 import com.example.administrator.utils.ViewPagerAdapter;
 import com.lidroid.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
@@ -38,18 +47,21 @@ public class Tab1 extends Fragment implements View.OnClickListener {
     private View view;
     private LinearLayout xiangCun, siren, niqing, tiexing;
     private ViewPager viewPager;
+    RetrofitUtil<ToppicBean> TopPicUtil;
+    private List<String> l=new ArrayList<>();
     /**
      * 首页轮播的界面的资源
      */
     private int[] resId = {R.mipmap.shouye6, R.mipmap.shouye1,
             R.mipmap.shouye2, R.mipmap.shouye3, R.mipmap.shouye4,
-            R.mipmap.shouye5, R.mipmap.shouye6, R.mipmap.shouye1};
+            R.mipmap.shouye5};
     private ImageView[] tips;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        TopPicUtil=new RetrofitUtil<>(getActivity());
         view = LayoutInflater.from(getActivity()).inflate(
                 R.layout.item_1, null);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager_shou);
@@ -65,6 +77,33 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         init();
         addImage();
         return view;
+    }
+    private void UtilDemo() {
+        Map<String, String> map = new HashMap<>();
+        map.put("Function", "GetTopPicture");
+        TopPicUtil.getBeanDataFromNet("Other", map, ToppicBean.class, new RetrofitUtil.CallBack<ToppicBean>() {
+            @Override
+            public void onLoadingDataComplete(ToppicBean body) {
+                l=body.getTop();
+//                Toast.makeText(getActivity(),"11111"+l.toString(),Toast.LENGTH_SHORT).show();
+//                for (int i = 0; i <20 ; i++) {
+//                    Log.i("555555l.get(i%4)",l.get(i%4));
+//                }
+                Observable.just(0,1,2,3,4,5,6,7,8,9).take(l.size()).subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        iv = new ImageView(getActivity());
+                        Glide.with(getActivity()).load(l.get(integer)).into(iv);
+                        Toast.makeText(getActivity(),l.get(integer),Toast.LENGTH_SHORT).show();
+                        iv.setScaleType(ImageView.ScaleType.FIT_XY);
+                    }
+                });
+            }
+
+            @Override
+            public void onLoadingDataFailed(Throwable t) {
+            }
+        });
     }
 
     private List<ImageView> ali;
@@ -121,15 +160,15 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         });
 
         ali = new ArrayList();
-        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                iv = new ImageView(getActivity());
-                iv.setImageResource(resId[integer]);
-                iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                ali.add(iv);
-            }
-        });
+//        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length).subscribe(new Action1<Integer>() {
+//            @Override
+//            public void call(Integer integer) {
+//                iv = new ImageView(getActivity());
+//                iv.setImageResource(resId[integer]);
+//                iv.setScaleType(ImageView.ScaleType.FIT_XY);
+//                ali.add(iv);
+//            }
+//        });
         vpa = new ViewPagerAdapter(ali,
                 getActivity());
         viewPager.setAdapter(vpa);

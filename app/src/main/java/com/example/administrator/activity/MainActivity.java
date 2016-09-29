@@ -3,18 +3,29 @@ package com.example.administrator.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.administrator.entity.ToppicBean;
 import com.example.administrator.fragment.Tab1;
 import com.example.administrator.fragment.Tab2;
 import com.example.administrator.fragment.Tab3;
 import com.example.administrator.fragment.Tab4;
 import com.example.administrator.fragment.Tab5;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.RetrofitUtil;
+import com.example.administrator.utils.BaseRecyclerAdapter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnRadioGroupCheckedChange;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static android.R.id.list;
 
 public class MainActivity extends FragmentActivity {
     private long exitTime;
@@ -22,14 +33,20 @@ public class MainActivity extends FragmentActivity {
     private Tab2 tab2;
     private Tab3 tab3;
     private Tab4 tab4;
+    RetrofitUtil<ToppicBean> TopPicUtil;
+    private List<String> l=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TopPicUtil=new RetrofitUtil<>(this);
         ViewUtils.inject(this);
         initView();
     }
+
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
