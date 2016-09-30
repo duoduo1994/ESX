@@ -163,6 +163,7 @@
         android:background="@color/feedback_gray"
         />
     <LinearLayout
+        android:layout_marginLeft="8dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -187,6 +188,8 @@
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="right"
+            android:layout_marginRight="16dp"
             android:orientation="horizontal"
             android:layout_width="0dp">
             <ImageView

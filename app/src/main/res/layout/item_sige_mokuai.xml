@@ -1,75 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:orientation="horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="100dp">
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:id="@+id/xiangcun_xiyan"
         android:gravity="center"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="乡村喜宴"
-            />
+        android:background="@mipmap/hp_xcxy"
+        android:layout_height="wrap_content">
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:id="@+id/siren_dingzhi"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="私人定制"
-            />
+        android:background="@mipmap/hp_srdz"
+        android:layout_height="wrap_content">
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:id="@+id/niqing_woyuan"
-        android:gravity="center"
+        android:background="@mipmap/hp_nqwy"
         android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="你请我援"
-            />
+
     </LinearLayout>
     <LinearLayout
+        android:background="@mipmap/hp_txdj"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:id="@+id/tiexin_daojia"
         android:orientation="vertical"
-        android:gravity="center"
         android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="贴心到家"
-            />
     </LinearLayout>
 </LinearLayout>

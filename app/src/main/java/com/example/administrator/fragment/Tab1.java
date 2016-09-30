@@ -3,7 +3,8 @@ package com.example.administrator.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,32 +13,43 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.target.Target;
-import com.example.administrator.activity.CookActivity;
+import com.example.administrator.ab.view.ImageCycleView;
 import com.example.administrator.activity.HomeActivity;
-import com.example.administrator.activity.MainActivity;
+import com.example.administrator.activity.HunQing_TaoCan_XiangQingActivity;
+import com.example.administrator.activity.TaocanActivity;
+import com.example.administrator.entity.AnLi;
+import com.example.administrator.entity.ShouyeListBean;
 import com.example.administrator.entity.ToppicBean;
+import com.example.administrator.list.CommonAdapter;
+import com.example.administrator.list.ViewHolder;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.RetrofitUtil;
 import com.example.administrator.net.XUtilsHelper;
+import com.example.administrator.utils.BaseRecyclerAdapter;
+import com.example.administrator.utils.BaseRecyclerHolder;
+import com.example.administrator.utils.Load;
 import com.example.administrator.utils.ViewPagerAdapter;
 import com.lidroid.xutils.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 import static android.R.id.list;
+import static android.os.Build.ID;
+import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+import static com.example.administrator.myapplication.R.id.anli;
+import static com.example.administrator.myapplication.R.id.lv;
+import static com.example.administrator.myapplication.R.id.rcv_showye;
+import static com.example.administrator.myapplication.R.layout.item;
 
 
 /**
@@ -46,26 +58,31 @@ import static android.R.id.list;
 public class Tab1 extends Fragment implements View.OnClickListener {
     private View view;
     private LinearLayout xiangCun, siren, niqing, tiexing;
-    private ViewPager viewPager;
-    RetrofitUtil<ToppicBean> TopPicUtil;
-    private List<String> l=new ArrayList<>();
-    /**
-     * 首页轮播的界面的资源
-     */
-    private int[] resId = {R.mipmap.shouye6, R.mipmap.shouye1,
-            R.mipmap.shouye2, R.mipmap.shouye3, R.mipmap.shouye4,
-            R.mipmap.shouye5};
-    private ImageView[] tips;
+//    private ViewPager viewPager;
+private ImageCycleView icv;
+    private RecyclerView rcv_showye;
+    private RetrofitUtil<ToppicBean> TopPicUtil;
+    private RetrofitUtil<ShouyeListBean> ListPicUtil;
+    private List<String> l;
+    private List<ShouyeListBean> listBeanList;
+    BaseRecyclerAdapter<ShouyeListBean> baseRecyclerAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        l=new ArrayList<>();
+        listBeanList=new ArrayList<>();
+        Load.getLoad(getActivity());
         TopPicUtil=new RetrofitUtil<>(getActivity());
+        ListPicUtil=new RetrofitUtil<>(getActivity());
+        UtilDemo();
         view = LayoutInflater.from(getActivity()).inflate(
                 R.layout.item_1, null);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager_shou);
+//        viewPager = (ViewPager) view.findViewById(R.id.viewpager_shou);
+        rcv_showye= (RecyclerView) view.findViewById(R.id.rcv_showye);
         xiangCun = (LinearLayout) view.findViewById(R.id.xiangcun_xiyan);
+        icv= (ImageCycleView) view.findViewById(R.id.icv_costom);
         siren = (LinearLayout) view.findViewById(R.id.siren_dingzhi);
         niqing = (LinearLayout) view.findViewById(R.id.niqing_woyuan);
         tiexing = (LinearLayout) view.findViewById(R.id.tiexin_daojia);
@@ -74,7 +91,15 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         niqing.setOnClickListener(this);
         tiexing.setOnClickListener(this);
 
-        init();
+        rcv_showye.setLayoutManager(new LinearLayoutManager(getActivity()));
+        baseRecyclerAdapter=new BaseRecyclerAdapter<ShouyeListBean>(getActivity(),listBeanList,R.layout.shouye_list_item) {
+            @Override
+            public void convert(BaseRecyclerHolder holder, ShouyeListBean item, int position, boolean isScrolling) {
+                Load.imageLoader.displayImage(item.getImageUrl(), (ImageView) holder.getView(R.id.iv_shouye_list),Load.options);
+            }
+        };
+        rcv_showye.setAdapter(baseRecyclerAdapter);
+//        init();
         addImage();
         return view;
     }
@@ -84,27 +109,114 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         TopPicUtil.getBeanDataFromNet("Other", map, ToppicBean.class, new RetrofitUtil.CallBack<ToppicBean>() {
             @Override
             public void onLoadingDataComplete(ToppicBean body) {
-                l=body.getTop();
-//                Toast.makeText(getActivity(),"11111"+l.toString(),Toast.LENGTH_SHORT).show();
-//                for (int i = 0; i <20 ; i++) {
-//                    Log.i("555555l.get(i%4)",l.get(i%4));
-//                }
-                Observable.just(0,1,2,3,4,5,6,7,8,9).take(l.size()).subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer integer) {
-                        iv = new ImageView(getActivity());
-                        Glide.with(getActivity()).load(l.get(integer)).into(iv);
-                        Toast.makeText(getActivity(),l.get(integer),Toast.LENGTH_SHORT).show();
-                        iv.setScaleType(ImageView.ScaleType.FIT_XY);
-                    }
-                });
+                l = body.getTop();
+                Log.i("onLoadingDataComplete: ", "o" + l.toString());
+                setpic();
             }
 
             @Override
             public void onLoadingDataFailed(Throwable t) {
             }
         });
+//http://120.27.141.95:8221/ashx/Promoting.ashx?Function=GetAllPromote
+        XUtilsHelper xh1=new XUtilsHelper(getActivity(),"http://120.27.141.95:8221/ashx/Promoting.ashx?Function=GetAllPromote",2);
+        RequestParams requestParams = new RequestParams();
+        requestParams.addBodyParameter("Function", "GetAllPromote");
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                xh1.sendPost(null,subscriber);
+            }
+        }).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+                baseRecyclerAdapter.notifyDataSetChanged();
+                Log.i("onCompleted", "convert: "+listBeanList.toString());
+                Toast.makeText(getActivity(),"convert: "+listBeanList.toString(),Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError(Throwable e) {
+                Toast.makeText(getActivity(),"convergggggggggggggt: "+e,Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNext(String s) {
+                Log.i("onLoadingDataComplete: ", "o" + s);
+                try {
+                    JSONArray jsonArray= new JSONArray(s.trim());
+//                    JSONArray jsonArray = ja1.getJSONArray(0);
+                    JSONObject jo;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        jo=jsonArray.getJSONObject(i);
+                        ShouyeListBean slbean;
+//                            /**
+//                             * PublicityID : 20160922170800000000
+//                             * ProductID : 1
+//                             * ProductCgy : 1
+//                             * ImageUrl : Http://120.27.141.95:8221/UploadFile/Promoting/100000000.jpg
+//                             */
+                            slbean=new ShouyeListBean(jo.getString("PublicityID"),jo.getString("ProductID"),jo.getString("ProductCgy"),jo.getString("ImageUrl"));
+                        Log.i("ddddddddddddd", "osssssssssssssssssssnNext: "+listBeanList.toString());
+                        listBeanList.add(slbean);
+                    }
+                    baseRecyclerAdapter.notifyDataSetChanged();
+                    Log.i("ddddddddddddd", "osssssssssssssssssssnNext: "+listBeanList.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+//                    JSONArray json = null;
+//                JSONArray json2=null;
+//                    try {
+//                        json = new JSONArray(s.trim());
+//                        json2=json.getJSONArray(0);
+//                        JSONObject tJson;
+//                        for (int i = 0; i < json2.length(); i++) {
+//                            tJson = json2.getJSONObject(i);
+//                            ShouyeListBean slbean=new ShouyeListBean();
+//                            /**
+//                             * PublicityID : 20160922170800000000
+//                             * ProductID : 1
+//                             * ProductCgy : 1
+//                             * ImageUrl : Http://120.27.141.95:8221/UploadFile/Promoting/100000000.jpg
+//                             */
+//                            slbean=new ShouyeListBean(tJson.getString("PublicityID"),tJson.getString("ProductID"),tJson.getString("ProductCgy"),tJson.getString("ImageUrl"));
+//                            listBeanList.add(slbean);
+//                        }
+//                        Log.i("ddddddddddddd", "osssssssssssssssssssnNext: "+listBeanList.toString());
+//                        baseRecyclerAdapter.notifyDataSetChanged();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+        }
+    });
     }
+
+    private void setpic() {
+        ArrayList<String> a=new ArrayList();
+        for (int i = 0; i <l.size() ; i++) {
+            a.add(l.get(i));
+        }
+        Log.i( "onLoadingDataComplete: ", "o"+a.toString());
+        icv.setImageResources(a,mAdCycleViewListener);
+    }
+    private ImageCycleView.ImageCycleViewListener mAdCycleViewListener = new ImageCycleView.ImageCycleViewListener() {
+
+        @Override
+        public void onImageClick(int position, View imageView) {
+            // TODO 单击图片处理事件
+            Toast.makeText(getActivity(), "position->"+position, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void displayImage(String imageURL, ImageView imageView) {
+//            Glide.with(getActivity()).load(imageURL).into(imageView);
+//            ImageLoader.getInstance().loadImage(imageURL,imageView);
+            Load.imageLoader.displayImage(imageURL,
+                    imageView, Load.options);
+//            ImageLoader.getInstance().displayImage(imageURL, imageView);// 此处本人使用了ImageLoader对图片进行加装！
+        }
+    };
 
     private List<ImageView> ali;
     private List<String> ivUrl;
@@ -113,13 +225,13 @@ public class Tab1 extends Fragment implements View.OnClickListener {
 
     private void init() {
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(),"CooksHandler.ashx?Action=GroupAndSingleInfo",1);
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(), "CooksHandler.ashx?Action=GroupAndSingleInfo", 1);
         RequestParams requestParams = new RequestParams();
 
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                xUtilsHelper1.sendPost(requestParams,subscriber);
+                xUtilsHelper1.sendPost(requestParams, subscriber);
             }
         }).subscribe(new Subscriber<String>() {
             @Override
@@ -135,123 +247,8 @@ public class Tab1 extends Fragment implements View.OnClickListener {
 
             }
         });
-        ViewGroup group = (ViewGroup) view.findViewById(R.id.viewGroup1);
-        tips = new ImageView[resId.length-2];
-        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length-2).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-
-            ImageView imageView = new ImageView(getActivity());
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(20, 20));
-            if (integer == 0) {
-                imageView.setBackgroundResource(R.mipmap.red_point);
-            } else {
-                imageView.setBackgroundResource(R.mipmap.dot_unselected);
-            }
-            tips[integer] = imageView;
-
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
-            layoutParams.leftMargin = 10;// 设置点点点view的左边距
-            layoutParams.rightMargin = 10;// 设置点点点view的右边距
-            group.addView(imageView, layoutParams);
-            }
-        });
-
-        ali = new ArrayList();
-//        Observable.just(0,1,2,3,4,5,6,7,8,9).take(resId.length).subscribe(new Action1<Integer>() {
-//            @Override
-//            public void call(Integer integer) {
-//                iv = new ImageView(getActivity());
-//                iv.setImageResource(resId[integer]);
-//                iv.setScaleType(ImageView.ScaleType.FIT_XY);
-//                ali.add(iv);
-//            }
-//        });
-        vpa = new ViewPagerAdapter(ali,
-                getActivity());
-        viewPager.setAdapter(vpa);
-        viewPager.setCurrentItem(1);
-        startTask();
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int arg0) {
-                pageIndex = arg0;
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
-            }
-
-            /* state: 0空闲，1是滑行中，2加载完毕 */
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // TODO Auto-generated method stub
-                // System.out.println("state:" + state);
-                if (state == 0 && !isTaskRun) {
-                    setCurrentItem();
-                    startTask();
-                } else if (state == 1 && isTaskRun)
-                    stopTask();
-            }
-        });
     }
 
-    /**
-     * 停止定时任务
-     */
-    private void stopTask() {
-        // TODO Auto-generated method stub
-        isTaskRun = false;
-        subscriber.unsubscribe();
-    }
-
-    /**
-     * 处理Page的切换逻辑
-     */
-    private void setCurrentItem() {
-        if (pageIndex == 0) {
-            pageIndex = resId.length-2;
-            viewPager.setCurrentItem(pageIndex, false);
-        } else if (pageIndex == resId.length-1) {
-            pageIndex = 1;
-            viewPager.setCurrentItem(pageIndex, false);
-        } else {
-            viewPager.setCurrentItem(pageIndex, true);// 取消动画
-        }
-        setImageBackground(pageIndex - 1);
-    }
-
-    private void setImageBackground(int selectItems) {
-        for (int i = 0; i < tips.length; i++) {
-            if (i == selectItems) {
-                tips[i].setBackgroundResource(R.mipmap.red_point);
-            } else {
-                tips[i].setBackgroundResource(R.mipmap.dot_unselected);
-            }
-        }
-    }
-
-    private int pageIndex = 1;
-    private boolean isTaskRun;
-    Subscription subscriber;
-    /**
-     * 开启定时任务
-     */
-    private void startTask() {
-        // TODO Auto-generated method stub
-        isTaskRun = true;
-        subscriber = Observable.interval(3, TimeUnit.SECONDS).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long aLong) {
-                pageIndex++;
-                setCurrentItem();
-            }
-        });
-    }
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -259,13 +256,13 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), HomeActivity.class));
                 break;
             case R.id.siren_dingzhi:
-                Toast.makeText(getActivity(), "私人定制", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getActivity(), TaocanActivity.class));
                 break;
             case R.id.niqing_woyuan:
-                Toast.makeText(getActivity(), "你请我援", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "你请我援正在建设，敬请期待！", Toast.LENGTH_LONG).show();
                 break;
             case R.id.tiexin_daojia:
-                Toast.makeText(getActivity(), "贴心到家", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "贴心到家正在建设，敬请期待！", Toast.LENGTH_LONG).show();
                 break;
         }
 
@@ -286,18 +283,12 @@ public class Tab1 extends Fragment implements View.OnClickListener {
             public void onCompleted() {
 
             }
-
             @Override
             public void onError(Throwable e) {
-
             }
-
             @Override
             public void onNext(String s) {
-
             }
         });
-
     }
-
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+
 /**
  * 万能的RecyclerView的ViewHolder
  * Created by 南尘 on 16-7-30.
@@ -88,6 +89,8 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
     public BaseRecyclerHolder setImageByUrl(int viewId,String url){
 //        Picasso.with(context).load(url).into((ImageView) getView(viewId));
         Glide.with(context).load(url).into((ImageView) getView(viewId));
+        ImageView iv=getView(viewId);
+        Load.imageLoader.displayImage(url,iv,Load.options);
         //        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
         //        ImageLoader.getInstance().displayImage(url, (ImageView) getView(viewId));
         return this;

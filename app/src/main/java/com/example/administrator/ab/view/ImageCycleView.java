@@ -133,10 +133,16 @@ public class ImageCycleView extends LinearLayout {
 			mImageViews[i] = mImageView;
 			if (i == 0) {
 				mImageViews[i].setBackgroundResource(R.mipmap.red_point);
+				mImageView.setLayoutParams(new ViewGroup.LayoutParams(20, 20));
 			} else {
 				mImageViews[i].setBackgroundResource(R.mipmap.dot_unselected);
 			}
-			mGroup.addView(mImageViews[i]);
+			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+					new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+							ViewGroup.LayoutParams.WRAP_CONTENT));
+			layoutParams.leftMargin = 10;// 设置点点点view的左边距
+			layoutParams.rightMargin = 10;// 设置点点点view的右边距
+			mGroup.addView(mImageViews[i],layoutParams);
 		}
 		mAdvAdapter = new ImageCycleAdapter(mContext, imageUrlList, imageCycleViewListener);
 		mAdvPager.setAdapter(mAdvAdapter);
@@ -214,10 +220,10 @@ public class ImageCycleView extends LinearLayout {
 			// 设置当前显示的图片下标
 			mImageIndex = index;
 			// 设置图片滚动指示器背景
-			mImageViews[index].setBackgroundResource(R.mipmap.shouye1);
+			mImageViews[index].setBackgroundResource(R.mipmap.red_point);
 			for (int i = 0; i < mImageViews.length; i++) {
 				if (index != i) {
-					mImageViews[i].setBackgroundResource(R.mipmap.shouye3);
+					mImageViews[i].setBackgroundResource(R.mipmap.dot_unselected);
 				}
 			}
 

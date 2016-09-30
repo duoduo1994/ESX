@@ -76,7 +76,7 @@ public class XUtilsHelper {
 if(isnew==1){
     this.url="http://120.27.141.95:8086/ashx/"+url;
 }else{
-    this.url="http://120.27.141.95:8221/ashx/"+url;
+    this.url=url;
 }
 //        http://120.27.141.95:8086/ashx/CooksHandler.ashx?Action=GroupAndSingleInfo
         this.progressDialog = new ProgressDialog(context);

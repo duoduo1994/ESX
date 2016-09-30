@@ -9,42 +9,18 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <FrameLayout
+        <com.example.administrator.ab.view.ImageCycleView
+            android:id="@+id/icv_costom"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_scrollFlags="scroll" >
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager_shou"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <LinearLayout
-                android:id="@+id/viewGroup1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="10dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-            </LinearLayout>
-        </FrameLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_height="160dp"
+            app:layout_scrollFlags="scroll"
+             >
+        </com.example.administrator.ab.view.ImageCycleView>
             <include
                 layout="@layout/item_sige_mokuai"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="84dp" />
 
-
-        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -61,201 +37,76 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-                <LinearLayout
+                android:layout_height="220dp">
+                <RelativeLayout
+                    android:background="@mipmap/homepagepanicbuy"
+                    android:id="@+id/rl_home_qianggou"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:background="#f00"
                     android:layout_height="match_parent">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="03:33:32"
-                        />
-                </LinearLayout>
-                <ImageView
-                    android:src="@mipmap/ic_launcher"
+                        android:text="03 : 33 : 32"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="64dp"
+                        android:id="@+id/textView6"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/iv_home_cooker"
+                        android:src="@mipmap/homepagehomepagecookcgy"
+                        android:layout_weight="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <ImageView
+                        android:id="@+id/iv_home_fruit"
+                        android:src="@mipmap/homepagefreshpicture"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                </LinearLayout>
 
             </LinearLayout>
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
+                android:layout_height="4dp"
+                android:background="@color/Grey"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
+                android:layout_height="110dp">
+                <ImageView
+                    android:src="@mipmap/homepagenewgoodspicture"
+                    android:id="@+id/iv_home_new"
+                    android:layout_width="0dp"
 
-            </ImageView>
-
-            <ImageView
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+                <ImageView
+                    android:id="@+id/iv_home_hot"
+                    android:src="@mipmap/homepagepopularitysetmealpicture"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcv_showye"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ff0"
-                android:src="@mipmap/ic_launcher">
-
-            </ImageView>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
