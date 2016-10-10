@@ -2,36 +2,109 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 <LinearLayout
-
+    android:background="#fff"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical"
         android:layout_height="wrap_content"
         android:text="订单编号："
         />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="wrap_content"
         android:text="1557687658768"
         android:id="@+id/tv_myorder_No"
         />
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="14dp"
+        android:layout_gravity="center_vertical"
         android:src="@mipmap/tiaozhuan"
         />
+
     <TextView
-        android:layout_gravity="right"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="4dp"
+        android:gravity="right"
         android:textColor="@color/orange"
         android:text="正在交易"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="wrap_content"
         android:id="@+id/tv_myorder_state"
         />
 
 </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_toLeftOf="@+id/tv_price_myorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共12件商品  "
+            />
+        <TextView
+            android:id="@+id/tv_price_myorder"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计：￥586.80 （含运费 0.00）"
+            />
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/tv_price_myorder"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        android:background="@mipmap/btn_delete_order"
+        android:id="@+id/btn_delete_order"
+        style="@style/button_order_style"
+        />
+    <Button
+        android:visibility="gone"
+        android:background="@mipmap/btn_cancel_order"
+        android:id="@+id/btn_cancel_order"
+        style="@style/button_order_style"
+        />
+    <Button
+        android:background="@mipmap/btn_pay"
+        android:id="@+id/btn_pay_order"
+        style="@style/button_order_style"
+        />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_comment_order"
+        android:background="@mipmap/btn_comment"
+        style="@style/button_order_style"
+        />
+    <Button
+        android:background="@mipmap/btn_remind"
+        android:visibility="gone"
+        android:id="@+id/btn_remind_order"
+        style="@style/button_order_style"
+        />
+    <Button
+        android:background="@mipmap/btn_confilm"
+        android:visibility="gone"
+        android:id="@+id/btn_confilm_order"
+        style="@style/button_order_style"
+        />
+</LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

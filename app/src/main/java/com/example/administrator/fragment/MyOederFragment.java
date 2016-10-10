@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.administrator.myapplication.R;
 
@@ -22,5 +23,13 @@ public class MyOederFragment extends Fragment {
         View v=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_my_order,null);
         rcv= (RecyclerView) v.findViewById(R.id.rcv_frag_my_order);
         return v;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
+        String d=bundle.getString("data");
+        Toast.makeText(getActivity(),d,Toast.LENGTH_LONG).show();
+        super.onCreate(savedInstanceState);
     }
 }

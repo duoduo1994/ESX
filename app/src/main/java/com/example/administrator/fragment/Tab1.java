@@ -28,6 +28,7 @@ import com.example.administrator.net.XUtilsHelper;
 import com.example.administrator.utils.BaseRecyclerAdapter;
 import com.example.administrator.utils.BaseRecyclerHolder;
 import com.example.administrator.utils.Load;
+import com.example.administrator.utils.LogUtils;
 import com.example.administrator.utils.ViewPagerAdapter;
 import com.lidroid.xutils.http.RequestParams;
 
@@ -165,29 +166,6 @@ private ImageCycleView icv;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                    JSONArray json = null;
-//                JSONArray json2=null;
-//                    try {
-//                        json = new JSONArray(s.trim());
-//                        json2=json.getJSONArray(0);
-//                        JSONObject tJson;
-//                        for (int i = 0; i < json2.length(); i++) {
-//                            tJson = json2.getJSONObject(i);
-//                            ShouyeListBean slbean=new ShouyeListBean();
-//                            /**
-//                             * PublicityID : 20160922170800000000
-//                             * ProductID : 1
-//                             * ProductCgy : 1
-//                             * ImageUrl : Http://120.27.141.95:8221/UploadFile/Promoting/100000000.jpg
-//                             */
-//                            slbean=new ShouyeListBean(tJson.getString("PublicityID"),tJson.getString("ProductID"),tJson.getString("ProductCgy"),tJson.getString("ImageUrl"));
-//                            listBeanList.add(slbean);
-//                        }
-//                        Log.i("ddddddddddddd", "osssssssssssssssssssnNext: "+listBeanList.toString());
-//                        baseRecyclerAdapter.notifyDataSetChanged();
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
         }
     });
     }
@@ -259,6 +237,7 @@ private ImageCycleView icv;
                 startActivity(new Intent(getActivity(), TaocanActivity.class));
                 break;
             case R.id.niqing_woyuan:
+                LogUtils.isLogin(getActivity());
                 Toast.makeText(getActivity(), "你请我援正在建设，敬请期待！", Toast.LENGTH_LONG).show();
                 break;
             case R.id.tiexin_daojia:

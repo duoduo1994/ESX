@@ -4,7 +4,6 @@
 
 
         <item android:state_checked="true" android:color="@color/title_back"/>
-        <!-- not selected -->
         <item android:color="@color/gray"/>
 
 

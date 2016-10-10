@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="title_back">#209b04</color>
+    <color name="title_back">#37b222</color>
     <color name="defult">#F5F5F5</color>
     <color name="click">#ffffff</color>
     <color name="divider_color">#6a6869</color>
@@ -124,7 +124,7 @@
     <color name="sc_hometab_text_s">#ff222222</color>
     <color name="sc_hometab_text">#ff666666</color>
     <color name="p_bg">#fff1f3f5</color>
-    <color name="orange">#f99421</color>
+    <color name="orange">#ff9402</color>
     <color name="p_text1">#ff727272</color>
     <color name="p_text2">#ff343434</color>
     <color name="text_drag_refresh_big">#ff999999</color>

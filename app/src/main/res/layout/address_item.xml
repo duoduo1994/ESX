@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_margin="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/tv_name_address"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="name"
+    />
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_phone_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="phone_num"
+        />
+    <TextView
+        android:text="gjbkfljjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
+        android:layout_below="@+id/tv_name_address"
+        android:id="@+id/tv__address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:layout_below="@+id/tv__address"
+        android:text="设为默认"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_set_default"
+        />
+
+    <ImageView
+        android:id="@+id/iv_edit_address"
+        android:src="@mipmap/star1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cb_set_default"
+        android:layout_toLeftOf="@+id/iv_delete_address"
+        android:layout_toStartOf="@+id/iv_delete_address" />
+
+    <ImageView
+        android:layout_alignBottom="@+id/cb_set_default"
+        android:id="@+id/iv_delete_address"
+        android:src="@mipmap/star1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_edit_address"
+        android:layout_alignParentRight="true"
+         />
+</RelativeLayout>
