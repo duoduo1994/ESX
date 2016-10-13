@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+
+   <include
+        layout="@layout/item_tou"
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF" />
+   <ScrollView 
+       android:layout_weight="0.92"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:fillViewport="true"
+       
+       >
+       <LinearLayout 
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:id="@+id/pingjia_scrollview"
+           >
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"  
+        android:orientation="horizontal"  
+        android:layout_marginLeft="20dp"
+     android:gravity="center_vertical"
+        >
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" 
+          android:text="订单编号："
+          android:textSize="15sp"
+          android:textColor="#696969"
+          
+          />
+      <TextView 
+          android:id="@+id/order_number"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" 
+          android:text="101234543132"
+          android:textSize="15sp"
+          android:textColor="#696969"
+          
+          />
+      
+      
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.07"  
+        android:orientation="horizontal"  
+        android:visibility="gone"
+        android:layout_marginLeft="20dp"
+        >
+      <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" 
+          android:text="联 系 人  ："
+          android:textSize="15sp"
+          android:textColor="#696969"
+          
+          />
+      <TextView 
+        
+          android:id="@+id/order_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" 
+          android:text="哇哈哈哈啊哈"
+          android:textSize="15sp"
+          android:textColor="#696969"
+          
+          />
+    </LinearLayout>
+  
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:orientation="vertical" >
+      <include layout="@layout/item_pinjia"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="0.25"/>
+    </LinearLayout>
+    
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#e6e6e6"
+        android:visibility="gone"
+      />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.07"
+        android:visibility="gone"
+        android:background="#ffffff"
+         android:layout_marginLeft="20dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="总评："
+            android:textColor="#000000" />
+
+        <RatingBar
+            android:id="@+id/evaluation_of_overall"
+            style="@style/roomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:numStars="5"
+            android:rating="3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/pinglun_kuang"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/evaluation_overall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:hint="请您填写购买心得和建议表，方便大伙分享！"
+            android:textSize="13sp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.11"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/evaluation_submission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_selector_tv_hong"
+            android:text="提交"
+            android:textColor="#f5f5f5" />
+    </LinearLayout>
+
+   </LinearLayout>
+   </ScrollView>
+
+</LinearLayout>

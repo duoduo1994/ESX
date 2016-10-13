@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   <include
+        layout="@layout/item_tou"
+        android:id="@+id/g_eng_d_uo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:background="#FFFFFF" />
+<RelativeLayout 
+      android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.24"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <com.example.esycab.utils.CircleImageView
+                android:id="@+id/chushi_touxiang_xq"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.2" />
+
+            <TextView
+                android:id="@+id/chushi_xingming_xq"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.04"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chushi_renshixq"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <include
+                android:id="@+id/chushi_geren_xq"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                layout="@layout/item_chushi_geren" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chushi_tuanduixq"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:visibility="visible"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/chushi_tuandui_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    layout="@layout/item_chushi_tuandui_1" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="主厨信息："
+                android:textColor="#8f8f8f" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/chushi_tuandui_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3" 
+                     layout="@layout/item_chushi_tuandui_2"/>
+                
+            </LinearLayout>
+        </LinearLayout>
+
+        <include
+            android:id="@+id/chushi_yuyue"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.12"
+            layout="@layout/woyaoyuyue" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ysxtj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/recommend"
+        android:visibility="gone" />
+
+</RelativeLayout>
+</LinearLayout>

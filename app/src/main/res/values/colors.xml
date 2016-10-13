@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="qianggou_red">#37b222</color>
     <color name="title_back">#37b222</color>
     <color name="defult">#F5F5F5</color>
     <color name="click">#ffffff</color>

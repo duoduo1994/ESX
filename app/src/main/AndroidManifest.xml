@@ -28,7 +28,7 @@
         <activity android:name="com.example.administrator.activity.MainActivity" />
         <activity android:name="com.example.administrator.activity.HomeActivity" />
         <activity android:name="com.example.administrator.activity.GuideActivity" />
-        <activity android:name="com.example.administrator.activity.StartActivity" >
+        <activity android:name="com.example.administrator.activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -82,11 +82,14 @@
             android:label="@string/title_activity_taocan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.administrator.activity.HotTaocanActivity" />
-        <activity android:name="com.example.administrator.activity.MyOrderListActivity">
+        <activity android:name="com.example.administrator.activity.MyOrderListActivity"></activity>
+        <activity android:name="com.example.administrator.activity.AddaddressActivity" >
 
         </activity>
-        <activity android:name="com.example.administrator.activity.AddaddressActivity" />
-        <activity android:name="com.example.administrator.activity.AdressManageActivity"></activity>
+        <activity android:name="com.example.administrator.activity.AdressManageActivity" >
+
+        </activity>
+        <activity android:name="com.example.administrator.activity.QianggouActivity"></activity>
     </application>
 
 </manifest>

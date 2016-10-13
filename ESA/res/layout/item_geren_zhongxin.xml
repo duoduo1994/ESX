@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/order"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/myallorder" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:text="我的订单"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wo_de_xishitang"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="visible" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/wodexst" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的喜事堂"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/xishitangtiao"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cookschedule"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="visible" >
+
+        <ImageView
+            android:id="@+id/cookimage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/cookschedule" />
+
+        <TextView
+            android:id="@+id/cooktext"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的厨师档期管理"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/cooktiao"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rentcar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="visible" >
+
+        <ImageView
+            android:id="@+id/carimage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/myvouchers" />
+
+        <TextView
+            android:id="@+id/cartext"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的支付"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/cartiao"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wo_de_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mywallet" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的请帖"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/allevaluate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/myallevaluate" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的评价"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/collection"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mycollection" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的抽奖"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cooperation"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mycooperation" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="我的合作"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@drawable/about1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="联系客服"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/tiaozhuan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/kongbai_bufen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.29"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+</LinearLayout>

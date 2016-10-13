@@ -2,9 +2,20 @@ package com.example.administrator.net;
 
 import android.content.Context;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -12,6 +23,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
+import static android.R.id.list;
 
 
 /**
@@ -45,6 +58,23 @@ public class RetrofitUtil<T> {
          */
         void onLoadingDataComplete(T body);
 
+        void onLoadListDataComplete(List<T> list);
+        /**
+         * 访问失败时回调
+         *
+         * @param t
+         */
+        void onLoadingDataFailed(Throwable t);
+    }
+    public interface CallBack2<T> {
+
+        /**
+         * 访问成功后回调
+         *
+         * @param list 返回数据
+         */
+
+        void onLoadListDataComplete(List<T> list);
         /**
          * 访问失败时回调
          *
@@ -68,9 +98,6 @@ public class RetrofitUtil<T> {
         if (params == null) {
             params = new HashMap<>();
         }
-//        params.put(Key.i_, "0");
-//        params.put(Key.t_, String.valueOf(t_value));
-//        params.put(Key.p_, String.valueOf(p_value));
         INetServices service = retrofit.create(INetServices.class);
         Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet(type, params);
         dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
@@ -79,15 +106,7 @@ public class RetrofitUtil<T> {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
                         String resultStr = response.body().string();
-                        //如果是VideoFragmentBean，就存到本地一份数据
-//                        if ("VideoListBean".equals(clzz.getSimpleName())) {
-//                            File cacheDir = context.getCacheDir();
-//                            File file = new File(cacheDir, clzz.getSimpleName() + ".txt");
-//                            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-//                            writer.write(resultStr);
-//                            writer.flush();
-//                            writer.close();
-//                        }
+
                         Gson gson = new Gson();
                         T body = gson.fromJson(resultStr, clzz);
                         callBack.onLoadingDataComplete(body);
@@ -111,35 +130,35 @@ public class RetrofitUtil<T> {
      * @param type        类型，从Type类中获取
      * @param params      请求参数（除去 i_,t_,p_）
      */
-    public void getStringDataFromNet(String type, Map<String, String> params, final CallBack<String> callBack) {
+    public void getListDataFromNet(String type, Map<String, String> params,  final Class<T> clzz,final CallBack2<T> callBack2) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MyUrl.URL_LOL_BASE)
                 .build();
         if (params == null) {
             params = new HashMap<>();
         }
-//        long t_value = com.wyl.mytextlayout.MyUrl.get_t_Value();
-//        long p_value = com.wyl.mytextlayout.MyUrl.get_p_Value(t_value);
-//        params.put(Key.i_, "0");
-//        params.put(Key.t_, String.valueOf(t_value));
-//        params.put(Key.p_, String.valueOf(p_value));
         INetServices service = retrofit.create(INetServices.class);
         Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet( type, params);
         dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    try {
-                        callBack.onLoadingDataComplete(response.body().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if (response.isSuccessful() && response.body() != null) try {
+                    String resultStr = response.body().string();
+                    JSONArray ja = new JSONArray(resultStr.trim());
+                    Gson gson = new Gson();
+                    List<T> list = new ArrayList<>();
+                JsonArray array = new JsonParser().parse(resultStr).getAsJsonArray();
+                for (JsonElement jsonElement : array) {
+                    list.add(gson.fromJson(jsonElement, clzz));
+               }
+                    callBack2.onLoadListDataComplete(list);
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                callBack.onLoadingDataFailed(t);
+                callBack2.onLoadingDataFailed(t);
             }
         });
     }

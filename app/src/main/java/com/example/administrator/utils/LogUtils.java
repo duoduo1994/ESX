@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.administrator.activity.LoginInActivity;
 import com.example.administrator.activity.MainActivity;
 import com.example.administrator.myapplication.R;
 
@@ -46,7 +47,7 @@ public class LogUtils {
                 public void onClick(View arg0) {
                     // TODO Auto-generated method stub
                     Intent intent = new Intent(context,
-                            MainActivity.class);
+                            LoginInActivity.class);
                     intent.putExtra("flag", 5);
 //                    startActivityForResult(intent, 123);
                     context.startActivity(intent);

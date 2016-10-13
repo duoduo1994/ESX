@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/order"
+        android:id="@+id/my_qingtie"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical" >
@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_weight="8"
-            android:text="我的订单"
+            android:text="我的请帖"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/wo_de_xishitang"
+        android:id="@+id/my_xishitang"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -84,7 +84,7 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的厨师档期管理"
+            android:text="我是厨师"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -97,7 +97,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/rentcar"
+        android:id="@+id/my_address"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
@@ -117,7 +117,7 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的支付"
+            android:text="收货地址"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -130,7 +130,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/wo_de_wallet"
+        android:id="@+id/my_coupon"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical" >
@@ -147,7 +147,7 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的请帖"
+            android:text="我的优惠券"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -159,11 +159,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/allevaluate"
+        android:id="@+id/my_package"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:visibility="gone" >
+         >
 
         <ImageView
             android:layout_width="0dp"
@@ -177,7 +177,7 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的评价"
+            android:text="我的包裹"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -189,11 +189,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/collection"
+        android:id="@+id/my_collect"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:visibility="gone" >
+         >
 
         <ImageView
             android:layout_width="0dp"
@@ -207,7 +207,7 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的抽奖"
+            android:text="我的收藏"
             android:textColor="#696969"
             android:textSize="16sp" />
 
@@ -219,11 +219,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/cooperation"
+        android:id="@+id/my_cooperation"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:visibility="gone" >
+         >
 
         <ImageView
             android:layout_width="0dp"
@@ -237,7 +237,35 @@
             android:layout_height="25dp"
             android:layout_weight="8"
             android:gravity="center_vertical"
-            android:text="我的合作"
+            android:text="我要合作"
+            android:textColor="#696969"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@mipmap/tiaozhuan" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/my_identification"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/about1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:text="实名认证"
             android:textColor="#696969"
             android:textSize="16sp" />
 

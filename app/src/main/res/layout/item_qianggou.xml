@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ImageView
+    android:src="@mipmap/nuli"
+    android:id="@+id/iv_qianggou_item"
+    android:layout_width="100dp"
+    android:layout_height="100dp" />
+    <TextView
+        android:layout_toRightOf="@+id/iv_qianggou_item"
+        android:text="商品名称"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_qianggou_item_name"
+        />
+    <TextView
+        android:layout_alignBottom="@+id/tv_qianggou_item_name"
+        android:text="颠覆低价！！！！！！！！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_qianggou_scri"
+        />
+    <TextView
+        android:text="288/500g"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_qianggou_price"
+        />
+    <TextView
+        android:text="566"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_qianggou_oldp"
+        />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_qianggou" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_buy_now"
+        />
+    <TextView
+        android:text="已抢211件"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_qianggou_num"
+        />
+
+
+</RelativeLayout>

@@ -275,7 +275,6 @@ public class LoginInActivity extends BaseActivity implements ProConst {
             @Override
             public void onNext(String result) {
                 try {
-                    System.out.println("！！！！！！！登录");
                     handler.sendEmptyMessage(1);
 
                     System.out.println("logsin" + result);

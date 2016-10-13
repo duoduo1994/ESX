@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".JianChaGengXinActivity" >
+  <include layout="@layout/item_tou"
+      android:id="@+id/g_eng_d_uo"
+     android:layout_weight="0.08"
+     android:layout_width="match_parent"
+     android:layout_height="0dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e6e6e6"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92"
+          android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.42"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:text="当前版本：" />
+
+                <TextView
+                    android:id="@+id/gengduo_jiancha_gengxin_dq"
+                     android:layout_width="0dp"
+                    android:layout_weight="1"
+                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                     android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="最新版本：" />
+
+                <TextView
+                    android:id="@+id/gengduo_jiancha_gengxin_zx"
+                      android:layout_width="0dp"
+                       android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/gengduo_jiancha_gengxin_anniu"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/tab_selector_tv_hong"
+                android:text="检查更新" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
