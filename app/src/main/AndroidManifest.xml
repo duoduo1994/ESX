@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="com.example.administrator.amap.navi.LocationApplication"
+        android:name="com.example.administrator.LocationApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -82,14 +82,11 @@
             android:label="@string/title_activity_taocan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.administrator.activity.HotTaocanActivity" />
-        <activity android:name="com.example.administrator.activity.MyOrderListActivity"></activity>
-        <activity android:name="com.example.administrator.activity.AddaddressActivity" >
-
-        </activity>
-        <activity android:name="com.example.administrator.activity.AdressManageActivity" >
-
-        </activity>
-        <activity android:name="com.example.administrator.activity.QianggouActivity"></activity>
+        <activity android:name="com.example.administrator.activity.MyOrderListActivity" />
+        <activity android:name="com.example.administrator.activity.AddaddressActivity"></activity>
+        <activity android:name="com.example.administrator.activity.AdressManageActivity"></activity>
+        <activity android:name="com.example.administrator.activity.QianggouActivity" />
+        <activity android:name="com.example.administrator.activity.OrderConfirmActivity"></activity>
     </application>
 
 </manifest>

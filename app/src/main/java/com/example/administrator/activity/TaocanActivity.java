@@ -1,20 +1,14 @@
 package com.example.administrator.activity;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.view.View;
 
 import com.example.administrator.entity.TaocanDetialBean;
+import com.example.administrator.fragment.TaocanCommentFragment;
 import com.example.administrator.fragment.TaocanDetialFragment;
 import com.example.administrator.myapplication.R;
 
@@ -40,7 +34,7 @@ public class TaocanActivity extends BaseActivity {
     protected void initView() {
         initData();
         list.add(new TaocanDetialFragment(tclist));
-        list.add(new TaocanDetialFragment());
+        list.add(new TaocanCommentFragment());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         vp= (ViewPager) findViewById(R.id.vp_taocan_fl);
         tab= (TabLayout) findViewById(R.id.tab);

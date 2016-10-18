@@ -88,7 +88,7 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
      */
     public BaseRecyclerHolder setImageByUrl(int viewId,String url){
 //        Picasso.with(context).load(url).into((ImageView) getView(viewId));
-        Glide.with(context).load(url).into((ImageView) getView(viewId));
+//        Glide.with(context).load(url).into((ImageView) getView(viewId));
         ImageView iv=getView(viewId);
         Load.imageLoader.displayImage(url,iv,Load.options);
         //        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));

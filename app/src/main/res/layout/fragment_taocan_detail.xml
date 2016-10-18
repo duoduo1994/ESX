@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RadioGroup
-    android:layout_margin="8dp"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <RadioButton
+        android:padding="10dp"
         android:checked="true"
-        android:background="@color/white"
         android:id="@+id/rb_taocandetail_zhu"
-        style="@style/radiobutton_style"
+        style="@style/radiobutton_style2"
         android:text="主菜详情"
          />
     <RadioButton
-        android:background="@color/white"
+        android:padding="10dp"
         android:id="@+id/rb_taocandetail_pei"
         android:text="配菜选择"
-        style="@style/radiobutton_style" />
+        style="@style/radiobutton_style2" />
 </RadioGroup>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rcv_zhu_taocan_detail"
-            android:background="#0e0"
-            />
+
         <android.support.v7.widget.RecyclerView
             android:background="#e00"
             android:visibility="gone"
@@ -36,5 +30,14 @@
             android:layout_height="match_parent"
             android:id="@+id/rcv_fu_taocan_detail"
             />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rcv_zhu_taocan_detail"
+            android:background="#0e0"
+            android:layout_below="@+id/rcv_fu_taocan_detail"
+            android:layout_toRightOf="@+id/rcv_fu_taocan_detail"
+            android:layout_toEndOf="@+id/rcv_fu_taocan_detail" />
     </RelativeLayout>
 </LinearLayout>

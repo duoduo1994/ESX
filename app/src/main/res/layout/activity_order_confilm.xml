@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_order_confilm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.activity.OrderConfirmActivity">
+<include layout="@layout/item_tou"
+    android:id="@+id/tou"
+    />
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:id="@+id/ll_choose_address"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_margin="6dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dingweis"
+            />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_receiver_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收货人：啦啦啦"
+                />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13334442233"
+                />
+            <TextView
+                android:layout_below="@+id/tv_receiver_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收货地址：浙江省宁波市北仑区 十大扎路街道112号"
+                />
+        </RelativeLayout>
+        <ImageView
+            android:layout_gravity="center"
+            android:padding="6dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/tiaozhuan"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="8dp"
+        android:background="@color/LightGray"
+        android:layout_below="@+id/ll_choose_address"
+        android:orientation="horizontal"
+        android:id="@+id/ll_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送达时间："
+            />
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_gravity="center"
+            android:text="1995-3-4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <ImageView
+                android:padding="3dp"
+                android:src="@mipmap/cookschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_dingdanxiangqing"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/ll_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单详情"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/tv_dingdanxiangqing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rcv_order_detail"
+        />
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_confilm_order"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:text="提交订单"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计： ￥1086.80"
+            android:layout_alignBaseline="@+id/btn_confilm_order"
+            android:layout_alignBottom="@+id/btn_confilm_order"
+            android:layout_toLeftOf="@+id/btn_confilm_order"
+            android:layout_toStartOf="@+id/btn_confilm_order"
+            android:layout_marginRight="35dp"
+            android:layout_marginEnd="35dp" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -31,7 +31,7 @@ public class TaocanDetialFragment extends Fragment {
     private RadioButton zhu;
     private RecyclerView zhud;
     private RecyclerView fud;
-    private List<TaocanDetialBean> list=new ArrayList<>();
+    private List<TaocanDetialBean> list = new ArrayList<>();
 
     public TaocanDetialFragment() {
     }
@@ -44,30 +44,36 @@ public class TaocanDetialFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_taocan_detail,null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_taocan_detail, null);
 
         super.onCreate(savedInstanceState);
-        pei= (RadioButton) view.findViewById(R.id.rb_taocandetail_pei);
-        zhu= (RadioButton) view.findViewById(R.id.rb_taocandetail_zhu);
-        zhud= (RecyclerView) view.findViewById(R.id.rcv_zhu_taocan_detail);
-        fud= (RecyclerView) view.findViewById(R.id.rcv_fu_taocan_detail);
-        BaseRecyclerAdapter<TaocanDetialBean> rcvadapter1=new BaseRecyclerAdapter<TaocanDetialBean>(getActivity(),list,R.layout.taocan_item_1) {
+        pei = (RadioButton) view.findViewById(R.id.rb_taocandetail_pei);
+        zhu = (RadioButton) view.findViewById(R.id.rb_taocandetail_zhu);
+        zhud = (RecyclerView) view.findViewById(R.id.rcv_zhu_taocan_detail);
+        fud = (RecyclerView) view.findViewById(R.id.rcv_fu_taocan_detail);
+        BaseRecyclerAdapter<TaocanDetialBean> rcvadapter1 = new BaseRecyclerAdapter<TaocanDetialBean>(getActivity(), list, R.layout.taocan_item_1) {
             @Override
             public void convert(BaseRecyclerHolder holder, TaocanDetialBean item, int position, boolean isScrolling) {
-                holder.setImageResource(R.id.iv_taocandetail_1,R.mipmap.ic_launcher);
-                holder.setText(R.id.tv_dishname_taocandetail_1,item.getCaidan().get(0).getDishName());
-                holder.setText(R.id.tv_dishprice_taocandetail_1,item.getCaidan().get(0).getPlace());
+                holder.setImageResource(R.id.iv_taocandetail_1, R.mipmap.ic_launcher);
+                holder.setText(R.id.tv_dishname_taocandetail_1, item.getCaidan().get(0).getDishName());
+                holder.setText(R.id.tv_dishprice_taocandetail_1, item.getCaidan().get(0).getPlace());
             }
         };
-        BaseRecyclerAdapter<TaocanDetialBean> rcvadapter2=new BaseRecyclerAdapter<TaocanDetialBean>(getActivity(),list,R.layout.taocan_item_2) {
+        BaseRecyclerAdapter<TaocanDetialBean> rcvadapter2 = new BaseRecyclerAdapter<TaocanDetialBean>(getActivity(), list, R.layout.taocan_item_2) {
             @Override
             public void convert(BaseRecyclerHolder holder, TaocanDetialBean item, int position, boolean isScrolling) {
 //                holder.setImageResource(R.id.tv_dishname_taocandetail_2,R.mipmap.ic_launcher);
-                holder.setText(R.id.tv_dishname_taocandetail_2,item.getCaidan().get(0).getDishName());
-                holder.setText(R.id.tv_storage_taocandetail_2,"kakakakakaka");
-                holder.setText(R.id.tv_dishweight_taocandetail_2,"kakakakakaka");
+                holder.setText(R.id.tv_dishname_taocandetail_2, item.getCaidan().get(0).getDishName());
+                holder.setText(R.id.tv_storage_taocandetail_2, "kakakakakaka");
+                holder.setText(R.id.tv_dishweight_taocandetail_2, "kakakakakaka");
             }
         };
+        rcvadapter2.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(RecyclerView parent, View view, int position) {
+                Toast.makeText(getActivity(), position + "click", Toast.LENGTH_LONG).show();
+            }
+        });
         zhud.setLayoutManager(new LinearLayoutManager(getActivity()));
         fud.setLayoutManager(new LinearLayoutManager(getActivity()));
         zhud.setAdapter(rcvadapter1);
@@ -75,8 +81,8 @@ public class TaocanDetialFragment extends Fragment {
         zhu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"sssss",Toast.LENGTH_SHORT).show();
-            fud.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "sssss", Toast.LENGTH_SHORT).show();
+                fud.setVisibility(View.GONE);
                 zhud.setVisibility(View.VISIBLE);
             }
         });

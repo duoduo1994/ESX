@@ -1,4 +1,4 @@
-package com.example.administrator.amap.navi;
+package com.example.administrator;
 
 
 import com.example.administrator.utils.LocalStorage;

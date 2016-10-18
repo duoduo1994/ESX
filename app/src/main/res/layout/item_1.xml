@@ -8,6 +8,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:background="@mipmap/nopic"
         android:layout_height="wrap_content">
         <com.example.administrator.ab.view.ImageCycleView
             android:id="@+id/icv_costom"
@@ -50,7 +51,9 @@
     android:id="@+id/iv_home_qianggou"
     />
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:background="@drawable/button"
+                        android:layout_width="88dp"
                         android:layout_height="wrap_content"
                         android:text="03 : 33 : 32"
                         android:layout_marginLeft="15dp"

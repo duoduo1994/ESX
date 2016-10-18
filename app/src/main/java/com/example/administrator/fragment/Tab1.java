@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.administrator.ab.view.ImageCycleView;
 import com.example.administrator.activity.HomeActivity;
+import com.example.administrator.activity.HotTaocanActivity;
 import com.example.administrator.activity.TaocanActivity;
 import com.example.administrator.entity.AllpicBean;
 import com.example.administrator.entity.ShouyeListBean;
@@ -25,6 +26,7 @@ import com.example.administrator.net.RetrofitUtil;
 import com.example.administrator.net.XUtilsHelper;
 import com.example.administrator.utils.BaseRecyclerAdapter;
 import com.example.administrator.utils.BaseRecyclerHolder;
+import com.example.administrator.utils.CountDown;
 import com.example.administrator.utils.Load;
 import com.example.administrator.utils.LogUtils;
 import com.example.administrator.utils.ViewPagerAdapter;
@@ -34,7 +36,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +48,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
+
 
 
 /**
@@ -60,12 +66,14 @@ public class Tab1 extends Fragment implements View.OnClickListener {
     @BindView(R.id.iv_home_hot)
     ImageView ivHomeHot;
     private View view;
+    private String tttt;
     private LinearLayout xiangCun, siren, niqing, tiexing;
     //    private ViewPager viewPager;
     private ImageCycleView icv;
     private RecyclerView rcv_showye;
     private RetrofitUtil<ToppicBean> TopPicUtil;
     private RetrofitUtil<ShouyeListBean> ListPicUtil;
+    private RetrofitUtil TimeUtil;
     private List<String> l;
     private List<AllpicBean> allList;
     private List<ShouyeListBean> listBeanList;
@@ -77,6 +85,11 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        view = LayoutInflater.from(getActivity()).inflate(
+                R.layout.item_1, null);
+        ButterKnife.bind(this, view);
+        TimeUtil=new RetrofitUtil(getActivity());
+        QianggouCountDown();
         l = new ArrayList<>();
         listBeanList = new ArrayList<>();
         allList = new ArrayList<>();
@@ -84,8 +97,7 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         TopPicUtil = new RetrofitUtil<>(getActivity());
         ListPicUtil = new RetrofitUtil<>(getActivity());
         UtilDemo();
-        view = LayoutInflater.from(getActivity()).inflate(
-                R.layout.item_1, null);
+
 //        viewPager = (ViewPager) view.findViewById(R.id.viewpager_shou);
         iv_home_qianggou = (ImageView) view.findViewById(R.id.iv_home_qianggou);
         rcv_showye = (RecyclerView) view.findViewById(R.id.rcv_showye);
@@ -98,19 +110,82 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         siren.setOnClickListener(this);
         niqing.setOnClickListener(this);
         tiexing.setOnClickListener(this);
+        ivHomeHot.setOnClickListener(this);
 
         rcv_showye.setLayoutManager(new LinearLayoutManager(getActivity()));
         baseRecyclerAdapter = new BaseRecyclerAdapter<ShouyeListBean>(getActivity(), listBeanList, R.layout.shouye_list_item) {
             @Override
             public void convert(BaseRecyclerHolder holder, ShouyeListBean item, int position, boolean isScrolling) {
-                Load.imageLoader.displayImage(item.getImageUrl(), (ImageView) holder.getView(R.id.iv_shouye_list), Load.options);
+                if(item.getImageUrl()==null){
+// Load.imageLoader.displayImage(R.mipmap.nopic,(ImageView) holder.getView(R.id.iv_shouye_list), Load.options);
+                }else{
+                    Load.imageLoader.displayImage(item.getImageUrl(), (ImageView) holder.getView(R.id.iv_shouye_list), Load.options);
+                }
+
             }
         };
         rcv_showye.setAdapter(baseRecyclerAdapter);
 //        init();
         addImage();
-        ButterKnife.bind(this, view);
+
         return view;
+    }
+
+    private void QianggouCountDown() {
+        String EndTime ;
+        String CurrentTime;
+        //http://120.27.141.95:8221/ashx/Promoting.ashx?Function=GetRobbeyTime
+        Map<String,String> map=new HashMap<>();
+        map.put("Function","GetRobbeyTime");
+        TimeUtil.getStringDataFromNet("Promoting", map, new RetrofitUtil.CallBack<String>() {
+            @Override
+            public void onLoadingDataComplete(String body) {
+                tttt=body;
+                try {
+                    JSONObject jo=new JSONObject(tttt.trim());
+                    String EndTime =jo.getString("EndTime");
+                    String CurrentTime=jo.getString("CurrentTime");
+                    String dt1=EndTime.substring(0,19);
+                    String dt2=CurrentTime.substring(0,19);
+                    Calendar c=Calendar.getInstance();
+                    c.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dt1));
+                    long et=c.getTimeInMillis();
+                    c.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dt2));
+                    long ct=c.getTimeInMillis();
+                    long count=et-ct;
+                    int counttime=(int)count;
+                    CountDown.countdown(counttime)
+                            .subscribe(new Subscriber<Integer>() {
+                                @Override
+                                public void onCompleted() {
+                                    tv_qianggou_time.setText("抢购结束");
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    tv_qianggou_time.setVisibility(View.INVISIBLE);
+                                }
+
+                                @Override
+                                public void onNext(Integer integer) {
+                                    tv_qianggou_time.setText(integer/3600+": "+(integer-(integer/3600)*3600)/60+": "+(integer-(integer/60)*60));
+                                }
+                            });
+
+                } catch (JSONException|ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onLoadingDataFailed(Throwable t) {
+
+            }
+        });
+
+
     }
 
     private void UtilDemo() {
@@ -123,12 +198,6 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                 Log.i("onLoadingDataComplete: ", "o" + l.toString());
                 setpic();
             }
-
-            @Override
-            public void onLoadListDataComplete(List list) {
-
-            }
-
             @Override
             public void onLoadingDataFailed(Throwable t) {
             }
@@ -212,12 +281,10 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 //                Gson gson=new Gson();
 //                    TypeToken<ArrayList<AllpicBean>> token=new TypeToken<ArrayList<AllpicBean>>(){
 //                    };
 //                    ArrayList<AllpicBean> aList=gson.fromJson(s,token.getType());
-
             }
         });
 
@@ -321,6 +388,9 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tiexin_daojia:
                 Toast.makeText(getActivity(), "贴心到家正在建设，敬请期待！", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.iv_home_hot:
+                startActivity(new Intent(getActivity(), HotTaocanActivity.class));
                 break;
         }
 

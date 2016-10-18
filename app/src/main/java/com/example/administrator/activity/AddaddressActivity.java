@@ -17,6 +17,10 @@ import android.widget.TextView;
 
 import com.example.administrator.city.CityPicker;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.RetrofitUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +57,10 @@ public class AddaddressActivity extends AppCompatActivity {
     String address;
     @BindView(R.id.tv_choose_plase)
     TextView tvChoosePlase;
+    @BindView(R.id.btn_back)
+    Button btnBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +68,47 @@ public class AddaddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addaddress);
         height = getResources().getDisplayMetrics().heightPixels;
         ButterKnife.bind(this);
+        tvTitle.setText("添加新地址");
         ClickEvent();
     }
 
     private void ClickEvent() {
         rlAddressArea.setOnClickListener(v -> initPw());
+        btnSaveAddress.setOnClickListener(v -> SaveAddress());
+        btnBack.setOnClickListener(v -> AddaddressActivity.this.finish());
+    }
+
+    private void SaveAddress() {
+        /**
+         * 1.UserTel;用户账号(电话 )
+         2.UserPhyAdd; 用户地址 ( 唯一标识 )
+         3.RecvTel;收货人电话
+         4.CountyID;县级地址ID
+         5.Details;详细地址
+         6.IsDefault;是否设为默认,是则为ture
+         */
+        RetrofitUtil retrofitUtil = new RetrofitUtil(AddaddressActivity.this);
+        Map<String, String> map = new HashMap<>();
+        map.put("Function", "HttpNewRecvAddr");
+        map.put("UserTel", "18326895601");
+        map.put("UserPhyAdd", "170976fa8a862b0a3df");
+        map.put("RecvTel", "18326895601");
+        map.put("CountyID", "1");
+        map.put("Details", "HttpNewRecvAddr");
+        map.put("IsDefault", "false");
+
+        retrofitUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>() {
+            @Override
+            public void onLoadingDataComplete(String body) {
+
+            }
+
+            @Override
+            public void onLoadingDataFailed(Throwable t) {
+
+            }
+        });
+        AddaddressActivity.this.finish();
     }
 
     private void initPw() {

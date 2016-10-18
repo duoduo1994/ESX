@@ -58,7 +58,6 @@ public class RetrofitUtil<T> {
          */
         void onLoadingDataComplete(T body);
 
-        void onLoadListDataComplete(List<T> list);
         /**
          * 访问失败时回调
          *
@@ -126,7 +125,6 @@ public class RetrofitUtil<T> {
     /**
      * 获取BaseURL为URL_LOL_BASE的字符串网络数据
      *
-//     * @param serviceType 服务类型，从Type类中获取
      * @param type        类型，从Type类中获取
      * @param params      请求参数（除去 i_,t_,p_）
      */
@@ -180,5 +178,37 @@ public class RetrofitUtil<T> {
 //        public void onLoadingDataFailed(Throwable t) {
 //        }
 //    });
+    /**
+     * 获取字符串网络数据
+     *
+     * @param type        类型，从Type类中获取
+     * @param params      请求参数
+     */
+    public void getStringDataFromNet(String type, Map<String, String> params, final CallBack<String> callBack) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MyUrl.URL_LOL_BASE)
+                .build();
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        INetServices service = retrofit.create(INetServices.class);
+        Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet( type, params);
+        dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        callBack.onLoadingDataComplete(response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callBack.onLoadingDataFailed(t);
+            }
+        });
+    }
 
 }

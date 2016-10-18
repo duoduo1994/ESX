@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="2asdfasdfasdf"
-        android:textSize="50sp"/>
+    <RadioGroup
+        android:id="@+id/rg_allfresh"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:padding="12dp"
+            android:checked="true"
+            android:id="@+id/rb_allfresh_1"
+            style="@style/radiobutton_style2"
+            android:text="推荐分类"
+            />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_2"
+            android:text="蔬菜豆菇"
+            style="@style/radiobutton_style2" />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_3"
+            android:text="新鲜水果"
+            style="@style/radiobutton_style2" />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_4"
+            android:text="鲜肉蛋禽"
+            style="@style/radiobutton_style2" />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_5"
+            android:text="水产海鲜"
+            style="@style/radiobutton_style2" />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_6"
+            android:text="饮料酒水"
+            style="@style/radiobutton_style2" />
+        <RadioButton
+            android:padding="12dp"
+            android:id="@+id/rb_allfresh_7"
+            android:text="粮油副食"
+            style="@style/radiobutton_style2" />
+    </RadioGroup>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frame_all_fresh"
+            android:background="@color/title_back"
+            />
 </LinearLayout>

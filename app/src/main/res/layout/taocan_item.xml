@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <ImageView
         android:layout_margin="6dp"
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:id="@+id/iv_taocan_pic"
-        android:src="@mipmap/logo"
+        android:src="@mipmap/nuli"
         />
     <LinearLayout
         android:orientation="vertical"
@@ -78,8 +78,14 @@
             android:text="啦啦啦啦啦啦阿拉啦啦啦啦啦了"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_taocan_xiangqing"
+            android:id="@+id/tv_taocan_content"
             />
     </LinearLayout>
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/qianggou_red"
+        android:layout_below="@+id/linearLayout" />
 </RelativeLayout>

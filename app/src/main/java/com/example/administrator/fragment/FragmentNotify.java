@@ -98,15 +98,15 @@ private boolean isLog = false;
 			rl.setLayoutParams(l);
 		}
 //		LocalStorage.initContext(HomeActivity._instance);
-		wallet = (LinearLayout) ll.findViewById(R.id.wo_de_wallet);// 钱包
-		xishitang = (LinearLayout) ll.findViewById(R.id.wo_de_xishitang);// 我的喜事堂
+		wallet = (LinearLayout) ll.findViewById(R.id.my_qingtie);// 钱包
+		xishitang = (LinearLayout) ll.findViewById(R.id.my_xishitang);// 我的喜事堂
 		cookschedule = (LinearLayout) ll.findViewById(R.id.cookschedule);// 厨师档期
-		rentcar = (LinearLayout) ll.findViewById(R.id.rentcar);// 婚车租赁
+		rentcar = (LinearLayout) ll.findViewById(R.id.my_address);// 婚车租赁
 		order = (LinearLayout) ll.findViewById(R.id.order);// 我的订单
-		allevaluate = (LinearLayout) ll.findViewById(R.id.allevaluate);// 我的评价
+		allevaluate = (LinearLayout) ll.findViewById(R.id.my_coupon);// 我的评价
 		// collection = (LinearLayout) view.findViewById(R.id.collection);//
 		// 我的收藏
-		cooperation = (LinearLayout) ll.findViewById(R.id.cooperation);// 我要合作
+		cooperation = (LinearLayout) ll.findViewById(R.id.my_cooperation);// 我要合作
 		about = (LinearLayout) ll.findViewById(R.id.about);// 联系客服
 		logon = (TextView) view.findViewById(R.id.logon);// 登录
 		imageView1 = (ImageView) view.findViewById(R.id.imageView1);// 我的头像

@@ -229,6 +229,7 @@ public class LoginInActivity extends BaseActivity implements ProConst {
         public void onClick(View v) {
 
             login();
+            LoginInActivity.this.finish();
         }
     };
 

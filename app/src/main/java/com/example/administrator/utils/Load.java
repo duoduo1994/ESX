@@ -24,7 +24,7 @@ public class Load {
 
 	public static void getLoad(Context context) {
 		if (imageLoader == null) {
-			File cacheDir = StorageUtils.getOwnCacheDirectory(context, "/Android/data/com.example.esycab/cache/ACache");
+			File cacheDir = StorageUtils.getOwnCacheDirectory(context, "/Android/data/com.example/cache/ACache");
 			ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 					context).threadPriority(Thread.NORM_PRIORITY - 2)
 			// �����̵߳����ȼ�

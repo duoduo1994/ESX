@@ -177,8 +177,8 @@
     <color name="umeng_fb_line">#DCDCDC</color>
     <color name="download_bg">#2C9CD1</color>
     <color name="titile_color">#7bb118</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#37b222</color>
+    <color name="colorPrimaryDark">#37b222</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
 </resources>
