@@ -123,18 +123,18 @@ public class LoginInActivity extends BaseActivity implements ProConst {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (flag == 5) {
-                    a5 = 5;
-                    Intent intent = new Intent();
-                    intent.setClass(LoginInActivity.this, RegisterActivity.class);
-                    startActivity(intent);
-                } else {
-                    a5 = 1;
+//                if (flag == 5) {
+//                    a5 = 5;
+//                    Intent intent = new Intent();
+//                    intent.setClass(LoginInActivity.this, RegisterActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    a5 = 1;
                     Intent intent = new Intent();
                     intent.setClass(LoginInActivity.this, RegisterActivity.class);
                     startActivity(intent);
                     LoginInActivity.this.finish();
-                }
+//                }
             }
         });
 

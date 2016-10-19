@@ -1,6 +1,9 @@
 package com.example.administrator.net;
 
 import android.content.Context;
+import android.util.Log;
+
+import com.example.administrator.entity.ToppicBean;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -32,7 +35,7 @@ import static android.R.id.list;
  * 作者：王月丽
  * 版本：1.0
  * 创建日期：2016/9/29 10:00
- * 创建描述: Retrofit工具类，提供了 Bean获取和String字符串获取
+ * 创建描述: Retrofit工具类，提供了 Bean,list,和String字符串获取
  * 更新日期：
  * 更新描述：
  * ====================================
@@ -98,8 +101,8 @@ public class RetrofitUtil<T> {
             params = new HashMap<>();
         }
         INetServices service = retrofit.create(INetServices.class);
-        Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet(type, params);
-        dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
+        Call<ResponseBody> dataFromNet = service.getDataFromNet(type, params);
+        dataFromNet.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -124,19 +127,20 @@ public class RetrofitUtil<T> {
 
     /**
      * 获取BaseURL为URL_LOL_BASE的字符串网络数据
-     *
+     *@param clzz  根据需要传数据类型
      * @param type        类型，从Type类中获取
-     * @param params      请求参数（除去 i_,t_,p_）
+     * @param params      请求参数
+     * @param callBack2  数据回调接口
      */
     public void getListDataFromNet(String type, Map<String, String> params,  final Class<T> clzz,final CallBack2<T> callBack2) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MyUrl.URL_LOL_BASE)
+                .baseUrl(MyUrl.URL_LOL_BASE)//MyUrl.URL_LOL_BASE就是http://120.27.141.95:8221/ashx/
                 .build();
         if (params == null) {
             params = new HashMap<>();
         }
-        INetServices service = retrofit.create(INetServices.class);
-        Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet( type, params);
+        INetServices service = retrofit.create(INetServices.class);//这个我也不太懂，就是这么用的
+        Call<ResponseBody> dataFromLOLNet = service.getDataFromNet( type, params);
         dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -160,24 +164,6 @@ public class RetrofitUtil<T> {
             }
         });
     }
-//    Map<String, String> map = new HashMap<>();
-//    map.put("Function", "GetTopPicture");
-//    TopPicUtil.getBeanDataFromNet("Other", map, ToppicBean.class, new RetrofitUtil.CallBack<ToppicBean>() {
-//        @Override
-//        public void onLoadingDataComplete(ToppicBean body) {
-//            l=body.getTop();
-//            Toast.makeText(getActivity(),"11111"+l.toString(),Toast.LENGTH_SHORT).show();
-//            for (int i = 0; i <20 ; i++) {
-//                list.add(new DataBean("item"+i,l.get(i%4)));
-//                Log.i("555555l.get(i%4)",l.get(i%4));
-//            }
-//            myRcvAdapter.notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onLoadingDataFailed(Throwable t) {
-//        }
-//    });
     /**
      * 获取字符串网络数据
      *
@@ -192,8 +178,8 @@ public class RetrofitUtil<T> {
             params = new HashMap<>();
         }
         INetServices service = retrofit.create(INetServices.class);
-        Call<ResponseBody> dataFromLOLNet = service.getDataFromLOLNet( type, params);
-        dataFromLOLNet.enqueue(new Callback<ResponseBody>() {
+        Call<ResponseBody> dataFromNet = service.getDataFromNet( type, params);
+        dataFromNet.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -212,3 +198,18 @@ public class RetrofitUtil<T> {
     }
 
 }
+//用法如下：
+//http://120.27.141.95:8221/ashx/Other.ashx?Function=GetTopPicture 这是接口
+//    Map<String, String> map = new HashMap<>();
+//    map.put("Function", "GetTopPicture");
+//    TopPicUtil.getBeanDataFromNet("Other", map, ToppicBean.class, new RetrofitUtil.CallBack<ToppicBean>() {
+//        @Override
+//        public void onLoadingDataComplete(ToppicBean body) {
+//            l = body.getTop();
+//            Log.i("onLoadingDataComplete: ", "o" + l.toString());
+//            setpic();
+//        }
+//        @Override
+//        public void onLoadingDataFailed(Throwable t) {
+//        }
+//    });

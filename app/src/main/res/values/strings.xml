@@ -70,6 +70,17 @@
     <string name="xinxi_time">宴请时间</string>
     <string name="xinxi_qingtiemode">请帖模板</string>
     <string name="xinxi_xinrenmname">新郎、新娘</string>
+    <string name="hello">Hello World, JPush!</string>
+    <string name="tag_hint">Tag为大小写字母，数字，下划线,中文， 多个用以逗号分隔</string>
+    <string name="alias_hint">Alias为大小写字母，数字，下划线</string>
+    <string name="style_hint">style为数字</string>
+    <string name="error_style_empty">style不能为空</string>
+    <string name="error_alias_empty">alias不能为空</string>
+    <string name="error_tag_empty">tag不能为空</string>
+    <string name="error_tag_gs_empty">格式不对</string>
+    <string name="error_network">网络连接异常,初始化失败 请检查网络！</string>
+    <string name="logining">程序在后台执行, 请查看日志！</string>
+    <string name="setting_su">设置成功</string>
     <string name="title_activity_wo_de_qing_tie_all">WoDeQingTieAllActivity</string>
     <string name="title_activity_qing_dian__li_yi">QingDian_LiYiActivity</string>
     <string name="title_activity_shi_ren__ding_zhi">ShiRen_DingZhiActivity</string>

@@ -16,10 +16,11 @@ import retrofit2.http.QueryMap;
 
 public interface INetServices {
     //http://120.27.141.95:8221/ashx/   Other.ashx?Function=GetTopPicture
-    String URL_A="ashx/";
     @GET("{type}"+".ashx?")
     Call<ToppicBean> getpic(@Path("type") String type, @QueryMap Map<String, String> params);
+    //根据接口的格式自行串接get的参数，这地方这个@Path("type") String type可以理解成调用getDataFromNet方法时的参数传到@GET里 params里面放参数
+    //http://120.27.141.95:8221/ashx/Other.ashx?Function=GetTopPicture 以这个为例  http://120.27.141.95:8221/ashx/ 可以写成一个常量
     @GET("{type}"+".ashx?")
-    Call<ResponseBody> getDataFromLOLNet(@Path("type") String type, @QueryMap Map<String, String> params);
+    Call<ResponseBody> getDataFromNet(@Path("type") String type, @QueryMap Map<String, String> params);
 
 }

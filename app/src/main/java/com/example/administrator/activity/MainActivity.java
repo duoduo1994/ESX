@@ -20,6 +20,10 @@ import com.lidroid.xutils.view.annotation.event.OnRadioGroupCheckedChange;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
+
+
 public class MainActivity extends FragmentActivity {
     private long exitTime;
     private Tab1 tab1;
@@ -35,6 +39,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
         TopPicUtil=new RetrofitUtil<>(this);
         ViewUtils.inject(this);
+       String  strUniqueId = JPushInterface.getRegistrationID(MainActivity.this);
         initView();
     }
 

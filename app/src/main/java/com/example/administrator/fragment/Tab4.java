@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.example.administrator.activity.AdressManageActivity;
 import com.example.administrator.activity.LoginInActivity;
+import com.example.administrator.activity.MyOrderListActivity;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.utils.ElasticScrollView;
 
@@ -40,6 +41,8 @@ public class Tab4 extends Fragment {
     LinearLayout about;
     @BindView(R.id.ll_mylogin)
     LinearLayout llMylogin;
+    @BindView(R.id.order)
+    LinearLayout order;
     private View view;
     ElasticScrollView elasticScrollView3;
 
@@ -59,6 +62,7 @@ public class Tab4 extends Fragment {
         ButterKnife.bind(this, view);
         myAddress.setOnClickListener(v -> startActivity(new Intent(getActivity(), AdressManageActivity.class)));
         llMylogin.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginInActivity.class)));
+        order.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyOrderListActivity.class)));
         return view;
     }
 }

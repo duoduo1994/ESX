@@ -16,7 +16,7 @@ import android.support.multidex.MultiDex;
 /**
  * 文件名：主Application
  * 说明：初始化
- * 作者： 赵百旗
+ * 作者： 王月丽
  * 公司：宁波驿邮
  *
  */
@@ -31,7 +31,7 @@ public class LocationApplication extends Application {
          */
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         JPushInterface.setDebugMode(true);
-     	JPushInterface.init(this);
+        JPushInterface.init(this);
      	LocalStorage.initContext(getApplicationContext());
      	ShareSDK.initSDK(this);
     }

@@ -55,8 +55,6 @@ public class HomeActivity extends FragmentActivity {
 		setContentView(R.layout.activity_mains);
 //		LocalStorage.initContext(_instance);
 		dianJiShiJian = System.currentTimeMillis();
-		strUniqueId = JPushInterface.getRegistrationID(HomeActivity.this);
-		System.out.println(strUniqueId+"id值");
 		// Toast.makeText(HomeActivity.this, "识别码为"+strUniqueId, 1).show();
 		a12 = getStatusBarHeight();
 
@@ -69,7 +67,6 @@ public class HomeActivity extends FragmentActivity {
 		try {
 			sharedPreferences = getSharedPreferences("banben", MODE_PRIVATE);
 			isFirst = sharedPreferences.getBoolean("first", true);
-			System.out.println("GHJUK");
 
 			PackageInfo packageInfo = packageManager.getPackageInfo(
 					this.getPackageName(), 0);

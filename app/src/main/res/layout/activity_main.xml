@@ -19,24 +19,20 @@
             android:id="@+id/radio_1"
             android:checked="true"
             android:drawableTop="@drawable/tab_selector_indent"
-            android:text="首页"
             style="@style/radiobutton_style"
             />
         <RadioButton
             android:drawableTop="@drawable/tab_selector_indent"
             android:id="@+id/radio_2"
-            android:text="全部"
             style="@style/radiobutton_style"
              />
         <RadioButton
             android:drawableTop="@drawable/tab_selector_indent"
-            android:text="购物车"
             style="@style/radiobutton_style"
             android:id="@+id/radio_3"
              />
         <RadioButton
             android:drawableTop="@drawable/tab_selector_indent"
-            android:text="我的"
             style="@style/radiobutton_style"
             android:id="@+id/radio_4"
               />

@@ -13,16 +13,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.list.Utils;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.RetrofitUtil;
 import com.example.administrator.utils.ActivityCollector;
 import com.example.administrator.utils.DataConvert;
 import com.example.administrator.utils.IvListener;
 import com.example.administrator.utils.LoadingDialog;
 import com.example.administrator.utils.LocalStorage;
 import com.example.administrator.utils.ProConst;
+import com.example.administrator.utils.StringUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.administrator.myapplication.R.id.map;
 
 /**
  * 注册页
@@ -55,7 +66,7 @@ public class RegisterActivity extends BaseActivity implements ProConst {
     @ViewInject(R.id.zhaohui_mima_zhuce)
     private LinearLayout ll;
     private float dy, uy;
-
+private RetrofitUtil registerUtil;
     @Override
     protected int setContentView() {
         return R.layout.myregister;
@@ -64,6 +75,7 @@ public class RegisterActivity extends BaseActivity implements ProConst {
     @Override
     protected void initView() {
         tv.setText("用户注册");
+        registerUtil=new RetrofitUtil(this);
         ActivityCollector.addActivity(this);
         ll.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -86,7 +98,7 @@ public class RegisterActivity extends BaseActivity implements ProConst {
                 return true;
             }
         });
-        LocalStorage.initContext(this);
+//        LocalStorage.initContext(this);
         zhuCe = getIntent().getIntExtra("zhuCe", 0);
         time = new TimeCount(60000, 1000);
         leftBtn.setOnClickListener(new OnClickListener() {
@@ -117,50 +129,27 @@ public class RegisterActivity extends BaseActivity implements ProConst {
                     return;
                 }
                 dialog = new LoadingDialog(v.getContext(), "正在获取，请稍候...");
-                dialog.showDialog();
+//                dialog.showDialog();
                 edit_register_mobile.setEnabled(false);
-//				RequestParams params = new RequestParams();
-//				params.add("UserTel", UserTel);
-//				SmartFruitsRestClient.post(
-//						"LoginCheckHandler.ashx?Action=Code", params,
-//						new AsyncHttpResponseHandler() {
-//
-//							@Override
-//							public void onSuccess(int arg0, Header[] arg1,
-//									byte[] arg2) {
-//								// TODO Auto-generated method stub
-//								dialog.closeDialog();
-//								handler.sendEmptyMessage(2);
-//								String result = new String(arg2);
-//								System.out.println(result);
-//								int i = Integer.parseInt(result);
-//								try {
-//									switch (i) {
-//									case LOGIN_FIALED:
-//										setView(getString(R.string.conn_failed));
-//										break;
-//									default:
-//										break;
-//									}
-//								} catch (Exception e) {
-//									e.printStackTrace();
-//									// Toast.makeText(RegisterActivity.this,
-//									// e.getMessage(), Toast.LENGTH_SHORT)
-//									// .show();
-//								}
-//							}
-//
-//							@Override
-//							public void onFailure(int arg0, Header[] arg1,
-//									byte[] arg2, Throwable arg3) {
-//								// TODO Auto-generated method stub
-//								System.out.println(arg3 + "asdfgdhgsa");
-//								handler.sendEmptyMessage(2);
-//								setView(getString(R.string.conn_failed));
-//								return;
-//							}
-//						});
+                Map<String,String> map=new HashMap<String, String>();
+                map.put("Function","GetCode");
+                map.put("UserTel",UserTel);
+                Toast.makeText(RegisterActivity.this,UserTel+"111",Toast.LENGTH_SHORT).show();
+                registerUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>() {
+                    @Override
+                    public void onLoadingDataComplete(String body) {
+                        toast(RegisterActivity.this, body+"1222");
+                        dialog.closeDialog();
+								handler.sendEmptyMessage(2);
+								String result = new String(body);
+                    }
 
+                    @Override
+                    public void onLoadingDataFailed(Throwable t) {
+                        handler.sendEmptyMessage(2);
+								setView(getString(R.string.conn_failed));
+                    }
+                });
                 time.start();
 
             }
@@ -206,8 +195,34 @@ public class RegisterActivity extends BaseActivity implements ProConst {
                 return;
             }
             dialog = new LoadingDialog(v.getContext(), "正在获取，请稍候...");
-            dialog.showDialog();
+//            dialog.showDialog();
+            //Regist:功能，注册用户(HTTP协议)参数:1.UserTel;用户电话2.UserPwd;登录密码3.UserCode;验证码,
+            Map<String,String> map=new HashMap<String, String>();
+            map.put("Function","Regist");
+            map.put("UserTel",UserTel);
+            map.put("UserPwd",UserPass);
+            map.put("UserCode",UserCode);
+registerUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>() {
+    @Override
+    public void onLoadingDataComplete(String body) {
+        toast(RegisterActivity.this, body+"1224442");
+        try {
+            JSONObject jo=new JSONObject(body.trim());
+           String result= jo.getString("提示");
+            Toast.makeText(RegisterActivity.this,result,Toast.LENGTH_LONG).show();
+            if(result.equals("注册成功")){
+                RegisterActivity.this.finish();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void onLoadingDataFailed(Throwable t) {
+
+    }
+});
         }
     };
 
