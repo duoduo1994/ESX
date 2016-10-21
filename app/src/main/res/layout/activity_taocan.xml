@@ -190,6 +190,7 @@
       >
 
         <Button
+            android:id="@+id/btn_buy_now"
             android:text="立即购买"
             android:textColor="@color/white"
             android:layout_width="0dp"
@@ -198,6 +199,7 @@
             android:background="@color/orange" />
 
         <Button
+            android:id="@+id/btn_add_car"
             android:text="加入购物车"
             android:textColor="@color/white"
             android:layout_width="0dp"

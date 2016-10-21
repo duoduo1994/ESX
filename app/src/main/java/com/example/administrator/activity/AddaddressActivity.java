@@ -38,12 +38,6 @@ public class AddaddressActivity extends AppCompatActivity {
     ImageView ivChooseArea;
     @BindView(R.id.rl_address_area)
     RelativeLayout rlAddressArea;
-    @BindView(R.id.iv_choose_street)
-    ImageView ivChooseStreet;
-    @BindView(R.id.tv_address_street)
-    TextView tvAddressStreet;
-    @BindView(R.id.rl_address_street)
-    LinearLayout rlAddressStreet;
     @BindView(R.id.et_detail_address)
     EditText etDetailAddress;
     @BindView(R.id.swith_setdefault)

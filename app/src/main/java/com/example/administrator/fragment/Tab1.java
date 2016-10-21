@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.ab.view.ImageCycleView;
 import com.example.administrator.activity.HomeActivity;
 import com.example.administrator.activity.HotTaocanActivity;
+import com.example.administrator.activity.Panic_Buying;
 import com.example.administrator.activity.TaocanActivity;
 import com.example.administrator.entity.AllpicBean;
 import com.example.administrator.entity.ShouyeListBean;
@@ -78,6 +80,7 @@ public class Tab1 extends Fragment implements View.OnClickListener {
     private List<AllpicBean> allList;
     private List<ShouyeListBean> listBeanList;
     private ImageView iv_home_qianggou;
+    private RelativeLayout rl_home_qianggou;
     BaseRecyclerAdapter<ShouyeListBean> baseRecyclerAdapter;
 
     @Override
@@ -106,12 +109,13 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         siren = (LinearLayout) view.findViewById(R.id.siren_dingzhi);
         niqing = (LinearLayout) view.findViewById(R.id.niqing_woyuan);
         tiexing = (LinearLayout) view.findViewById(R.id.tiexin_daojia);
+        rl_home_qianggou= (RelativeLayout) view.findViewById(R.id.rl_home_qianggou);
         xiangCun.setOnClickListener(this);
         siren.setOnClickListener(this);
         niqing.setOnClickListener(this);
         tiexing.setOnClickListener(this);
         ivHomeHot.setOnClickListener(this);
-
+        rl_home_qianggou.setOnClickListener(this);
         rcv_showye.setLayoutManager(new LinearLayoutManager(getActivity()));
         baseRecyclerAdapter = new BaseRecyclerAdapter<ShouyeListBean>(getActivity(), listBeanList, R.layout.shouye_list_item) {
             @Override
@@ -391,6 +395,10 @@ public class Tab1 extends Fragment implements View.OnClickListener {
                 break;
             case R.id.iv_home_hot:
                 startActivity(new Intent(getActivity(), HotTaocanActivity.class));
+                break;
+
+            case R.id.rl_home_qianggou:
+                startActivity(new Intent(getActivity(), Panic_Buying.class));
                 break;
         }
 

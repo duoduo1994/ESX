@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:weightSum="1">
+
+    <include
+        android:id="@+id/g_eng_d_uo"
+        layout="@layout/item_tou"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.06"
+         />
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.84"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.example.administrator.ab.view.ImageCycleView
+                android:id="@+id/costom"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+               />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:background="@color/list_item_focus_for_friendlist">
+
+
+                <TextView
+                    android:id="@+id/fresh_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/fresh_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/fresh_norm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/fresh_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+
+                android:background="@color/list_item_focus_for_friendlist">
+
+                <TextView
+                    android:id="@+id/beizhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/sc_red"
+                    android:text="￥"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/fresh_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/sc_red"
+                    android:text="2502.2/包"
+                    android:textSize="17sp" />
+
+                <TextView
+
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@color/title_back"
+                    android:gravity="center"
+                    android:text="特惠价"
+                    android:textColor="@color/sc_login_background"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:text="食行价："
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/shihangjia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/sc_red"
+                    android:text="asd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:text="市场价："
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/shichangjia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="asd" />
+
+                <TextView
+                    android:id="@+id/yishou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:text="已售：" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"></LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="7"
+                    android:text="请选择   配菜   规格"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/cai_xuanze"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:src="@mipmap/tiaozhuan" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1.5"
+                    android:text="商品详情"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="5.5"
+                    android:text="商品详情图片较多建议Wifi下浏览"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/qianggou_shangpingxiangqing"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:src="@mipmap/tiaozhuan" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="7"
+                    android:text="为您推荐套餐"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/tuijiantaocan"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:src="@mipmap/tiaozhuan" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+
+                <com.example.administrator.ab.view.HorizontalListView
+                    android:id="@+id/horizon_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+
+                    ></com.example.administrator.ab.view.HorizontalListView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="2"
+                    android:text="查看全部评论"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <com.example.administrator.ab.view.StarBar
+                    android:id="@+id/starBar"
+
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    ratingbar:starCount="5"
+                    ratingbar:starDistance="5dp"
+                    ratingbar:starEmpty="@mipmap/star_empty"
+                    ratingbar:starFill="@mipmap/star_full"
+                    ratingbar:starSize="15dp" />
+
+                <TextView
+                    android:id="@+id/quanbupingjia"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:text="查看全部评论"
+                    android:textColor="#696969"
+                    android:textSize="15sp" />
+
+                <ImageView
+
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:src="@mipmap/tiaozhuan" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/fresh_pingjia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <include
+        layout="@layout/gouwuche"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+
+        android:layout_weight="0.1" />
+
+
+</LinearLayout>

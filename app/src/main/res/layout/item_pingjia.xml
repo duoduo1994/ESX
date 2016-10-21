@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <com.example.administrator.ab.view.StarBar
+            android:id="@+id/star"
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            ratingbar:starEmpty="@mipmap/star_empty"
+            ratingbar:starFill="@mipmap/star_full"
+            ratingbar:starDistance="5dp"
+            ratingbar:starCount="5"
+            ratingbar:starSize="15dp" />
+
+        <TextView
+    android:id="@+id/evaluateTel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="sd"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/star"
+            android:layout_toEndOf="@+id/star"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:id="@+id/evaluateDt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="sd"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"/>
+
+    </RelativeLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/color_divider"
+    ></LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/color_divider"
+        ></LinearLayout>
+
+</LinearLayout>

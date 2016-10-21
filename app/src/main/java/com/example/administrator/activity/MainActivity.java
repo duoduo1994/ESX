@@ -14,6 +14,7 @@ import com.example.administrator.fragment.Tab3;
 import com.example.administrator.fragment.Tab4;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.RetrofitUtil;
+import com.example.administrator.utils.LocalStorage;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnRadioGroupCheckedChange;
 
@@ -32,19 +33,18 @@ public class MainActivity extends FragmentActivity {
     private Tab4 tab4;
     RetrofitUtil<ToppicBean> TopPicUtil;
     private List<String> l=new ArrayList<>();
-
+    static String  strUniqueId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TopPicUtil=new RetrofitUtil<>(this);
         ViewUtils.inject(this);
-       String  strUniqueId = JPushInterface.getRegistrationID(MainActivity.this);
+        strUniqueId = JPushInterface.getRegistrationID(MainActivity.this);
+        Toast.makeText(this,"识别码"+strUniqueId,Toast.LENGTH_LONG).show();
+        LocalStorage.set("strUniqueId",strUniqueId);
         initView();
     }
-
-
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

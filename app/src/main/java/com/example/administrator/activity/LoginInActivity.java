@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.administrator.ab.view.Connect;
 import com.example.administrator.list.Utils;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.XUtilsHelper;
@@ -71,7 +73,7 @@ public class LoginInActivity extends BaseActivity implements ProConst {
     private float dy, uy;
     static Activity a;
     public static int a5;
-
+String strUniqueId=MainActivity.strUniqueId;
     @Override
     protected int setContentView() {
         return R.layout.login;
@@ -229,9 +231,11 @@ public class LoginInActivity extends BaseActivity implements ProConst {
         public void onClick(View v) {
 
             login();
-            LoginInActivity.this.finish();
+
         }
     };
+    static Connect connect=new Connect();
+    Handler myhandler;
 
     private void login() {
 
@@ -242,141 +246,153 @@ public class LoginInActivity extends BaseActivity implements ProConst {
             toast(LoginInActivity.this, "用户名或密码不能为空或有误");
             return;
         }
-        dialog = new LoadingDialog(LoginInActivity.this, "正在登陆，请稍候...");
-        dialog.showDialog();
-        // TODO Auto-generated method stub
+
+
         String passEnt = MD5Util.string2MD5(UserPass);
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetCase",1);
-        RequestParams params = new RequestParams();
-        params.addBodyParameter("UserTel", UserTel);
-        params.addBodyParameter("CustPhyAddr", HomeActivity.strUniqueId);
-        params.addBodyParameter("UserPass", passEnt);
-        Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                xUtilsHelper1.sendPost(params, subscriber);
-            }
-        }).subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
 
-            }
+        JieShou();
 
-            @Override
-            public void onError(Throwable e) {
-                if (dialog != null) {
-                    dialog.closeDialog();
-                }
-                handler.sendEmptyMessage(1);
-                // TODO Auto-generated method stub
-                System.out.println(e + "asdfgdhgsa");
-                toast(LoginInActivity.this, getString(R.string.conn_failed));
-            }
 
-            @Override
-            public void onNext(String result) {
-                try {
-                    handler.sendEmptyMessage(1);
+                //170976fa8a862b0a3df
+        System.out.println("ID值为"+strUniqueId);
+        connect.dengru(UserTel, passEnt,   strUniqueId, myhandler);
 
-                    System.out.println("logsin" + result);
-                    if (!result.equals("-1")
-                            && !TextUtils.isEmpty(result)) {
-                        toast(LoginInActivity.this, getString(R.string.login_btn_login));
-                        JSONObject jsonObject = new JSONObject(result
-                                .trim());
-                        System.out.println("jsonObject=" + jsonObject);
-                        JSONArray jsArray = jsonObject
-                                .getJSONArray("用户信息");
-                        JSONObject json = jsArray.getJSONObject(0);
-                        LocalStorage.set("UserTel", UserTel);
-                        // Toast.makeText(MainActivity.this,
-                        // LocalStorage.get("UserTel").toString(),
-                        // Toast.LENGTH_LONG).show();
-                        System.out.println("FTYUIK"
-                                + LocalStorage.get("UserPass")
-                                .toString());
 
-                        LocalStorage.set("UserPass", UserPass);
-                        System.out.println("FTYUIK"
-                                + LocalStorage.get("UserPass")
-                                .toString());
-                        LocalStorage.set("LoginStatus", "login");
-                        System.out.println(LocalStorage
-                                .get("LoginStatus"));
-                        LocalStorage.set("Sex", json.getString("Sex"));
-                        if (!TextUtils.isEmpty(json
-                                .getString("BornDateTime"))) {
-                            SimpleDateFormat sim1 = new SimpleDateFormat(
-                                    "yyyy/MM/dd HH:mm:ss");
-                            SimpleDateFormat sim2 = new SimpleDateFormat(
-                                    "yyyy-MM-dd");
-                            String s = json.getString("BornDateTime")
-                                    .replace("\\", "");
-                            Date d = sim1.parse(s);
-                            System.out.println("jsArray="
-                                    + sim2.format(d));
-                            LocalStorage.set("BornDateTime",
-                                    sim2.format(d));
-                        }
-                        if (!TextUtils.isEmpty(json
-                                .getString("ImageUrl"))) {
-                            String ss = json.getString("ImageUrl")
-                                    .replace("\\", "").trim();
-                            System.out.println("ss=" + ss);
-                            LocalStorage.set("ImageUrl", ss);
-                        }
-                        authority = json.getString("Authority");
-                        System.out.println("=============" + authority);
-                        LocalStorage.set("UpdateDT",
-                                json.getString("UpdateDT"));
-                        LocalStorage.set("Authority",
-                                json.getString("Authority"));
-                        LocalStorage.set("HomeAddress",
-                                json.getString("HomeAddress"));
-                        LocalStorage.set("NowAddress",
-                                json.getString("NowAddress"));
-                        LocalStorage.set("RealName",
-                                json.getString("RealName"));
-                        LocalStorage.set("NickName",
-                                json.getString("NickName"));
-                        if (flag == 1) {
-                            Intent resultIntent = new Intent();
-                            LoginInActivity.this.setResult(RESULT_OK,
-                                    resultIntent);
-                            finish();
-                        } else if (flag == 5) {
-                            Intent data = new Intent();
-                            System.out.println(1);
-                            System.out.println(json
-                                    .getString("NickName") + "!!!!!");
-
-                            data.putExtra("Authority", authority);
-                            data.putExtra("resultString",
-                                    json.getString("NickName"));
-                            LoginInActivity.this.setResult(123, data);
-                            finish();
-                        } else if (dengRu == 45) {
-                            System.out.println("denglu5");
-                            LoginInActivity.this.finish();
-                        } else {
-                            startActivity(new Intent(LoginInActivity.this,
-                                    HomeActivity.class));
-                            LoginInActivity.this.finish();
-                        }
-                    } else if (result.equals("-1")) {
-                        toast(LoginInActivity.this, getString(R.string.login_failed));
-                    }
-                } catch (Exception e) {
-                    handler.sendEmptyMessage(1);
-                    System.out.println(123456789 + "," + e);
-                    e.printStackTrace();
-                    // Toast.makeText(MainActivity.this,
-                    // e.getMessage(), Toast.LENGTH_SHORT)
-                    // .show();
-                }
-
-            }
-        });
+//        dialog = new LoadingDialog(LoginInActivity.this, "正在登陆，请稍候...");
+//        dialog.showDialog();
+//        // TODO Auto-generated method stub
+//        String passEnt = MD5Util.string2MD5(UserPass);
+//        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "weddingHandler.ashx?Action=GetCase",1);
+//        RequestParams params = new RequestParams();
+//        params.addBodyParameter("UserTel", UserTel);
+//        params.addBodyParameter("CustPhyAddr", HomeActivity.strUniqueId);
+//        params.addBodyParameter("UserPass", passEnt);
+//        Observable.create(new Observable.OnSubscribe<String>() {
+//            @Override
+//            public void call(Subscriber<? super String> subscriber) {
+//                xUtilsHelper1.sendPost(params, subscriber);
+//            }
+//        }).subscribe(new Subscriber<String>() {
+//            @Override
+//            public void onCompleted() {
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                if (dialog != null) {
+//                    dialog.closeDialog();
+//                }
+//                handler.sendEmptyMessage(1);
+//                // TODO Auto-generated method stub
+//                System.out.println(e + "asdfgdhgsa");
+//                toast(LoginInActivity.this, getString(R.string.conn_failed));
+//            }
+//
+//            @Override
+//            public void onNext(String result) {
+//                try {
+//                    handler.sendEmptyMessage(1);
+//
+//                    System.out.println("logsin" + result);
+//                    if (!result.equals("-1")
+//                            && !TextUtils.isEmpty(result)) {
+//                        toast(LoginInActivity.this, getString(R.string.login_btn_login));
+//                        JSONObject jsonObject = new JSONObject(result
+//                                .trim());
+//                        System.out.println("jsonObject=" + jsonObject);
+//                        JSONArray jsArray = jsonObject
+//                                .getJSONArray("用户信息");
+//                        JSONObject json = jsArray.getJSONObject(0);
+//                        LocalStorage.set("UserTel", UserTel);
+//                        // Toast.makeText(MainActivity.this,
+//                        // LocalStorage.get("UserTel").toString(),
+//                        // Toast.LENGTH_LONG).show();
+//                        System.out.println("FTYUIK"
+//                                + LocalStorage.get("UserPass")
+//                                .toString());
+//
+//                        LocalStorage.set("UserPass", UserPass);
+//                        System.out.println("FTYUIK"
+//                                + LocalStorage.get("UserPass")
+//                                .toString());
+//                        LocalStorage.set("LoginStatus", "login");
+//                        System.out.println(LocalStorage
+//                                .get("LoginStatus"));
+//                        LocalStorage.set("Sex", json.getString("Sex"));
+//                        if (!TextUtils.isEmpty(json
+//                                .getString("BornDateTime"))) {
+//                            SimpleDateFormat sim1 = new SimpleDateFormat(
+//                                    "yyyy/MM/dd HH:mm:ss");
+//                            SimpleDateFormat sim2 = new SimpleDateFormat(
+//                                    "yyyy-MM-dd");
+//                            String s = json.getString("BornDateTime")
+//                                    .replace("\\", "");
+//                            Date d = sim1.parse(s);
+//                            System.out.println("jsArray="
+//                                    + sim2.format(d));
+//                            LocalStorage.set("BornDateTime",
+//                                    sim2.format(d));
+//                        }
+//                        if (!TextUtils.isEmpty(json
+//                                .getString("ImageUrl"))) {
+//                            String ss = json.getString("ImageUrl")
+//                                    .replace("\\", "").trim();
+//                            System.out.println("ss=" + ss);
+//                            LocalStorage.set("ImageUrl", ss);
+//                        }
+//                        authority = json.getString("Authority");
+//                        System.out.println("=============" + authority);
+//                        LocalStorage.set("UpdateDT",
+//                                json.getString("UpdateDT"));
+//                        LocalStorage.set("Authority",
+//                                json.getString("Authority"));
+//                        LocalStorage.set("HomeAddress",
+//                                json.getString("HomeAddress"));
+//                        LocalStorage.set("NowAddress",
+//                                json.getString("NowAddress"));
+//                        LocalStorage.set("RealName",
+//                                json.getString("RealName"));
+//                        LocalStorage.set("NickName",
+//                                json.getString("NickName"));
+//                        if (flag == 1) {
+//                            Intent resultIntent = new Intent();
+//                            LoginInActivity.this.setResult(RESULT_OK,
+//                                    resultIntent);
+//                            finish();
+//                        } else if (flag == 5) {
+//                            Intent data = new Intent();
+//                            System.out.println(1);
+//                            System.out.println(json
+//                                    .getString("NickName") + "!!!!!");
+//
+//                            data.putExtra("Authority", authority);
+//                            data.putExtra("resultString",
+//                                    json.getString("NickName"));
+//                            LoginInActivity.this.setResult(123, data);
+//                            finish();
+//                        } else if (dengRu == 45) {
+//                            System.out.println("denglu5");
+//                            LoginInActivity.this.finish();
+//                        } else {
+//                            startActivity(new Intent(LoginInActivity.this,
+//                                    HomeActivity.class));
+//                            LoginInActivity.this.finish();
+//                        }
+//                    } else if (result.equals("-1")) {
+//                        toast(LoginInActivity.this, getString(R.string.login_failed));
+//                    }
+//                } catch (Exception e) {
+//                    handler.sendEmptyMessage(1);
+//                    System.out.println(123456789 + "," + e);
+//                    e.printStackTrace();
+//                    // Toast.makeText(MainActivity.this,
+//                    // e.getMessage(), Toast.LENGTH_SHORT)
+//                    // .show();
+//                }
+//
+//            }
+//        });
 
 
 //		RequestParams params = new RequestParams();
@@ -514,7 +530,23 @@ public class LoginInActivity extends BaseActivity implements ProConst {
 //				});
 
     }
-
+    public void JieShou() {
+        myhandler = new Handler() {
+            public void handleMessage(Message msg) {
+                if (msg.what == 0x123) {
+                    String s = msg.obj.toString();
+                    if ("登录成功".endsWith(s)) {
+                        // dialog.closeDialog();
+                        toast(LoginInActivity.this,"登录成功");
+                        LocalStorage.set("LoginStatus", "login");
+                        //connect.dengru(UserTel, passEnt,   strUniqueId, myhandler);
+                        LocalStorage.set("UserTel", UserTel);
+                        finish();
+                    }
+                }
+            }
+        };
+    }
 //	private boolean isFalse = true;
 //	private int ciShu = 0;
 

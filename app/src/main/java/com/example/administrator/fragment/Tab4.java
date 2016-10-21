@@ -1,18 +1,23 @@
 package com.example.administrator.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.activity.AdressManageActivity;
 import com.example.administrator.activity.LoginInActivity;
+import com.example.administrator.activity.MyAssetActivity;
 import com.example.administrator.activity.MyOrderListActivity;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.utils.ElasticScrollView;
+import com.example.administrator.utils.LocalStorage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +48,16 @@ public class Tab4 extends Fragment {
     LinearLayout llMylogin;
     @BindView(R.id.order)
     LinearLayout order;
+    @BindView(R.id.tv_username)
+    TextView tvUsername;
+    @BindView(R.id.tv_useraccount)
+    TextView tvUseraccount;
+    @BindView(R.id.cichan)
+    TextView cichan;
+    @BindView(R.id.ll_my_asset)
+    LinearLayout llMyAsset;
     private View view;
+
     ElasticScrollView elasticScrollView3;
 
     @Override
@@ -60,9 +74,54 @@ public class Tab4 extends Fragment {
 
 
         ButterKnife.bind(this, view);
+        isLogin();
+        cichan.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyAssetActivity.class)));
+        llMyAsset.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyAssetActivity.class)));
         myAddress.setOnClickListener(v -> startActivity(new Intent(getActivity(), AdressManageActivity.class)));
-        llMylogin.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginInActivity.class)));
+//        llMylogin.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginInActivity.class)));
         order.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyOrderListActivity.class)));
+
+
         return view;
+    }
+
+    private void isLogin() {
+        String LoginStatus = LocalStorage.get(getActivity().getApplicationContext(), "LoginStatus");
+        if (LoginStatus.equals("login")) {
+            tvUsername.setText("亲,怎么称呼");
+            tvUseraccount.setVisibility(View.VISIBLE);
+            tvUseraccount.setText("账号：" + LocalStorage.get(getActivity().getApplicationContext(), "UserTel"));
+            llMylogin.setOnClickListener(v -> new AlertDialog.Builder(getActivity()).setMessage("是否退出？").setNegativeButton("是", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    LocalStorage.set("LoginStatus", "out");
+                    isLogin();
+                }
+            }).setPositiveButton("fou", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).show());
+        } else {
+            tvUsername.setText("点击登录");
+            tvUseraccount.setVisibility(View.GONE);
+            llMylogin.setOnClickListener(v -> startActivity(new Intent(getActivity(), LoginInActivity.class)));
+
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        isLogin();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            isLogin();
+        }
     }
 }

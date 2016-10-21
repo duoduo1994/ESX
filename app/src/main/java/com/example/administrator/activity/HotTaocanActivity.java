@@ -84,7 +84,6 @@ public class HotTaocanActivity extends AppCompatActivity {
                 holder.setText(R.id.tv_taocan_content, item.getContent());
                 holder.setText(R.id.tv_taocan_num, item.getBaseDate().getSales());
                 if (item.getBaseDate().getImageUrl().trim() == null) {
-
                     holder.setImageResource(R.id.iv_taocan_pic, R.mipmap.nopic);
                 } else {
                     holder.setImageByUrl(R.id.iv_taocan_pic, item.getBaseDate().getImageUrl());

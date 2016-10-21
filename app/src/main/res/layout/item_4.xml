@@ -30,15 +30,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/tv_username"
                 android:textColor="@color/white"
-                android:text="name"
-                android:textSize="20sp"
+                android:text="点击登录"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_useraccount"
                 android:textColor="@color/white"
                 android:text="账号"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -126,7 +129,7 @@
         android:background="@color/feedback_gray"
         />
     <LinearLayout
-        android:id="@+id/order2"
+        android:id="@+id/ll_my_asset"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical" >
@@ -139,6 +142,7 @@
             android:src="@mipmap/myallorder" />
 
         <TextView
+            android:id="@+id/cichan"
             android:gravity="center_vertical"
             android:layout_width="0dp"
             android:layout_height="25dp"

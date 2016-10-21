@@ -30,7 +30,6 @@ public class LocationApplication extends Application {
          * 初始化定位sdk，建议在Application中创建
          */
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-        JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
      	LocalStorage.initContext(getApplicationContext());
      	ShareSDK.initSDK(this);

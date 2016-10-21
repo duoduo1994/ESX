@@ -16,7 +16,7 @@
             android:layout_height="wrap_content" />
 
     <ScrollView
-        android:id="@+id/sc"
+        android:id="@+id/sc_cae_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:id="@+id/cb_ysx_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
@@ -45,6 +46,9 @@
                     />
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcv_ysx_car"
+                android:overScrollMode="never"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -56,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:id="@+id/cb_select_xcxy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
@@ -71,6 +76,9 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcv_xcxy_car"
+                android:overScrollMode="never"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -78,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:id="@+id/cb_select_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView

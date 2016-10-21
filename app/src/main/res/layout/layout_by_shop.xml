@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:paddingLeft="120dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_shop_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text=" ￥ 1999.9"
+                        android:textColor="#f00"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:paddingLeft="120dp"
+                    android:textSize="16sp"
+                    android:maxLines="3"
+                    android:paddingRight="16dp"
+                    android:text="华为荣耀P8 "
+                    android:textColor="#000" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp"
+                android:layout_marginTop="8dp"
+
+                android:background="@color/ShawLiner" />
+
+            <ScrollView
+                android:id="@+id/myscrollview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="主菜"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:paddingLeft="8dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                        android:id="@+id/zhucai"
+                            android:layout_width="56dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button3"
+                            android:layout_height="30dp"
+                            android:text="50g" />
+                        <Button
+                            android:id="@+id/btn_shop_cut"
+                            android:layout_width="56dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/button3"
+                            android:layout_height="30dp"
+                            android:text="—"
+                            android:layout_marginLeft="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_shop_num"
+                            android:layout_width="56dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:background="@drawable/bg_border"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:maxEms="999"
+                            android:paddingLeft="3dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="#f00" />
+
+                        <Button
+                            android:id="@+id/btn_shop_add"
+                            android:layout_width="56dp"
+                            android:textColor="@color/white"
+                            android:layout_height="30dp"
+                            android:background="@drawable/button3"
+                            android:text="+" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/ShawLiner" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="配菜(可多选)"
+                        android:textSize="16sp"
+                        android:textColor="#000" />
+                    <TextView
+                        android:id="@+id/none_peicai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:text="不需要配菜"
+                        android:textSize="16sp"
+                        android:textColor="#000"
+                        android:background="@color/titile_color"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                     <ListView
+                         android:id="@+id/peicai"
+                         android:layout_width="match_parent"
+                         android:layout_height="304dp">
+                     </ListView>
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+            </ScrollView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/sc_red"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/zongjia" />
+
+                <TextView
+                    android:text="￥"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/zongjia"
+                    android:layout_toStartOf="@+id/zongjia"
+                    android:layout_marginRight="3dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/sc_red"
+                    android:id="@+id/textView9" />
+            </RelativeLayout>
+            <include
+                layout="@layout/jiaru_gouwuche"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:orientation="horizontal"
+
+                >
+
+            </include>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_shop_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="16dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/image_border"
+            android:padding="1dp"
+            android:src="@mipmap/image_loading" />
+
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/icon_19_delete"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="33dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp" />
+    </RelativeLayout>
+</LinearLayout>

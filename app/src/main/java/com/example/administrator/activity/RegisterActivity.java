@@ -1,6 +1,7 @@
 package com.example.administrator.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -23,6 +24,7 @@ import com.example.administrator.utils.DataConvert;
 import com.example.administrator.utils.IvListener;
 import com.example.administrator.utils.LoadingDialog;
 import com.example.administrator.utils.LocalStorage;
+import com.example.administrator.utils.MD5Util;
 import com.example.administrator.utils.ProConst;
 import com.example.administrator.utils.StringUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -67,6 +69,8 @@ public class RegisterActivity extends BaseActivity implements ProConst {
     private LinearLayout ll;
     private float dy, uy;
 private RetrofitUtil registerUtil;
+
+
     @Override
     protected int setContentView() {
         return R.layout.myregister;
@@ -200,7 +204,7 @@ private RetrofitUtil registerUtil;
             Map<String,String> map=new HashMap<String, String>();
             map.put("Function","Regist");
             map.put("UserTel",UserTel);
-            map.put("UserPwd",UserPass);
+            map.put("UserPwd", MD5Util.string2MD5(UserPass));
             map.put("UserCode",UserCode);
 registerUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>() {
     @Override
@@ -211,6 +215,9 @@ registerUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>
            String result= jo.getString("提示");
             Toast.makeText(RegisterActivity.this,result,Toast.LENGTH_LONG).show();
             if(result.equals("注册成功")){
+                Intent intent = new Intent();
+                intent.setClass(RegisterActivity.this, LoginInActivity.class);
+                startActivity(intent);
                 RegisterActivity.this.finish();
             }
         } catch (JSONException e) {

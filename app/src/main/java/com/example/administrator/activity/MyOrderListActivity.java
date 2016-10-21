@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.administrator.fragment.MyOederFragment;
+import com.example.administrator.fragment.MyOrderFragment;
 import com.example.administrator.myapplication.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -46,7 +46,7 @@ public class MyOrderListActivity extends AppCompatActivity {
 
     private void initFragment() {
         for (int i = 0; i < titles.length; i++) {
-            MyOederFragment f=new MyOederFragment();
+            MyOrderFragment f=new MyOrderFragment();
             Bundle b=new Bundle();
             b.putString("data","dataaaaa"+i);
             f.setArguments(b);

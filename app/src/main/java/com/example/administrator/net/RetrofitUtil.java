@@ -108,7 +108,6 @@ public class RetrofitUtil<T> {
                 if (response.isSuccessful() && response.body() != null) {
                     try {
                         String resultStr = response.body().string();
-
                         Gson gson = new Gson();
                         T body = gson.fromJson(resultStr, clzz);
                         callBack.onLoadingDataComplete(body);
