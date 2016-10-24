@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/tv_pay_purpose"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="在线支付"
+    />
+    <TextView
+        android:id="@+id/tv_pay_remain"
+        android:layout_below="@+id/tv_pay_purpose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="余额：35.88"
+        />
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_pay_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2016-06-26"
+        />
+    <TextView
+        android:id="@+id/tv_pay_spend"
+        android:textColor="@color/black"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_pay_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-15.88"
+        />
+</RelativeLayout>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.ab.view.ImageCycleView;
+import com.example.administrator.activity.CookerListActivity;
 import com.example.administrator.activity.HomeActivity;
 import com.example.administrator.activity.HotTaocanActivity;
 import com.example.administrator.activity.Panic_Buying;
@@ -116,6 +117,7 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         tiexing.setOnClickListener(this);
         ivHomeHot.setOnClickListener(this);
         rl_home_qianggou.setOnClickListener(this);
+        ivHomeCooker.setOnClickListener(this);
         rcv_showye.setLayoutManager(new LinearLayoutManager(getActivity()));
         baseRecyclerAdapter = new BaseRecyclerAdapter<ShouyeListBean>(getActivity(), listBeanList, R.layout.shouye_list_item) {
             @Override
@@ -399,6 +401,9 @@ public class Tab1 extends Fragment implements View.OnClickListener {
 
             case R.id.rl_home_qianggou:
                 startActivity(new Intent(getActivity(), Panic_Buying.class));
+                break;
+            case R.id.iv_home_cooker:
+                startActivity(new Intent(getActivity(), CookerListActivity.class));
                 break;
         }
 

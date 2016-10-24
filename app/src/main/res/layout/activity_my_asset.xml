@@ -9,6 +9,7 @@
     tools:context="com.example.administrator.activity.MyAssetActivity">
 <include layout="@layout/item_tou"/>
     <LinearLayout
+        android:id="@+id/ll_my_asset"
         android:orientation="vertical"
         android:background="@color/title_back"
         android:layout_width="match_parent"

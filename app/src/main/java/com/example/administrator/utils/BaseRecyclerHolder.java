@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.administrator.myapplication.R;
 
 
 /**
@@ -90,7 +91,12 @@ public class BaseRecyclerHolder extends RecyclerView.ViewHolder {
 //        Picasso.with(context).load(url).into((ImageView) getView(viewId));
 //        Glide.with(context).load(url).into((ImageView) getView(viewId));
         ImageView iv=getView(viewId);
-        Load.imageLoader.displayImage(url,iv,Load.options);
+        if(url.length()==0){
+            iv.setImageResource(R.mipmap.nopic);
+        }else {
+            Load.imageLoader.displayImage(url,iv,Load.options);
+        }
+
         //        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
         //        ImageLoader.getInstance().displayImage(url, (ImageView) getView(viewId));
         return this;

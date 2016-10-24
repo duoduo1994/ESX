@@ -201,13 +201,14 @@
         <activity android:name="com.example.administrator.activity.CESHI" />
         <activity android:name="com.example.administrator.activity.OrderConfirmActivity" />
         <activity android:name="com.example.administrator.activity.MyAssetActivity" />
-        <activity android:name="com.example.administrator.activity.MyInformationActivity"></activity>
-        <activity android:name="com.example.administrator.activity.AssetDetailActivity"/>
+        <activity android:name="com.example.administrator.activity.MyInformationActivity" />
+        <activity android:name="com.example.administrator.activity.AssetDetailActivity" />
+
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="323fe478ecd4ff1c27ef643d" />
 
-
+        <activity android:name="com.example.administrator.activity.CookerListActivity"></activity>
     </application>
 
 </manifest>
