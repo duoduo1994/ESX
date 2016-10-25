@@ -93,6 +93,7 @@ public class Tab3 extends Fragment implements View.OnClickListener{
         rcvYsx.setLayoutManager(new LinearLayoutManager(getActivity()));
         rcvXcxy.setLayoutManager(new LinearLayoutManager(getActivity()));
         cbYsx.setChecked(true);
+
         cbXcxy.setChecked(true);
         cbYsx.setOnClickListener(this);
         cbXcxy.setOnClickListener(this);
