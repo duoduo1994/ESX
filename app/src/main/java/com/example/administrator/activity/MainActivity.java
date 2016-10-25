@@ -15,6 +15,7 @@ import com.example.administrator.fragment.Tab4;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.RetrofitUtil;
 import com.example.administrator.utils.LocalStorage;
+import com.example.administrator.utils.LogUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnRadioGroupCheckedChange;
 
@@ -76,6 +77,7 @@ public class MainActivity extends FragmentActivity {
                 }
                 break;
             case R.id.radio_3:
+                LogUtils.isLogin(this);
                 if (!tab3.isAdded()) {
                     getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab4).add(R.id.fragment_main, tab3).commit();
                 } else {
@@ -84,12 +86,12 @@ public class MainActivity extends FragmentActivity {
                 break;
             case R.id.radio_4:
                 if (!tab4.isAdded()) {
+                    LogUtils.isLogin(this);
                     getSupportFragmentManager().beginTransaction().hide(tab1).hide(tab2).hide(tab3).add(R.id.fragment_main, tab4).commit();
                 } else {
                     getSupportFragmentManager().beginTransaction().show(tab4).hide(tab1).hide(tab2).hide(tab3).commit();
                 }
                 break;
-
         }
     }
 

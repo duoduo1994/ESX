@@ -34,7 +34,6 @@ public class MyOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_my_order,null);
         rcv= (RecyclerView) v.findViewById(R.id.rcv_frag_my_order);
-
         return v;
     }
     @Override
@@ -47,21 +46,17 @@ public class MyOrderFragment extends Fragment {
         initData(d);
         super.onCreate(savedInstanceState);
     }
-
     private void initData(String d) {
         for (int i = 0; i < 5; i++) {
             iList.add(new MyOrderBean.GamishBean(d+"GBname",d+"23",d+"100.00"));
             mList.add(new MyOrderBean(d+"goods",d+"12",d+"344.66",iList));
         }
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initAdapter();
-
     }
-
     private void initAdapter() {
         bAdapter=new BaseRecyclerAdapter<MyOrderBean>(getActivity(),mList,R.layout.item_myorder) {
             @Override

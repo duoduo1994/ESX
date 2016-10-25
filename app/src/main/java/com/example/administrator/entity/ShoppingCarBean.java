@@ -8,90 +8,166 @@ import java.util.List;
 
 public class ShoppingCarBean {
 
-    private List<XcxyBean> Xcxy;
-    private List<YsxBean> Ysx;
 
-    public ShoppingCarBean() {
+    /**
+     * ID : 生鲜ID
+     * ProductCgy : 生鲜单品模块固定值为:Freash
+     * Name : 生鲜名称
+     * ImageUrl : 生鲜图片
+     * TotalCount : 购买总数
+     * TotalPrice : 购买总价
+     * MinRecvHour : 最短预定时限
+     * MaxRecvHour : 最长预定时限
+     * Gamish : [{"ID":"配菜ID","Name":"配菜名称","TotalPrice":"总价"}]
+     */
+
+    private List<YSXFreashBean> YSXFreash;
+    /**
+     * ID : 喜宴套餐ID
+     * ProductCgy : 喜宴套餐模块固定值为:FeastSetMeal
+     * Name : 喜宴套餐名称
+     * ImageUrl : 喜宴套餐图片
+     * TotalCount : 购买总数
+     * TotalPrice : 总价
+     */
+
+    private List<FeastBean> Feast;
+
+    public List<YSXFreashBean> getYSXFreash() {
+        return YSXFreash;
     }
 
-
-    public List<XcxyBean> getXcxy() {
-        return Xcxy;
+    public void setYSXFreash(List<YSXFreashBean> YSXFreash) {
+        this.YSXFreash = YSXFreash;
     }
 
-    public void setXcxy(List<XcxyBean> Xcxy) {
-        this.Xcxy = Xcxy;
+    public List<FeastBean> getFeast() {
+        return Feast;
     }
 
-    public List<YsxBean> getYsx() {
-        return Ysx;
+    public void setFeast(List<FeastBean> Feast) {
+        this.Feast = Feast;
     }
 
-    public void setYsx(List<YsxBean> Ysx) {
-        this.Ysx = Ysx;
-    }
+    public static class YSXFreashBean {
+        private String ID;
+        private String ProductCgy;
+        private String Name;
+        private String ImageUrl;
+        private String TotalCount;
+        private String TotalPrice;
+        private String MinRecvHour;
+        private String MaxRecvHour;
 
-    public static class XcxyBean {
+        public YSXFreashBean() {
+        }
+
+        public YSXFreashBean(String ID, String productCgy, String name, String imageUrl, String totalCount, String totalPrice, String minRecvHour, String maxRecvHour, List<GamishBean> gamish) {
+            this.ID = ID;
+            ProductCgy = productCgy;
+            Name = name;
+            ImageUrl = imageUrl;
+            TotalCount = totalCount;
+            TotalPrice = totalPrice;
+            MinRecvHour = minRecvHour;
+            MaxRecvHour = maxRecvHour;
+            Gamish = gamish;
+        }
+
         /**
-         * ID : 餐具ID
-         * ImageUrl : 餐具图片
-         * Name : 餐具名称
-         * TotalCount : 桌数
+         * ID : 配菜ID
+         * Name : 配菜名称
          * TotalPrice : 总价
          */
 
-        private List<CoverBorrowBean> CoverBorrow;
-        /**
-         * ID : 喜宴服务ID
-         * ImageUrl : 图片
-         * Name : 服务名称
-         */
 
-        private List<FeastServerBean> FeastServer;
+        private List<GamishBean> Gamish;
 
-
-        /**
-         * ID : 喜宴套餐ID
-         * ImageUrl : 喜宴套餐图片
-         * Name : 喜宴套餐名称
-         * TotalCount : 购买总数
-         * TotalPrice : 总价
-         */
-
-
-        private List<FeastSetMealBean> FeastSetMeal;
-
-        public List<CoverBorrowBean> getCoverBorrow() {
-            return CoverBorrow;
+        public String getID() {
+            return ID;
         }
 
-        public void setCoverBorrow(List<CoverBorrowBean> CoverBorrow) {
-            this.CoverBorrow = CoverBorrow;
+        public void setID(String ID) {
+            this.ID = ID;
         }
 
-        public List<FeastServerBean> getFeastServer() {
-            return FeastServer;
+        public String getProductCgy() {
+            return ProductCgy;
         }
 
-        public void setFeastServer(List<FeastServerBean> FeastServer) {
-            this.FeastServer = FeastServer;
+        public void setProductCgy(String ProductCgy) {
+            this.ProductCgy = ProductCgy;
         }
 
-        public List<FeastSetMealBean> getFeastSetMeal() {
-            return FeastSetMeal;
+        public String getName() {
+            return Name;
         }
 
-        public void setFeastSetMeal(List<FeastSetMealBean> FeastSetMeal) {
-            this.FeastSetMeal = FeastSetMeal;
+        public void setName(String Name) {
+            this.Name = Name;
         }
 
-        public static class CoverBorrowBean {
+        public String getImageUrl() {
+            return ImageUrl;
+        }
+
+        public void setImageUrl(String ImageUrl) {
+            this.ImageUrl = ImageUrl;
+        }
+
+        public String getTotalCount() {
+            return TotalCount;
+        }
+
+        public void setTotalCount(String TotalCount) {
+            this.TotalCount = TotalCount;
+        }
+
+        public String getTotalPrice() {
+            return TotalPrice;
+        }
+
+        public void setTotalPrice(String TotalPrice) {
+            this.TotalPrice = TotalPrice;
+        }
+
+        public String getMinRecvHour() {
+            return MinRecvHour;
+        }
+
+        public void setMinRecvHour(String MinRecvHour) {
+            this.MinRecvHour = MinRecvHour;
+        }
+
+        public String getMaxRecvHour() {
+            return MaxRecvHour;
+        }
+
+        public void setMaxRecvHour(String MaxRecvHour) {
+            this.MaxRecvHour = MaxRecvHour;
+        }
+
+        public List<GamishBean> getGamish() {
+            return Gamish;
+        }
+
+        public void setGamish(List<GamishBean> Gamish) {
+            this.Gamish = Gamish;
+        }
+
+        public static class GamishBean {
             private String ID;
-            private String ImageUrl;
             private String Name;
-            private String TotalCount;
             private String TotalPrice;
 
+            public GamishBean() {
+            }
+
+            public GamishBean(String ID, String totalPrice, String name) {
+                this.ID = ID;
+                TotalPrice = totalPrice;
+                Name = name;
+            }
 
             public String getID() {
                 return ID;
@@ -101,108 +177,12 @@ public class ShoppingCarBean {
                 this.ID = ID;
             }
 
-            public String getImageUrl() {
-                return ImageUrl;
-            }
-
-            public void setImageUrl(String ImageUrl) {
-                this.ImageUrl = ImageUrl;
-            }
-
             public String getName() {
                 return Name;
             }
 
             public void setName(String Name) {
                 this.Name = Name;
-            }
-
-            public String getTotalCount() {
-                return TotalCount;
-            }
-
-            public void setTotalCount(String TotalCount) {
-                this.TotalCount = TotalCount;
-            }
-
-            public String getTotalPrice() {
-                return TotalPrice;
-            }
-
-            public void setTotalPrice(String TotalPrice) {
-                this.TotalPrice = TotalPrice;
-            }
-        }
-
-        public static class FeastServerBean {
-            private String ID;
-            private String ImageUrl;
-            private String Name;
-
-
-            public String getID() {
-                return ID;
-            }
-
-            public void setID(String ID) {
-                this.ID = ID;
-            }
-
-            public String getImageUrl() {
-                return ImageUrl;
-            }
-
-            public void setImageUrl(String ImageUrl) {
-                this.ImageUrl = ImageUrl;
-            }
-
-            public String getName() {
-                return Name;
-            }
-
-            public void setName(String Name) {
-                this.Name = Name;
-            }
-        }
-
-        public static class FeastSetMealBean {
-            private String ID;
-            private String ImageUrl;
-            private String Name;
-            private String TotalCount;
-            private String TotalPrice;
-
-
-            public String getID() {
-                return ID;
-            }
-
-            public void setID(String ID) {
-                this.ID = ID;
-            }
-
-            public String getImageUrl() {
-                return ImageUrl;
-            }
-
-            public void setImageUrl(String ImageUrl) {
-                this.ImageUrl = ImageUrl;
-            }
-
-            public String getName() {
-                return Name;
-            }
-
-            public void setName(String Name) {
-                this.Name = Name;
-            }
-
-            public String getTotalCount() {
-                return TotalCount;
-            }
-
-            public void setTotalCount(String TotalCount) {
-                this.TotalCount = TotalCount;
             }
 
             public String getTotalPrice() {
@@ -215,232 +195,72 @@ public class ShoppingCarBean {
         }
     }
 
-    public static class YsxBean {
+    public static class FeastBean {
+        private String ID;
+        private String ProductCgy;
+        private String Name;
+        private String ImageUrl;
+        private String TotalCount;
+        private String TotalPrice;
 
-        /**
-         * Gamish : [{"ID":"配菜ID","Name":"配菜名称","TotalPrice":"总价"}]
-         * ID : 生鲜ID
-         * ImageUrl : 生鲜图片
-         * Name : 生鲜名称
-         * TotalCount : 购买总数
-         * TotalPrice : 购买总价
-         */
-
-        private List<FreashBean> Freash;
-        /**
-         * Gamish : [{"ID":"配菜ID","Name":"配菜名称","TotalPrice":"总价"}]
-         * ID : 生鲜套餐ID
-         * ImageUrl : 生鲜图片
-         * Name : 生鲜名称
-         * TotalCount : 购买总数
-         * TotalPrice : 购买总价
-         */
-
-        private List<FreashSetMealBean> FreashSetMeal;
-
-        public List<FreashBean> getFreash() {
-            return Freash;
+        public FeastBean() {
         }
 
-        public void setFreash(List<FreashBean> Freash) {
-            this.Freash = Freash;
+        public FeastBean(String ID, String productCgy, String name, String imageUrl, String totalCount, String totalPrice) {
+            this.ID = ID;
+            ProductCgy = productCgy;
+            Name = name;
+            ImageUrl = imageUrl;
+            TotalCount = totalCount;
+            TotalPrice = totalPrice;
         }
 
-        public List<FreashSetMealBean> getFreashSetMeal() {
-            return FreashSetMeal;
+        public String getID() {
+            return ID;
         }
 
-        public void setFreashSetMeal(List<FreashSetMealBean> FreashSetMeal) {
-            this.FreashSetMeal = FreashSetMeal;
+        public void setID(String ID) {
+            this.ID = ID;
         }
 
-        public static class FreashBean {
-            private String ID;
-            private String ImageUrl;
-            private String Name;
-            private String TotalCount;
-            private String TotalPrice;
-
-
-            /**
-             * ID : 配菜ID
-             * Name : 配菜名称
-             * TotalPrice : 总价
-             */
-
-            private List<GamishBean> Gamish;
-
-            public String getID() {
-                return ID;
-            }
-
-            public void setID(String ID) {
-                this.ID = ID;
-            }
-
-            public String getImageUrl() {
-                return ImageUrl;
-            }
-
-            public void setImageUrl(String ImageUrl) {
-                this.ImageUrl = ImageUrl;
-            }
-
-            public String getName() {
-                return Name;
-            }
-
-            public void setName(String Name) {
-                this.Name = Name;
-            }
-
-            public String getTotalCount() {
-                return TotalCount;
-            }
-
-            public void setTotalCount(String TotalCount) {
-                this.TotalCount = TotalCount;
-            }
-
-            public String getTotalPrice() {
-                return TotalPrice;
-            }
-
-            public void setTotalPrice(String TotalPrice) {
-                this.TotalPrice = TotalPrice;
-            }
-
-            public List<GamishBean> getGamish() {
-                return Gamish;
-            }
-
-            public void setGamish(List<GamishBean> Gamish) {
-                this.Gamish = Gamish;
-            }
-
-            public static class GamishBean {
-                private String ID;
-                private String Name;
-                private String TotalPrice;
-
-
-                public String getID() {
-                    return ID;
-                }
-
-                public void setID(String ID) {
-                    this.ID = ID;
-                }
-
-                public String getName() {
-                    return Name;
-                }
-
-                public void setName(String Name) {
-                    this.Name = Name;
-                }
-
-                public String getTotalPrice() {
-                    return TotalPrice;
-                }
-
-                public void setTotalPrice(String TotalPrice) {
-                    this.TotalPrice = TotalPrice;
-                }
-            }
+        public String getProductCgy() {
+            return ProductCgy;
         }
 
-        public static class FreashSetMealBean {
-            private String ID;
-            private String ImageUrl;
-            private String Name;
-            private String TotalCount;
-            private String TotalPrice;
-            /**
-             * ID : 配菜ID
-             * Name : 配菜名称
-             * TotalPrice : 总价
-             */
+        public void setProductCgy(String ProductCgy) {
+            this.ProductCgy = ProductCgy;
+        }
 
-            private List<GamishBean> Gamish;
+        public String getName() {
+            return Name;
+        }
 
-            public String getID() {
-                return ID;
-            }
+        public void setName(String Name) {
+            this.Name = Name;
+        }
 
-            public void setID(String ID) {
-                this.ID = ID;
-            }
+        public String getImageUrl() {
+            return ImageUrl;
+        }
 
-            public String getImageUrl() {
-                return ImageUrl;
-            }
+        public void setImageUrl(String ImageUrl) {
+            this.ImageUrl = ImageUrl;
+        }
 
-            public void setImageUrl(String ImageUrl) {
-                this.ImageUrl = ImageUrl;
-            }
+        public String getTotalCount() {
+            return TotalCount;
+        }
 
-            public String getName() {
-                return Name;
-            }
+        public void setTotalCount(String TotalCount) {
+            this.TotalCount = TotalCount;
+        }
 
-            public void setName(String Name) {
-                this.Name = Name;
-            }
+        public String getTotalPrice() {
+            return TotalPrice;
+        }
 
-            public String getTotalCount() {
-                return TotalCount;
-            }
-
-            public void setTotalCount(String TotalCount) {
-                this.TotalCount = TotalCount;
-            }
-
-            public String getTotalPrice() {
-                return TotalPrice;
-            }
-
-            public void setTotalPrice(String TotalPrice) {
-                this.TotalPrice = TotalPrice;
-            }
-
-            public List<GamishBean> getGamish() {
-                return Gamish;
-            }
-
-            public void setGamish(List<GamishBean> Gamish) {
-                this.Gamish = Gamish;
-            }
-
-            public static class GamishBean {
-                private String ID;
-                private String Name;
-                private String TotalPrice;
-
-                public String getID() {
-                    return ID;
-                }
-
-                public void setID(String ID) {
-                    this.ID = ID;
-                }
-
-                public String getName() {
-                    return Name;
-                }
-
-                public void setName(String Name) {
-                    this.Name = Name;
-                }
-
-                public String getTotalPrice() {
-                    return TotalPrice;
-                }
-
-                public void setTotalPrice(String TotalPrice) {
-                    this.TotalPrice = TotalPrice;
-                }
-            }
+        public void setTotalPrice(String TotalPrice) {
+            this.TotalPrice = TotalPrice;
         }
     }
 }

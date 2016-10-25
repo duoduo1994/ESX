@@ -111,7 +111,7 @@ public class CESHI extends BaseActivity implements ProConst {
                     Intent intent = new Intent();
                     intent.setClass(CESHI.this, RegisterActivity.class);
                     startActivity(intent);
-finish();;
+                finish();
 
 
             }
@@ -159,8 +159,6 @@ finish();;
             }
         }
     };
-    //	private SharedPreferences preferences;
-//	private Editor editor;
     // 登陆
     private OnClickListener myLogin = new OnClickListener() {
 
@@ -181,20 +179,11 @@ finish();;
             toast(CESHI.this, "用户名或密码不能为空或有误");
             return;
         }
-     //   dialog = new LoadingDialog(CESHI.this, "正在登陆，请稍候...");
-      //  dialog.showDialog();
-      //  // TODO Auto-generated method stub
+       // TODO Auto-generated method stub
        String passEnt = MD5Util.string2MD5(UserPass);
 
         JieShou();
-
-
         connect.dengru(UserTel, passEnt, "170976fa8a862b0a3df",myhandler);
-
-
-
-//
-
     }
 
 

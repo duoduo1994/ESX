@@ -66,13 +66,14 @@ public class TaocanActivity extends BaseActivity {
     }
 
     private void AddCar() {
+        //添加到购物车
         RetrofitUtil addRetrofit=new RetrofitUtil(TaocanActivity.this);
         Map<String,String> map=new HashMap<>();
         map.put("Component","ShoppingCar ");
         map.put("Function","HttpsSubmit");
         map.put("UserTel", LocalStorage.get("Usertel").toString());
         map.put("UserPhyAdd",LocalStorage.get("strUniqueId").toString());
-        toast(TaocanActivity.this,LocalStorage.get("UserTel").toString()+LocalStorage.get("strUniqueId").toString());
+//        toast(TaocanActivity.this,LocalStorage.get("UserTel").toString()+LocalStorage.get("strUniqueId").toString());
         map.put("RecvTime","2016-12-5");
         map.put("ProArray",tclist.toArray().toString());
         addRetrofit.getStringDataFromNet("Shopping", map, new RetrofitUtil.CallBack<String>() {
@@ -85,7 +86,7 @@ public class TaocanActivity extends BaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                Toast.makeText(TaocanActivity.this,result,Toast.LENGTH_LONG).show();
+                Toast.makeText(TaocanActivity.this,result,Toast.LENGTH_LONG).show();
             }
 
             @Override

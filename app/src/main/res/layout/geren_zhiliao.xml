@@ -41,12 +41,19 @@
                 android:textColor="#696969"
                 android:textSize="20sp" />
 
-            <com.example.esycab.utils.CircleImageView
-                android:id="@+id/myHead"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.3" />
+            <!--<com.example.esycab.utils.CircleImageView-->
+                <!--android:id="@+id/myHead"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="0.3" />-->
+            <ImageView
+                android:background="@color/LightGray"
+            android:id="@+id/myHead"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.3" />
 
             <ImageView
                 android:layout_width="10dp"

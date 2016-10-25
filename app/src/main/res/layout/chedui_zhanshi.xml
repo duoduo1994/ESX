@@ -36,7 +36,7 @@
             android:id="@+id/chedui_xingxin_zhanshi"
             ></ListView>
           <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="V形展示"

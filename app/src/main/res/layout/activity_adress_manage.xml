@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_adress_manage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.activity.AdressManageActivity">
+    android:orientation="vertical"
+>
     <include layout="@layout/item_tou"
         android:id="@+id/il"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         />
 <android.support.v7.widget.RecyclerView
     android:layout_below="@+id/il"
     android:layout_width="match_parent"
     android:id="@+id/rcv_addresslist"
-    android:layout_height="wrap_content"/>
+    android:layout_height="0dp"
+    android:layout_weight="10"/>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="添加新地址"
         android:id="@+id/btn_add_address"
         android:textColor="@color/white"
         android:background="@color/orange"
         android:layout_alignParentBottom="true"
         />
-</RelativeLayout>
+</LinearLayout>

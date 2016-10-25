@@ -115,6 +115,7 @@ public class ReserveActivity extends BaseActivity implements ProConst, TextWatch
     private int caiID, yanhuiID, dateID;
 
     private void tryc(String result) {
+
         try {
             JSONObject json = new JSONObject(result.trim());
             JSONArray configlist = json.getJSONArray("Type");

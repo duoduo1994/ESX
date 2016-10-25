@@ -60,7 +60,13 @@ android:layout_below="@+id/inl"
             android:text="所在地区"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
-        <RelativeLayout
+
+        <Spinner
+            android:id="@+id/address_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></Spinner>
+       <!-- <RelativeLayout
             android:id="@+id/rl_address_area"
             android:gravity="center_vertical"
             android:layout_weight="3"
@@ -89,7 +95,7 @@ android:layout_below="@+id/inl"
                 android:layout_height="16dp"
                 android:src="@mipmap/tiaozhuan"
                 />
-        </RelativeLayout>
+        </RelativeLayout>-->
     </LinearLayout>
 
     <EditText
@@ -123,6 +129,15 @@ android:layout_below="@+id/inl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+        <TextView
+            android:id="@+id/tv_address_detail"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>
     <Button
         android:id="@+id/btn_save_address"

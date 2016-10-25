@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,6 +58,12 @@ public class Tab4 extends Fragment {
     TextView cichan;
     @BindView(R.id.ll_my_asset)
     LinearLayout llMyAsset;
+    @BindView(R.id.btn_back)
+    Button btnBack;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.iv_more)
+    ImageView ivMore;
     private View view;
 
     ElasticScrollView elasticScrollView3;
@@ -74,6 +82,7 @@ public class Tab4 extends Fragment {
 
 
         ButterKnife.bind(this, view);
+        tvTitle.setText("个人中心");
         isLogin();
         cichan.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyAssetActivity.class)));
         llMyAsset.setOnClickListener(v -> startActivity(new Intent(getActivity(), MyAssetActivity.class)));
@@ -97,7 +106,7 @@ public class Tab4 extends Fragment {
                     LocalStorage.set("LoginStatus", "out");
                     isLogin();
                 }
-            }).setPositiveButton("fou", new DialogInterface.OnClickListener() {
+            }).setPositiveButton("否", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
