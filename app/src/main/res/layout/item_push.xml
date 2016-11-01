@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/item_ziti_bg"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
 
         android:orientation="horizontal"
         >
@@ -47,7 +47,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
 
                 android:orientation="horizontal"
 
@@ -89,7 +89,7 @@ android:layout_marginLeft="3dp"
                     android:textColor="@color/sc_red"
                     android:textSize="13sp"
                     android:gravity="bottom"
-                    android:layout_marginBottom="18dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_toRightOf="@+id/xianjia"
                     android:layout_toEndOf="@+id/xianjia"
                     android:id="@+id/guige" />

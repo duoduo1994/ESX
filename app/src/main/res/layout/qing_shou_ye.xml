@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/g_eng_d_uo"
-        layout="@layout/item_tou"
+        layout="@layout/item_tou2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.06"
@@ -30,16 +30,17 @@
             android:orientation="vertical">
 
 
-            <com.example.administrator.ab.view.ImageCycleView
+            <ImageView
                 android:id="@+id/costom"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
+                android:scaleType="fitXY"
                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-
+                android:gravity="center_vertical"
                 android:background="@color/list_item_focus_for_friendlist">
 
 
@@ -48,7 +49,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/fresh_number"
@@ -179,7 +181,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"></LinearLayout>
+                android:layout_height="60dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/xingxi"/>
+            </LinearLayout>
 
             <LinearLayout
 
@@ -268,21 +275,7 @@
                     android:src="@mipmap/tiaozhuan" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp">
 
-
-                <com.example.administrator.ab.view.HorizontalListView
-                    android:id="@+id/horizon_listview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-
-                    ></com.example.administrator.ab.view.HorizontalListView>
-
-
-            </LinearLayout>
 
             <LinearLayout
 
@@ -342,16 +335,59 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-
-    <include
-        layout="@layout/gouwuche"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_weight="0.1">
 
-        android:layout_weight="0.1" />
+        <ImageView
+            android:layout_width="0dp"
+            android:id="@+id/tongyong_jiage"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            />
+
+        <ImageView
+            android:id="@+id/unit_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            />
+        <TextView
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+        <TextView
+           android:id="@+id/dibu_jiage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="￥23.80元/包"
+            android:textColor="@color/sc_red"
+            android:textSize="15sp"
+
+            />
+
+        <Button
+            android:id="@+id/lijigoumai"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:layout_margin="5dp"
+            android:background="#7bb618"
+            android:textColor="#fff"
+            android:text="立即购买" />
+
+    </LinearLayout>
+
+
+
 
 
 </LinearLayout>

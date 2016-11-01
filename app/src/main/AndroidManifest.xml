@@ -203,6 +203,20 @@
         <activity android:name="com.example.administrator.activity.MyAssetActivity" />
         <activity android:name="com.example.administrator.activity.MyInformationActivity" />
         <activity android:name="com.example.administrator.activity.AssetDetailActivity" />
+        <activity android:name="com.example.administrator.activity.QiangDanActivity"/>
+        <activity android:name="com.example.administrator.activity.DingDan_XiangQing_xcxy" />
+        <activity android:name="com.example.administrator.activity.QueRen_DingDan" />
+        <activity android:name="com.example.administrator.activity.DingDan_XiangQing_ysx" />
+        <activity android:name="com.example.administrator.activity.GaodeMapActivity" />
+        <activity android:name="com.example.administrator.activity.MyCooksActivity" />
+        <activity android:name="com.example.administrator.activity.MyCookSchList" />
+        <activity android:name="com.example.administrator.activity.MyHallSchList" />
+        <activity android:name="com.example.administrator.activity.MyHallsActivity" />
+        <activity android:name="com.example.administrator.activity.WoDeQingTieActivity" />
+        <activity android:name="com.example.administrator.activity.WoDeQingTieAllActivity" />
+        <activity android:name="com.example.administrator.activity.AddressUpdate" />
+
+
 
         <meta-data
             android:name="JPUSH_APPKEY"

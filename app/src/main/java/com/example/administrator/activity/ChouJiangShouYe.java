@@ -101,7 +101,7 @@ public class ChouJiangShouYe extends BaseActivity {
 
 
 	private void judge() {
-		strUniqueId	= HomeActivity.strUniqueId;
+		strUniqueId	= MainActivity.strUniqueId;
 		String UserTel = (String) LocalStorage.get("UserTel");
 		System.out.println(UserTel);
 

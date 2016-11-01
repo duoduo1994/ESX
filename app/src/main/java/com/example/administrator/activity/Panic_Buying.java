@@ -2,6 +2,7 @@ package com.example.administrator.activity;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -37,59 +40,56 @@ import rx.Subscriber;
 
 public class Panic_Buying extends BaseActivity {
 
-private List<GetRobberyProducts> prg=new ArrayList<>();
+
+    Button btnBack;
+
+    TextView tvTitle;
+    private List<GetRobberyProducts> prg = new ArrayList<>();
 
     private RetrofitUtil<GetRobberyProducts> TopPicUtil;
 
     private MyAdapter adapter;
     private ListView list_push;
+
     @Override
     protected int setContentView() {
-        return  R.layout.panic_buying;
+        return R.layout.panic_buying;
     }
 
     @Override
     protected void initView() {
-        TopPicUtil=new RetrofitUtil<>(Panic_Buying.this);
+        TopPicUtil = new RetrofitUtil<>(Panic_Buying.this);
 
         Load.getLoad(Panic_Buying.this);
         getmessage();
-        list_push= (ListView) findViewById(R.id.list_push);
-
+        list_push = (ListView) findViewById(R.id.list_push);
+        btnBack= (Button) findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        tvTitle= (TextView) findViewById(R.id.tv_title);
+        tvTitle.setText("秒抢购");
     }
-
-//    private void getData() {
-//        //Promoting.ashx?Function=GetRobberyProducts
-//        Map<String, String> map = new HashMap<>();
-//        map.put("Function", "GetRobberyProducts");
-//        TopPicUtil.getListDataFromNet("Promoting", map, GetRobberyProducts.class, new RetrofitUtil.CallBack2<GetRobberyProducts>() {
-//            @Override
-//            public void onLoadListDataComplete(List<GetRobberyProducts> list) {
-//
-//            }
-//
-//            @Override
-//            public void onLoadingDataFailed(Throwable t) {
-//
-//            }
-//        });
-//    }
 
     JSONObject tJson;
     GetRobberyProducts rob;
 
     private boolean isFalse = true;
     private int ciShu = 0;
-    private void getmessage(){
 
-        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this,"Promoting.ashx?Function=GetRobberyProducts",2);
+    private void getmessage() {
+
+        XUtilsHelper xUtilsHelper1 = new XUtilsHelper(this, "Promoting.ashx?Function=GetRobberyProducts", 2);
         RequestParams requestParams = new RequestParams();
 
 
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                xUtilsHelper1.sendPost(requestParams,subscriber);
+                xUtilsHelper1.sendPost(requestParams, subscriber);
             }
         }).subscribe(new Subscriber<String>() {
             @Override
@@ -101,7 +101,8 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
             public void onError(Throwable e) {
                 if (ciShu >= 3) {
                     isFalse = false;
-                };
+                }
+                ;
                 if (isFalse) {
                     getmessage();
                     ciShu++;
@@ -112,10 +113,10 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
             public void onNext(String s) {
                 try {
                     System.out.println(s.toString());
-                    JSONArray js=new JSONArray(s.trim());
+                    JSONArray js = new JSONArray(s.trim());
                     for (int i = 0; i < js.length(); i++) {
                         tJson = js.getJSONObject(i);
-                        rob=new GetRobberyProducts();
+                        rob = new GetRobberyProducts();
                         rob.setRobberyID(tJson.getString("RobberyID"));
                         rob.setProductCgy(tJson.getString("ProductCgy"));
                         rob.setProductID(tJson.getString("ProductID"));
@@ -140,9 +141,12 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
         });
     }
 
-
-
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 
 
     private class MyAdapter extends BaseAdapter {
@@ -179,14 +183,14 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
             if (arg1 == null) {
                 arg1 = ll.inflate(R.layout.item_push, null);
                 v = new ViewHolder();
-                v.myProgress= (MyProgress)arg1.findViewById(R.id.pgsBar);
+                v.myProgress = (MyProgress) arg1.findViewById(R.id.pgsBar);
                 v.push_picture = (ImageView) arg1.findViewById(R.id.push_picture);
-                v.residue= (TextView) arg1.findViewById(R.id.residue);
-                v.push_name= (TextView) arg1.findViewById(R.id.push_name);
-                v.xianjia= (TextView) arg1.findViewById(R.id.xianjia);
-                v.guige= (TextView) arg1.findViewById(R.id.guige);
-                v.yuanjia= (TextView) arg1.findViewById(R.id.yuanjia);
-                v.push_qiang= (Button) arg1.findViewById(R.id.push_qiang);
+                v.residue = (TextView) arg1.findViewById(R.id.residue);
+                v.push_name = (TextView) arg1.findViewById(R.id.push_name);
+                v.xianjia = (TextView) arg1.findViewById(R.id.xianjia);
+                v.guige = (TextView) arg1.findViewById(R.id.guige);
+                v.yuanjia = (TextView) arg1.findViewById(R.id.yuanjia);
+                v.push_qiang = (Button) arg1.findViewById(R.id.push_qiang);
 
                 arg1.setTag(v);
 
@@ -195,42 +199,42 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
             }
 
             v.push_name.setText(prg.get(arg0).getReMark());
-            int sales=Integer.parseInt(prg.get(arg0).getSales());
+            int sales = Integer.parseInt(prg.get(arg0).getSales());
 
-            v.residue.setText("已抢购"+sales+"件");
-            int SurplusCount=Integer.parseInt(prg.get(arg0).getSurplusCount());
-            int percentage=sales/(sales+SurplusCount);
+            v.residue.setText("已抢购" + sales + "件");
+            int SurplusCount = Integer.parseInt(prg.get(arg0).getSurplusCount());
+            int percentage = sales / (sales + SurplusCount);
             v.myProgress.setProgress(percentage);
-            if("".equals(prg.get(arg0).getCurrentPrice())||prg.get(arg0).getCurrentPrice()==null){
+            if ("".equals(prg.get(arg0).getCurrentPrice()) || prg.get(arg0).getCurrentPrice() == null) {
                 v.xianjia.setText("0/");
-            }else{
-                BigDecimal bd   =   new   BigDecimal(prg.get(arg0).getCurrentPrice());
-                bd   =   bd.setScale(1,BigDecimal.ROUND_HALF_UP);
-                v.xianjia.setText(bd+"/");
+            } else {
+                BigDecimal bd = new BigDecimal(prg.get(arg0).getCurrentPrice());
+                bd = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
+                v.xianjia.setText(bd + "/");
             }
-           if("".equals(prg.get(arg0).getOriginalPrice())||prg.get(arg0).getOriginalPrice()==null){
-               v.yuanjia.setText("￥0");
-           }else {
-               BigDecimal b = new BigDecimal(prg.get(arg0).getOriginalPrice());
-               b = b.setScale(1, BigDecimal.ROUND_HALF_UP);
-               v.yuanjia.setText("￥"+b);
-           }
+            if ("".equals(prg.get(arg0).getOriginalPrice()) || prg.get(arg0).getOriginalPrice() == null) {
+                v.yuanjia.setText("￥0");
+            } else {
+                BigDecimal b = new BigDecimal(prg.get(arg0).getOriginalPrice());
+                b = b.setScale(1, BigDecimal.ROUND_HALF_UP);
+                v.yuanjia.setText("￥" + b);
+            }
 
             v.guige.setText(prg.get(arg0).getNorm());
 
-            v.yuanjia.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG );
+            v.yuanjia.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
-            String strUrl=prg.get(arg0).getImageUrl();
-           Load.imageLoader
+            String strUrl = prg.get(arg0).getImageUrl();
+            Load.imageLoader
                     .displayImage((strUrl), v.push_picture, Load.options);
 
 
             v.push_qiang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent();
-                    intent.putExtra("ProID",prg.get(arg0).getProductID());
-                    intent.setClass(Panic_Buying.this,QiangGouShouYe.class);
+                    Intent intent = new Intent();
+                    intent.putExtra("ProID", prg.get(arg0).getProductID());
+                    intent.setClass(Panic_Buying.this, QiangGouShouYe.class);
                     startActivity(intent);
                 }
             });
@@ -242,11 +246,11 @@ private List<GetRobberyProducts> prg=new ArrayList<>();
         private class ViewHolder {
             ImageView push_picture;
             MyProgress myProgress = null;
-            TextView  residue;
+            TextView residue;
             Button push_qiang;
             TextView push_name;
             TextView xianjia;
-             TextView guige;
+            TextView guige;
             TextView yuanjia;
 
         }

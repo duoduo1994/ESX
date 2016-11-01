@@ -24,7 +24,7 @@ public class HotTancanAllBean {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "[baseDate"+BaseDate.toString()+",Content"+Content;
     }
 
     public BaseDateBean getBaseDate() {
@@ -52,7 +52,7 @@ public class HotTancanAllBean {
 
         @Override
         public String toString() {
-            return super.toString();
+            return "[ID:"+ID+",ImageUrl:"+ImageUrl+",Name:"+Name+",Price:"+Price+"Sales:"+Sales+"]";
         }
 
         public String getID() {

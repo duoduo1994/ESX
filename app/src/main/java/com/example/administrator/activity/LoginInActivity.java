@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -25,24 +24,13 @@ import android.widget.TextView;
 import com.example.administrator.ab.view.Connect;
 import com.example.administrator.list.Utils;
 import com.example.administrator.myapplication.R;
-import com.example.administrator.net.XUtilsHelper;
 import com.example.administrator.utils.ActivityCollector;
 import com.example.administrator.utils.LoadingDialog;
 import com.example.administrator.utils.LocalStorage;
 import com.example.administrator.utils.MD5Util;
 import com.example.administrator.utils.ProConst;
 import com.example.administrator.utils.StringUtils;
-import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import rx.Observable;
-import rx.Subscriber;
 
 
 /**
@@ -73,7 +61,9 @@ public class LoginInActivity extends BaseActivity implements ProConst {
     private float dy, uy;
     static Activity a;
     public static int a5;
-String strUniqueId=MainActivity.strUniqueId;
+String strUniqueId= MainActivity.strUniqueId;
+    public  static Connect connect;
+    public Handler myhandler;
     @Override
     protected int setContentView() {
         return R.layout.login;
@@ -84,6 +74,8 @@ String strUniqueId=MainActivity.strUniqueId;
         ActivityCollector.addActivity(this);
         LocalStorage.initContext(this);
         a = LoginInActivity.this;
+        connect=new Connect();
+        connect.lianjie();
         Intent intent = this.getIntent();
         flag = intent.getIntExtra("flag", -1);
         dengRu = intent.getIntExtra("dengRu", 0);
@@ -210,7 +202,7 @@ String strUniqueId=MainActivity.strUniqueId;
     private LoadingDialog dialog = null;
     private Handler handler = new Handler() {
         @Override
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
                     if (dialog != null) {
@@ -234,8 +226,7 @@ String strUniqueId=MainActivity.strUniqueId;
 
         }
     };
-    static Connect connect=new Connect();
-    Handler myhandler;
+
 
     private void login() {
 
@@ -541,6 +532,7 @@ String strUniqueId=MainActivity.strUniqueId;
                         LocalStorage.set("LoginStatus", "login");
                         //connect.dengru(UserTel, passEnt,   strUniqueId, myhandler);
                         LocalStorage.set("UserTel", UserTel);
+                        System.out.println(1254687235);
                         finish();
                     }
                 }

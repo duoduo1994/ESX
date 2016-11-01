@@ -5,5 +5,5 @@ package com.example.administrator.net;
  */
 
 public class MyUrl {
-    static String URL_LOL_BASE="Http://120.27.141.95:8221/ashx/";
+    static String URL_LOL_BASE="Http://120.27.141.95:8225/ashx/";
 }

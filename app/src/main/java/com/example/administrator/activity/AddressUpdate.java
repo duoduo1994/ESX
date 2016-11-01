@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.RetrofitUtil;
@@ -23,6 +24,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.administrator.activity.FeastSetActivity.lists;
 import static com.example.administrator.myapplication.R.id.et_address_phone;
 import static com.example.administrator.myapplication.R.id.p;
 
@@ -113,10 +115,18 @@ public class AddressUpdate extends AppCompatActivity {
 
                     @Override
                     public void onLoadingDataComplete(String body) {
-                        Intent intent1 = new Intent(AddressUpdate.this,AdressManageActivity.class);
-                        startActivity(intent1);
-                        finish();
-
+                        String b = body.substring(7,11);
+                        if(b.equals("修改成功")){
+                             Intent intent1 = new Intent(AddressUpdate.this,AdressManageActivity.class);
+                             startActivity(intent1);
+                             finish();
+                        }
+                        else if(b.equals("修改失败")){
+                            Toast.makeText(AddressUpdate.this,"修改失败请重新编辑",Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(AddressUpdate.this,"尚未登录",Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
@@ -127,8 +137,8 @@ public class AddressUpdate extends AppCompatActivity {
 
             }
         });
-
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // TODO Auto-generated method stub
@@ -139,7 +149,6 @@ public class AddressUpdate extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
 }

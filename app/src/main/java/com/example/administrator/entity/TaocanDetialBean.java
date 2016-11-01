@@ -64,6 +64,10 @@ public class TaocanDetialBean {
         return Caidan;
     }
 
+//    @Override
+//    public String toString() {
+//        return "[ Caidan"+Caidan.toArray().toString()+",Caixi"+Caixi.toArray().toString()+"]";
+//    }
     public void setCaidan(List<CaidanBean> Caidan) {
         this.Caidan = Caidan;
     }
@@ -75,14 +79,12 @@ public class TaocanDetialBean {
     public void setCaixi(List<CaixiBean> Caixi) {
         this.Caixi = Caixi;
     }
-
     public static class CaidanBean {
         public CaidanBean(String dishName, String place, String normPf) {
             DishName = dishName;
             Place = place;
             NormPf = normPf;
         }
-
         private String DishSortNo;
         private String DishID;
         private String DishName;
@@ -122,6 +124,15 @@ public class TaocanDetialBean {
         private String ReplaceID;
         private String ReplaceName;
         private String ReplaceImageUrl;
+
+        @Override
+        public String toString() {
+            return   "["+DishSortNo+DishID +DishName+ Material +Norm+ NormUnit +ImageUrl+ DishCgy + UnitPrice+
+            NetPrice + PretaxPrice+ AftertaxPrice +SupplierID+ Place + IsDection+ IsPass + IsReplace+ ReplaceDishID +Remark+
+            UpdateTm +UpdateModule+ UpdateID +UpdateCode+ UpdTime + BigImageUrl+ ReserveNumber2 + ReserveNumber3+ ReserveNumber4
+                   + ReserveNumber5+ ReserveString1 + ReserveString2+ ReserveString3 +ReserveString4+ ReserveString5 + UpdCount+ NormPf
+                   + ReplaceID+ ReplaceName +ReplaceImageUrl+"]";
+        }
 
         public String getDishSortNo() {
             return DishSortNo;
@@ -449,6 +460,11 @@ public class TaocanDetialBean {
         private String pkDishCgyID;
         private String Name;
 
+        @Override
+        public String toString() {
+            return "["+pkDishCgyID+Name+"]";
+        }
+
         public String getPkDishCgyID() {
             return pkDishCgyID;
         }
@@ -457,12 +473,12 @@ public class TaocanDetialBean {
             this.pkDishCgyID = pkDishCgyID;
         }
 
-//        public String getName() {
-//            return Name;
-//        }
-//
-//        public void setName(String Name) {
-//            this.Name = Name;
-//        }
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String Name) {
+            this.Name = Name;
+        }
     }
 }

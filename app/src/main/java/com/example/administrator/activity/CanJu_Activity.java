@@ -50,25 +50,16 @@ import rx.Subscriber;
 
 public class CanJu_Activity extends FragmentActivity implements
 		OnPageChangeListener, OnClickListener {
-	@ViewInject(R.id.btn_back)
 	private Button wedding_back;
-	@ViewInject(R.id.sanxingji)
 	private Button	san;
-	@ViewInject(R.id.sixingji)
 	private Button si;
-	@ViewInject(R.id.wuxingji)
 	private Button wu;
 	private Button tv;
 	private int jiaGe3 = 0, jiaGe4 = 0, jiaGe5 = 0;
-	@ViewInject(R.id.tongyong_jiage)
 	private TextView t1;
-	@ViewInject(R.id.unit_price)
 	private TextView t2;
-	@ViewInject(R.id.woyaoyuyue_meiyong)
 	private TextView t3;
-	@ViewInject(R.id.jiarudingdan)
 	private Button b1;
-	@ViewInject(R.id.tv_title)
 	private TextView tv_title;
 	private List<Integer> li;
 
@@ -82,13 +73,15 @@ public class CanJu_Activity extends FragmentActivity implements
 		mCache = ACache.get(this);
 		li = new ArrayList<Integer>();
 
-
+		t3 = (TextView) findViewById(R.id.woyaoyuyue_meiyong);
 		t3.setText("元/桌");
+		tv_title = (TextView) findViewById(R.id.tv_title);
 		tv_title.setText("餐具套餐");
-
+		t1 = (TextView) findViewById(R.id.tongyong_jiage);
 		t1.setText("租赁费");
+		t2 = (TextView) findViewById(R.id.unit_price);
 
-
+		b1 = (Button)findViewById(R.id.jiarudingdan);
 		b1.setText("加入订单");
 		b1.setOnClickListener(new OnClickListener() {
 
@@ -105,8 +98,11 @@ public class CanJu_Activity extends FragmentActivity implements
 
 
 
-
+		san = (Button) findViewById(R.id.sanxingji);
+		si = (Button) findViewById(R.id.sixingji);
+		wu = (Button) findViewById(R.id.wuxingji);
 		pagers = (ViewPager) findViewById(R.id.vp);
+		wedding_back = (Button) findViewById(R.id.btn_back);
 		wedding_back.setOnClickListener(this);
 		tabs = (LinearLayout) findViewById(R.id.tabs);
 
@@ -120,10 +116,11 @@ public class CanJu_Activity extends FragmentActivity implements
 		}
 		setMoreListener();
 	}
-@ViewInject(R.id.iv_more)
+
 	private ImageView iv_more;
 
 	private void setMoreListener() {
+		iv_more = (ImageView) findViewById(R.id.iv_more);
 		iv_more.setOnClickListener(new IvListener(iv_more, CanJu_Activity.this,
 				0));
 	}

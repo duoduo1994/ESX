@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.administrator.ab.view.Connect;
 import com.example.administrator.entity.ToppicBean;
 import com.example.administrator.fragment.Tab1;
 import com.example.administrator.fragment.Tab2;
@@ -21,6 +22,7 @@ import com.lidroid.xutils.view.annotation.event.OnRadioGroupCheckedChange;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -35,6 +37,7 @@ public class MainActivity extends FragmentActivity {
     RetrofitUtil<ToppicBean> TopPicUtil;
     private List<String> l=new ArrayList<>();
     static String  strUniqueId;
+    Connect con=new Connect();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,7 @@ public class MainActivity extends FragmentActivity {
         Toast.makeText(this,"识别码"+strUniqueId,Toast.LENGTH_LONG).show();
         LocalStorage.set("strUniqueId",strUniqueId);
         initView();
+
     }
 
     @Override
@@ -52,6 +56,7 @@ public class MainActivity extends FragmentActivity {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
             Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
+            con.xin_start(2);
             return true;
         } else {
             MainActivity.this.finish();

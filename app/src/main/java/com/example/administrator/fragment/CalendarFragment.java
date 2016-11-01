@@ -1,17 +1,5 @@
 package com.example.administrator.fragment;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -40,9 +28,27 @@ import android.widget.Toast;
 import com.example.administrator.ab.view.CalendarAdapter;
 import com.example.administrator.entity.D;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.XUtilsHelper;
+import com.lidroid.xutils.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import rx.Observable;
+import rx.Subscriber;
+
+import static com.example.administrator.myapplication.R.mipmap.date;
 
 
-@SuppressLint({ "ValidFragment", "NewApi" })
 public class CalendarFragment extends DialogFragment implements
 		OnDateSetListener {
 	public static final Integer oneDayMesc=86400000;
@@ -78,8 +84,21 @@ public class CalendarFragment extends DialogFragment implements
 		super();
 	}
 
+	public static CalendarFragment newInstance(Date date, String nth_HallsId, String result,
+											   Integer type, String orderTime){
+
+		CalendarFragment calendarFragment=new CalendarFragment();
+		Bundle b=new Bundle();
+		b.putString("Date",date.toString());
+		b.putString("nth_HallsId",nth_HallsId);
+		b.putString("result",result);
+		b.putInt("type",type);
+		b.putString("orderTime",orderTime);
+		calendarFragment.setArguments(b);
+		return calendarFragment;
+	}
 	public CalendarFragment(Date date, String nth_HallsId, String result,
-			Integer type, String orderTime) {
+							Integer type, String orderTime) {
 		super();
 		this.orderTime = orderTime;
 		this.nth_HallsId = nth_HallsId;
@@ -93,8 +112,8 @@ public class CalendarFragment extends DialogFragment implements
 		day_c = Integer.parseInt(currentDateString.split("-")[2]);
 
 		if (!TextUtils.isEmpty(nth_HallsId) && result == null) {
-		//	init(nth_HallsId);
-		} 
+			init(nth_HallsId);
+		}
 		else if (!TextUtils.isEmpty(result) && nth_HallsId == null) {
 			initschedule(result);
 		}
@@ -203,7 +222,72 @@ public class CalendarFragment extends DialogFragment implements
 	 * 
 	 *
 	 */
-//	public void init(String nth_HallsId) {
+	public void init(String nth_HallsId) {
+
+
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(),"HallsHandler.ashx?Action=getTake",1);
+		RequestParams requestParams = new RequestParams();
+		requestParams.addBodyParameter("ID", nth_HallsId);
+		Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				xUtilsHelper1.sendPost(requestParams,subscriber);
+			}
+		}).subscribe(new Subscriber<String>() {
+			@Override
+			public void onCompleted() {
+
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				Toast.makeText(getActivity(), "数据加载失败，请重试...",
+								Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onNext(String s) {
+				String result = new String(s);
+						System.out.println("G" + result);
+						try {
+							JSONObject occupation = new JSONObject(result
+									.trim());
+							JSONArray arry = occupation.getJSONArray("占用情况");
+							for (int i = 0; i < arry.length(); i++) {
+								dd = new D();
+								tJson = arry.getJSONObject(i);
+
+								String SolarDtFrom = tJson
+										.getString("SolarDtFrom");
+								String SolarDtTo = tJson.getString("SolarDtTo");
+
+								String[] t = SolarDtFrom.split("/");
+								dd.setQiNian(t[0]);
+								dd.setQiYue(t[1]);
+								dd.setQiRi(t[2].split(" ")[0]);
+								dd.setS(tJson.getString("HallStatus"));
+
+								String[] t1 = SolarDtTo.split("/");
+								dd.setJieNian(t1[0]);
+								dd.setJieYue(t1[1]);
+								dd.setJieRi(t1[2].split(" ")[0]);
+								bookDayList.add(dd);
+
+							}
+
+							calV = new CalendarAdapter(CalendarFragment.this
+									.getActivity(), getResources(),
+									currentDate, jumpMonth, jumpYear, year_c,
+									month_c, day_c, bookDayList, aa,orderTime,type,true);
+							gridView.setAdapter(calV);
+
+						} catch (JSONException e) {
+
+							e.printStackTrace();
+						}
+			}
+		});
+
 //		RequestParams params = new RequestParams();
 //		System.out.println("nth_HallsId=" + nth_HallsId);
 //		params.put("ID", nth_HallsId);
@@ -262,7 +346,7 @@ public class CalendarFragment extends DialogFragment implements
 //
 //				});
 //
-//	}
+	}
 
 	 
 	
@@ -273,6 +357,29 @@ public class CalendarFragment extends DialogFragment implements
 		final View calendarV = inflater.inflate(R.layout.calendar, container,
 				false);
 		calendarV.setBackgroundColor(Color.WHITE);
+		orderTime=getArguments().getString("orderTime");
+		nth_HallsId=getArguments().getString("nth_HallsId");
+		result=getArguments().getString("result");
+		type=getArguments().getInt("type");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			currentDate= df.parse(getArguments().getString("date"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d", Locale.CHINA);
+		String currentDateString = sdf.format(date); // 当期日期
+		year_c = Integer.parseInt(currentDateString.split("-")[0]);
+		month_c = Integer.parseInt(currentDateString.split("-")[1]);
+		day_c = Integer.parseInt(currentDateString.split("-")[2]);
+
+		if (!TextUtils.isEmpty(nth_HallsId) && result == null) {
+			init(nth_HallsId);
+		}
+		else if (!TextUtils.isEmpty(result) && nth_HallsId == null) {
+			initschedule(result);
+		}
 		gestureDetector = new GestureDetector(this.getActivity(),
 				new MyGestureListener());
 		calV = new CalendarAdapter(this.getActivity(), getResources(),
@@ -486,7 +593,7 @@ public class CalendarFragment extends DialogFragment implements
 								nowItem).getTime();
 
 						// ============================================普通日历开始================================================================//
-						if (nth_HallsId == null && result == null) {
+						if (nth_HallsId == null && result == null&&type!=3) {
 							Date todayaa = new Date();
 							SimpleDateFormat sfaaaa = new SimpleDateFormat(
 									"yyyyMMdd");
@@ -503,7 +610,22 @@ public class CalendarFragment extends DialogFragment implements
 							// CalendarFragment.this.dismiss();
 						}
 						// ============================================普通日历结束================================================================//
-
+						if (nth_HallsId == null && result == null&&type==3) {
+							Date todayaa = new Date();
+							SimpleDateFormat sfaaaa = new SimpleDateFormat(
+									"yyyyMMdd");
+							if (sfaaaa.parse(nowItem).getTime() < todayaa
+									.getTime()) {
+								Toast.makeText(getActivity(),
+										"请选择今天之后的日期再进行操作~", Toast.LENGTH_SHORT)
+										.show();
+								return;
+							} else {
+								onDateSet(null, yearNum, monthNum - 1, dayNum);
+								cancelBtn.setText("选定");
+							}
+							// CalendarFragment.this.dismiss();
+						}
 
 						// ============================================我的喜事堂日历开始================================================================//
 						else if (result != null && nth_HallsId == null) {

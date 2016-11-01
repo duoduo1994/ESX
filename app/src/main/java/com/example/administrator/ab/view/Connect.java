@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Button;
 
+import com.example.administrator.utils.LocalStorage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -34,16 +36,20 @@ int num=0;
 
 	static Thread mythread;
 
-	private static Handler handler;
+	public static Handler handler;
+	public static  Handler myhandler;
 	private Button bt;
 
 	Context content;
 
 
 	public Connect() {
+
+
+	}
+	public void lianjie(){
 		mythread= new Thread(networkTask);
 		mythread.start();
-
 	}
 
 	public void dengru(String UserTel, String UserPwd, String UserPhyAdd,Handler handler) {
@@ -68,13 +74,21 @@ int num=0;
 
 	}
 
-	public void tuichu() {
+	public void tuichu(Handler myhandler) {
+		this.myhandler=myhandler;
 		try {
 			System.out.println("=====================传输数据==============");
+if(outStr!=null){
+	byte[] b = GetByte("{\"Module\":\"User\",\"Method\":\"Exit\"}");
+	outStr.write(b);
+	outStr.flush();
 
-			byte[] b = GetByte("{\"Module\":\"User\",\"Method\":\"Exit\"}");
-			outStr.write(b);
-			outStr.flush();
+}else{
+	Message msg=new Message();
+	msg.what=0x123;
+	msg.obj="还未登录";
+	handler.sendMessage(msg);
+}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -136,7 +150,7 @@ int num=0;
 			System.out.println("==============开始接收数据===============");
 
 			byte[] b = new byte[100];
-			 shijian();
+			shijian();
 			while (true) {
 
 				if(count==10){
@@ -150,32 +164,35 @@ int num=0;
 					System.out.println(r);
 					String ss = new String(b, 0, r, "utf-8");
 					System.out.println(ss + "dfx");
-					if (ss.contains("登录成功")) {
-						xin_start();
-
+					if (ss.contains("登录成功")||ss.contains("你已经登录过了")) {
+						xin_start(1);
 						Message msg=new Message();
 						msg.what=0x123;
 						msg.obj="登录成功";
 						handler.sendMessage(msg);
-						 shijian.cancel();
-					} else if (ss.contains("注册")) {
-						System.out.println("哈哈哈哈哈哈哈哈哈");
-						// shijian.cancel();
-						mythread = new Thread(networkTask);
-						mythread.start();
-						count=0;
-						// disconnect();
+						shijian.cancel();
+
 					} else if (ss.contains("退出成功")) {
 						Message msg=new Message();
-						msg.what=0x123;
+						msg.what=0x456;
 						msg.obj="退出成功";
-						handler.sendMessage(msg);
-						timer.cancel();
+						myhandler.sendMessage(msg);
+						xin_start(2);
 						// shijian.cancel();
+//						mythread = new Thread(networkTask);
+//						mythread.start();
+						count=0;
+						// disconnect();
+					}else if(ss.contains("HeartBeat")){
+					}else{
+						Message msg=new Message();
+						msg.what=0x123;
+						msg.obj=ss;
+						handler.sendMessage(msg);
 						mythread = new Thread(networkTask);
 						mythread.start();
 						count=0;
-						// disconnect();
+						LocalStorage.set("LoginStatus","out");
 					}
 				} else {
 					break;
@@ -191,29 +208,31 @@ int num=0;
 
 	}
 
-	static Timer timer;
+	public static Timer timer ;
 
-	public static void xin_start() {
-		timer = new Timer();
-		timer.schedule(new TimerTask() {
+	public static void xin_start(int a) {
+		if(a==1) {
+			timer = new Timer();
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					System.out.println("发送心跳数据包");
+					byte[] b;
+					try {
+						b = GetByte("{\"Module\":\"User\",\"Method\":\"HeartBeat\"}");
+						outStr.write(b);
+						outStr.flush();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				System.out.println("发送心跳数据包");
-
-				byte[] b;
-				try {
-					b = GetByte("{\"Module\":\"User\",\"Method\":\"HeartBeat\"}");
-					outStr.write(b);
-					outStr.flush();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-
-			}
-		}, 1000, 30000);
+			}, 1000, 10000);
+		}else{
+			timer.cancel();
+		}
 
 	}
 

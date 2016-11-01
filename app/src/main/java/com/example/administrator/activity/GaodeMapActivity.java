@@ -1,33 +1,24 @@
 package com.example.administrator.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -61,11 +52,22 @@ import com.amap.api.maps.model.RoutePara;
 import com.example.administrator.amap.navi.GPSNaviActivity;
 import com.example.administrator.entity.NTH_Halls;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.XUtilsHelper;
 import com.example.administrator.utils.ActivityCollector;
 import com.example.administrator.utils.IvListener;
 import com.example.administrator.utils.Load;
 import com.example.administrator.utils.LoadingDialog;
-import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import rx.Observable;
+import rx.Subscriber;
 
 public class GaodeMapActivity extends Activity implements LocationSource,
 		AMapLocationListener, OnMapClickListener, OnMapLongClickListener,
@@ -89,7 +91,7 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 
 	private AMapLocation loca = null;
 	private AMap aMap;
-	@ViewInject(R.id.map)
+
 	private MapView mapView;
 	private OnLocationChangedListener mListener;
 	private AMapLocationClient mlocationClient;
@@ -97,9 +99,9 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 
 	private Marker marker1, marker2;
 	private CoordinateConverter converter;
-@ViewInject(R.id.tv_title)
+
 	private TextView tv;
-	@ViewInject(R.id.btn_back)
+
 	private Button iv;
 
 	private Bundle bundleNth;
@@ -108,7 +110,7 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 	private String districtID = null;
 
 	private LoadingDialog dialog = null;
-@ViewInject(R.id.showview)
+
 	private View showview;
 
 	@Override
@@ -130,10 +132,10 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 		setContentView(R.layout.gaodemap);
 		ActivityCollector.addActivity(this);
 
-
+		mapView = (MapView) findViewById(R.id.map);
 		mapView.onCreate(savedInstanceState);// 此方法必须重写
 
-
+		showview=findViewById(R.id.showview);
 		init();
 
 		bundleNth = getIntent().getExtras();
@@ -143,9 +145,9 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 
 		initNTHOverlay();
 
-
+tv= (TextView) findViewById(R.id.tv_title);
 		tv.setText("喜事堂");
-
+iv= (Button) findViewById(R.id.btn_back);
 		iv.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -168,11 +170,11 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 	}
 
 
-	@ViewInject(R.id.iv_more)
+
 	private ImageView iv_more;
 
 	private void setMoreListener() {
-
+		iv_more= (ImageView) findViewById(R.id.iv_more);
 		iv_more.setOnClickListener(new IvListener(iv_more,
 				GaodeMapActivity.this, 0));
 	}
@@ -279,6 +281,123 @@ public class GaodeMapActivity extends Activity implements LocationSource,
 		// TODO Auto-generated method stub
 		dialog = new LoadingDialog(GaodeMapActivity.this, "数据加载中，请稍候...");
 		dialog.showDialog();
+
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(GaodeMapActivity.this, "HallsHandler.ashx?Action=getVillage", 1);
+		RequestParams requestParams = new RequestParams();
+		if (getNth_Halls != null) {
+			requestParams.addBodyParameter("ID", getNth_Halls.getDistrictID());
+		} else if (!TextUtils.isEmpty(districtID)) {
+			requestParams.addBodyParameter("ID", districtID);
+		}
+//
+
+		Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				xUtilsHelper1.sendPost(requestParams, subscriber);
+			}
+		}).subscribe(new Subscriber<String>() {
+			@Override
+			public void onCompleted() {
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				dialog.closeDialog();
+						if (ciShu >= 3) {
+							isFalse = false;
+							Toast.makeText(GaodeMapActivity.this,
+									"数据加载失败，请重新加载~", Toast.LENGTH_SHORT).show();
+						}
+						if (isFalse) {
+							initNTHOverlay();
+							ciShu++;
+						}
+			}
+
+			@Override
+			public void onNext(String s) {
+				dialog.closeDialog();
+						ciShu = 0;
+						isFalse = true;
+						String result = new String(s);
+						System.out.println(result);
+						list = new ArrayList<NTH_Halls>();
+						try {
+							JSONObject json = new JSONObject(result.trim());
+							JSONArray jsArray = json.getJSONArray("乡村");
+							if (jsArray != null) {
+								int size = jsArray.length();
+								list.clear();
+								JSONObject tJson = null;
+								for (int i = 0; i < size; i++) {
+									nth_Halls = new NTH_Halls();
+									tJson = jsArray.getJSONObject(i);
+									if (!TextUtils.isEmpty(tJson
+											.getString("WgsLongitude"))
+											&& !TextUtils.isEmpty(tJson
+													.getString("WgsLatitude"))) {
+										String name = tJson.getString("Name");
+										nth_Halls.setName(name);
+
+										String pkHallID = tJson
+												.getString("HallID");
+										nth_Halls.setPkHallID(pkHallID);
+
+										String contact = tJson
+												.getString("Principal");
+										nth_Halls.setContact(contact);
+
+										String contactTel = tJson
+												.getString("PrincipalTel");
+										nth_Halls.setContactTel(contactTel);
+
+										String fkAuctionCdrID = tJson
+												.getString("FeastDt");
+										nth_Halls
+												.setFkAuctionCdrID(fkAuctionCdrID);
+										String detailAdr = tJson
+												.getString("DetailAddr");
+										nth_Halls.setDetailAdr(detailAdr);
+
+										String longitude = tJson
+												.getString("Longitude");
+										nth_Halls.setLongitude(longitude);
+
+										String latitude = tJson
+												.getString("Latitude");
+										nth_Halls.setLatitude(latitude);
+
+										String wgsLongitude = tJson
+												.getString("WgsLongitude");
+										nth_Halls.setWgsLongitude(wgsLongitude);
+										String wgslatitude = tJson
+												.getString("WgsLatitude");
+										nth_Halls.setWgsLatitude(wgslatitude);
+
+										String districtID = tJson
+												.getString("DistrictID");
+										nth_Halls.setDistrictID(districtID);
+										String imageUrl = tJson
+												.getString("ImageUrl");
+										nth_Halls.setImageUrl(imageUrl);
+										list.add(nth_Halls);
+									}
+								}
+								System.out.println("list.size()" + list.size());
+								listMap();
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+			}
+		});
+
+
+
+
+
+
 //		RequestParams hall = new RequestParams();
 //		if (getNth_Halls != null) {
 //			hall.add("ID", getNth_Halls.getDistrictID());

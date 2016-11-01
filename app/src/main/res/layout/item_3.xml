@@ -11,7 +11,7 @@
         android:layout_height="0dp">
         <ImageView
             android:src="@mipmap/backsch"
-            android:visibility="invisible"
+            android:id="@+id/iv_nogoods"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,13 +24,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <LinearLayout
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/ll_ysx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:button="@drawable/checkbox_style"
                     android:id="@+id/cb_ysx_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -40,6 +43,7 @@
                     android:src="@mipmap/about1"
                     />
                 <TextView
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="甬尚鲜生鲜"
@@ -53,22 +57,29 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_xcxy"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:layout_marginLeft="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:button="@drawable/checkbox_style"
                     android:id="@+id/cb_select_xcxy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:layout_margin="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/about1"
                     />
                 <TextView
+                    android:layout_margin="4dp"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="乡村喜宴"
@@ -83,18 +94,26 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_service_msg"
+                android:layout_marginLeft="8dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <CheckBox
+                    android:button="@drawable/checkbox_style"
                     android:id="@+id/cb_select_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageView
+                    android:layout_margin="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/about1"
                     />
                 <TextView
+                    android:layout_margin="4dp"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="服务信息"
@@ -105,11 +124,36 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:visibility="invisible"
+            android:id="@+id/rl_del"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <CheckBox
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/ch_select_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#973636"
+                android:text="删除"
+                />
+
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_jiesuan"
         android:background="@color/white"
         android:paddingLeft="10dp"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="match_parent">
         <CheckBox
             android:id="@+id/cb_select_all"
             android:layout_width="wrap_content"
@@ -164,5 +208,6 @@
             android:textColor="@color/white"
             android:layout_alignParentBottom="true" />
 
+    </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

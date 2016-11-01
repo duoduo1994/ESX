@@ -66,7 +66,7 @@ public void mains() {
         @Override
         public void convert(ViewHolder helper, PeiCai item) {
             // TODO Auto-generated method stub
-            helper.setText(R.id.anliss, item.getPeicai_name());
+            helper.setText(R.id.anliss, item.getName());
             helper.setTextColor(R.id.anliss, Color.BLACK,
                     Color.parseColor("#adadad"), index);
             helper.setBack(index, R.id.anliss);

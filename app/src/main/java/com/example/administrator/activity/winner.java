@@ -45,9 +45,9 @@ import rx.Observable;
 import rx.Subscriber;
 
 public class winner extends ListActivity {
-	@ViewInject(R.id.Winners)
+
 	private TextView winners;
-	@ViewInject(R.id.button_back)
+
 	private Button button;
 //	private	List<String> l_name ;
 	private	List<String> l_tel_one ;
@@ -57,7 +57,7 @@ public class winner extends ListActivity {
 	private	int flag = -1;
 	private	String id = "";
 	private ACache mCache;
-	@ViewInject(R.id.button_suaxin)
+
 	private Button button_suaxin;
 	private LinearLayout zhongjiangll;
 	private ImageView wodezi;
@@ -87,7 +87,7 @@ public class winner extends ListActivity {
 		Intent intent = getIntent();
 		flag = intent.getIntExtra("flag", -1);
 		mCache = ACache.get(this);
-
+		button_suaxin= (Button) findViewById(R.id.button_suaxin);
 		if (flag == 2) {
 
 			id = intent.getStringExtra("id");
@@ -100,12 +100,12 @@ public class winner extends ListActivity {
 			}
 
 		}
-
+		winners= (TextView) findViewById(R.id.Winners);
+		button= (Button) findViewById(R.id.button_back);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (flag == 1) {
-
 					winner.this.finish();
 				} else {
 					Intent intent = new Intent();
@@ -117,7 +117,7 @@ public class winner extends ListActivity {
 		});
 
 		init();
-
+		button_suaxin= (Button) findViewById(R.id.button_suaxin);
 		button_suaxin.setOnClickListener(
 				new OnClickEvent(1000) {
 					@Override
@@ -407,9 +407,7 @@ public class winner extends ListActivity {
 //
 //									a.notifyDataSetChanged();
 //								}
-//
 //							}
-//
 //							if (l_tel_two.size() != 0) {
 //
 //								if (null == b) {
@@ -421,7 +419,6 @@ public class winner extends ListActivity {
 //
 //									b.notifyDataSetChanged();
 //								}
-//
 //							} else {
 //								l_tel_two.add("  ");
 //								if (null == b) {
@@ -433,9 +430,7 @@ public class winner extends ListActivity {
 //
 //									b.notifyDataSetChanged();
 //								}
-//
 //							}
-//
 //							if (l_tel_three.size() != 0) {
 //								if (null == c) {
 //									c = new ArrayAdapter<String>(winner.this,
@@ -446,7 +441,6 @@ public class winner extends ListActivity {
 //
 //									c.notifyDataSetChanged();
 //								}
-//
 //							} else {
 //								l_tel_three.add("  ");
 //								if (null == c) {
@@ -458,18 +452,14 @@ public class winner extends ListActivity {
 //									System.out.println(123);
 //									c.notifyDataSetChanged();
 //								}
-//
 //							}
 //							setListAdapter(adapter);
-//
 //						} catch (JSONException e) {
 //							// TODO Auto-generated catch block
 //							e.printStackTrace();
 //							System.out.println("S" + e.getMessage());
 //						}
-//
 //					};
-//
 //				});
 	}
 

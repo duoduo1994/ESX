@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:layout_margin="6dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <ImageView
     android:id="@+id/iv_taocandetail_1"
-    android:layout_width="0dp"
-    android:layout_weight="3"
-    android:src="@mipmap/ic_launcher"
+    android:layout_width="wrap_content"
+    android:src="@mipmap/nopic"
+    android:layout_margin="6dp"
+    android:scaleType="fitXY"
     android:layout_height="wrap_content" />
     <TextView
+        android:layout_marginLeft="6dp"
         android:id="@+id/tv_dishname_taocandetail_1"
         android:text="单品名称"
         android:layout_width="0dp"

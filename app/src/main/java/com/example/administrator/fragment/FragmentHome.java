@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.activity.CanJu_Activity;
 import com.example.administrator.activity.CaseActivity;
@@ -31,15 +33,25 @@ import com.example.administrator.activity.JiaMengActivity;
 import com.example.administrator.activity.ReserveActivity;
 import com.example.administrator.activity.WeddinghallActivity;
 import com.example.administrator.activity.XiYan;
+import com.example.administrator.entity.AnLi;
 import com.example.administrator.myapplication.R;
+import com.example.administrator.net.XUtilsHelper;
+import com.example.administrator.utils.Diolg;
 import com.example.administrator.utils.ElasticScrollView;
-import com.example.administrator.utils.LoginCheckAlertDialogUtils;
 import com.example.administrator.utils.ViewPagerAdapter;
+import com.lidroid.xutils.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import rx.Observable;
+import rx.Subscriber;
 
 public class FragmentHome extends Fragment {
 	// 首页轮播
@@ -78,18 +90,18 @@ public class FragmentHome extends Fragment {
 	private MyAdapter m;
 	private boolean isF = true;
 
-//	@Override
-//	public void onHiddenChanged(boolean hidden) {
-//		// TODO Auto-generated method stub
-//		super.onHiddenChanged(hidden);
-//		if (hidden) {// 隐藏
-//			handler1.removeCallbacks(runnable);
-//		} else {// 显示
-//			lv.setSelection(index1);
-//			handler1.removeCallbacks(runnable);
-//			handler1.postDelayed(runnable, 2000);
-//		}
-//	}
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		// TODO Auto-generated method stub
+		super.onHiddenChanged(hidden);
+		if (hidden) {// 隐藏
+			handler1.removeCallbacks(runnable);
+		} else {// 显示
+			lv.setSelection(index1);
+			handler1.removeCallbacks(runnable);
+			handler1.postDelayed(runnable, 2000);
+		}
+	}
 
 	private class MyAdapter extends BaseAdapter {
 		LayoutInflater li;
@@ -146,25 +158,25 @@ public class FragmentHome extends Fragment {
 		TextView t1, t2;
 	}
 
-//	@Override
-//	public void onResume() {
-//		// TODO Auto-generated method stub
-//		super.onResume();
-//		if (isF) {
-//
-//		} else {
-//			lv.setSelection(index1);
-//			handler1.removeCallbacks(runnable);
-//			handler1.postDelayed(runnable, 2000);
-//		}
-//	}
-//
-//	@Override
-//	public void onStop() {
-//		// TODO Auto-generated method stub
-//		super.onStop();
-//		handler1.removeCallbacks(runnable);
-//	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (isF) {
+
+		} else {
+			lv.setSelection(index1);
+			handler1.removeCallbacks(runnable);
+			handler1.postDelayed(runnable, 2000);
+		}
+	}
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		handler1.removeCallbacks(runnable);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -355,39 +367,39 @@ public class FragmentHome extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-//				new Diolg(HomeActivity._instance, "确定", "取消", "是否拨打客服电话", "提示",
-//						3);
+				new Diolg(HomeActivity._instance, "确定", "取消", "是否拨打客服电话", "提示",
+						3);
 
 			}
 		});
-//		getMsg();// zhufuyu
+		getMsg();// zhufuyu
 		// // ren
 		// // dan shu
 		final Handler handler = new Handler() {
 			public void handleMessage(Message message) {
 
-//				getMsg();
+				getMsg();
 			}
 		};
 		elasticScrollView.setonRefreshListener(new ElasticScrollView.OnRefreshListener() {
 
 			@Override
 			public void onRefresh() {
-//				handler1.removeCallbacks(runnable);
-//				Thread thread = new Thread(new Runnable() {
-//
-//					@Override
-//					public void run() {
-//						try {
-//							Thread.sleep(2000);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-//						Message message = handler.obtainMessage(0, "new Text");
-//						handler.sendMessage(message);
-//					}
-//				});
-//				thread.start();
+				handler1.removeCallbacks(runnable);
+				Thread thread = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						Message message = handler.obtainMessage(0, "new Text");
+						handler.sendMessage(message);
+					}
+				});
+				thread.start();
 			}
 		});
 		initView(view);
@@ -398,7 +410,46 @@ public class FragmentHome extends Fragment {
 		elasticScrollView.onRefreshComplete();
 	}
 
-//	private void getMsg1() {
+	private void getMsg1() {
+
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(), "MainPageMsgHandler.ashx?Action=GetNearOrder", 1);
+		RequestParams requestParams = new RequestParams();
+
+		Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				xUtilsHelper1.sendPost(requestParams, subscriber);
+			}
+		}).subscribe(new Subscriber<String>() {
+			@Override
+			public void onCompleted() {
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				if (ciShu >= 3) {
+							isFalse = false;
+							Toast.makeText(HomeActivity._instance,
+									"网络连接失败，请稍候再试！", Toast.LENGTH_SHORT).show();
+						}
+						;
+						if (isFalse) {
+							getMsg1();
+							ciShu++;
+						}
+			}
+
+			@Override
+			public void onNext(String s) {
+				String result = new String(s);
+						System.out.println("!#*@()DJ#()J" + result);
+
+						tryc1(result);
+						return;
+			}
+		});
+
+
 //		RequestParams reqParams = new RequestParams();
 //		SmartFruitsRestClient.post(
 //				"MainPageMsgHandler.ashx?Action=GetNearOrder", reqParams,
@@ -432,9 +483,47 @@ public class FragmentHome extends Fragment {
 //
 //					}
 //				});
-//	}
+	}
 
-//	private void getMsg2() {
+	private void getMsg2() {
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(), "MainPageMsgHandler.ashx?Action=GetAllAndFinishOrder", 1);
+		RequestParams requestParams = new RequestParams();
+
+		Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				xUtilsHelper1.sendPost(requestParams, subscriber);
+			}
+		}).subscribe(new Subscriber<String>() {
+			@Override
+			public void onCompleted() {
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				if (ciShu >= 3) {
+							isFalse = false;
+							Toast.makeText(HomeActivity._instance,
+									"网络连接失败，请稍候再试！", Toast.LENGTH_SHORT).show();
+						}
+						;
+						if (isFalse) {
+							getMsg2();
+							ciShu++;
+						}
+			}
+
+			@Override
+			public void onNext(String s) {
+				String result = new String(s);
+						System.out.println("!#*@()DJ#()J" + result);
+
+						tryc2(result);
+						return;
+			}
+		});
+
+
 //		RequestParams reqParams = new RequestParams();
 //		SmartFruitsRestClient.post(
 //				"MainPageMsgHandler.ashx?Action=GetAllAndFinishOrder",
@@ -468,29 +557,76 @@ public class FragmentHome extends Fragment {
 //
 //					}
 //				});
-//	}
+	}
 
-//	private void getMsg() {
-//		if (null == lal) {
-//			lal = new ArrayList<AnLi>();
-//		} else {
-//			lal.clear();
-//		}
-//		if (null == lal1) {
-//			lal1 = new ArrayList<AnLi>();
-//		} else {
-//			lal1.clear();
-//		}
-//		if (null == lal2) {
-//			lal2 = new ArrayList<AnLi>();
-//		} else {
-//			lal2.clear();
-//		}
-//		if (null == ls) {
-//			ls = new ArrayList<String>();
-//		} else {
-//			ls.clear();
-//		}
+	private void getMsg() {
+		if (null == lal) {
+			lal = new ArrayList<AnLi>();
+		} else {
+			lal.clear();
+		}
+		if (null == lal1) {
+			lal1 = new ArrayList<AnLi>();
+		} else {
+			lal1.clear();
+		}
+		if (null == lal2) {
+			lal2 = new ArrayList<AnLi>();
+		} else {
+			lal2.clear();
+		}
+		if (null == ls) {
+			ls = new ArrayList<String>();
+		} else {
+			ls.clear();
+		}
+
+		XUtilsHelper xUtilsHelper1 = new XUtilsHelper(getActivity(), "MainPageMsgHandler.ashx?Action=GetMeg", 1);
+		RequestParams requestParams = new RequestParams();
+
+		Observable.create(new Observable.OnSubscribe<String>() {
+			@Override
+			public void call(Subscriber<? super String> subscriber) {
+				xUtilsHelper1.sendPost(requestParams, subscriber);
+			}
+		}).subscribe(new Subscriber<String>() {
+			@Override
+			public void onCompleted() {
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				if (ciShu >= 3) {
+							isFalse = false;
+							elasticScrollView.onRefreshComplete();
+							Toast.makeText(HomeActivity._instance,
+									"网络连接失败，请稍候再试！", Toast.LENGTH_SHORT).show();
+						}
+						;
+						if (isFalse) {
+							getMsg();
+							ciShu++;
+						}
+			}
+
+			@Override
+			public void onNext(String s) {
+				String result = new String(s);
+						System.out.println("!#*@()DJ#()J" + result);
+
+						tryc(result);
+						return;
+			}
+		});
+
+
+
+
+
+
+
+
+
 //		RequestParams reqParams = new RequestParams();
 //		SmartFruitsRestClient.post("MainPageMsgHandler.ashx?Action=GetMeg",
 //				reqParams, new AsyncHttpResponseHandler() {
@@ -524,160 +660,160 @@ public class FragmentHome extends Fragment {
 //
 //					}
 //				});
-//	}
+	}
 
-//	private AnLi anli;
-//	private List<AnLi> lal;// zhu fu yu
-//	private List<AnLi> lal1;// ren
+	private AnLi anli;
+	private List<AnLi> lal;// zhu fu yu
+	private List<AnLi> lal1;// ren
 
-//	private void tryc1(String result) {
-//		try {
-//			JSONArray json = new JSONArray(result.trim());
-//			JSONObject tJson;
-//			if (0 != json.length()) {
-//				System.out.println(json.length());
-//				for (int i = 0; i < json.length(); i++) {
-//					tJson = json.getJSONObject(i);
-//					anli = new AnLi();
-//					anli.setImgUrl(tJson.getString("RealName"));
-//					anli.setDetail(tJson.getString("Name"));
-//					if (tJson.getString("Sex").trim().equals("0")) {
-//						anli.setSex("女士");
-//					} else {
-//						anli.setSex("先生");
-//					}
-//					lal1.add(anli);
-//				}
-//			}
-//
-//			getMsg2();
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("G" + e.getMessage());
-//			// Toast.makeText(getActivity(),
-//			// e.getMessage(),
-//			// Toast.LENGTH_SHORT).show();
-//		}
-//	}
+	private void tryc1(String result) {
+		try {
+			JSONArray json = new JSONArray(result.trim());
+			JSONObject tJson;
+			if (0 != json.length()) {
+				System.out.println(json.length());
+				for (int i = 0; i < json.length(); i++) {
+					tJson = json.getJSONObject(i);
+					anli = new AnLi();
+					anli.setImgUrl(tJson.getString("RealName"));
+					anli.setDetail(tJson.getString("Name"));
+					if (tJson.getString("Sex").trim().equals("0")) {
+						anli.setSex("女士");
+					} else {
+						anli.setSex("先生");
+					}
+					lal1.add(anli);
+				}
+			}
 
-//	private List<AnLi> lal2;// xia dan
+			getMsg2();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.println("G" + e.getMessage());
+			// Toast.makeText(getActivity(),
+			// e.getMessage(),
+			// Toast.LENGTH_SHORT).show();
+		}
+	}
 
-//	private void tryc2(String result) {
-//		try {
-//			JSONArray json = new JSONArray(result.trim());
-//			JSONObject tJson;
-//			if (0 != json.length()) {
-//				System.out.println(json.length());
-//				for (int i = 0; i < json.length(); i++) {
-//					tJson = json.getJSONObject(i);
-//					anli = new AnLi();
-//					anli.setImgUrl(tJson.getString("TotalCount"));
-//					anli.setDetail(tJson.getString("FinishCount"));
-//					lal2.add(anli);
-//				}
-//			}
-//			for (int i = 0; i < lal1.size(); i++) {
-//				System.out.println(lal1.get(i).getSex());
-//			}
-//			if (lal1.size() != 0) {
-//				for (int i = 0; i < lal.size(); i++) {
-//					System.out.println(lal1.size() + "%$#");
-//					if (lal1.get((lal1.size() - 1)).getDetail()
-//							.equals(lal.get(i).getImgUrl())) {
-//						System.out.println(lal1.size() + "@#$%");
-//						ls.add("恭喜" + lal1.get((lal1.size() - 1)).getImgUrl()
-//								+ lal1.get(lal1.size() - 1).getSex()
-//								+ "下单成功，祝福他们" + lal.get(i).getDetail());
-//						ls.add("已接受" + lal2.get(0).getImgUrl() + "个喜宴订单，已完成"
-//								+ lal2.get(0).getDetail() + "个订单");
-//					}
-//				}
-//				for (int i = 0; i < lal1.size(); i++) {
-//					for (int j = 0; j < lal.size(); j++) {
-//						if (lal1.get(i).getDetail()
-//								.equals(lal.get(j).getImgUrl())) {
-//							ls.add("恭喜" + lal1.get(i).getImgUrl()
-//									+ lal1.get(i).getSex() + "下单成功，祝福他们"
-//									+ lal.get(j).getDetail());
-//							ls.add("已接受" + lal2.get(0).getImgUrl()
-//									+ "个喜宴订单，已完成" + lal2.get(0).getDetail()
-//									+ "个订单");
-//						}
-//					}
-//				}
-//				for (int i = 0; i < lal.size(); i++) {
-//					if (lal1.get(0).getDetail().equals(lal.get(i).getImgUrl())) {
-//						ls.add("恭喜" + lal1.get(0).getImgUrl()
-//								+ lal1.get(0).getSex() + "下单成功，祝福他们"
-//								+ lal.get(i).getDetail());
-//						ls.add("已接受" + lal2.get(0).getImgUrl() + "个喜宴订单，已完成"
-//								+ lal2.get(0).getDetail() + "个订单");
-//					}
-//				}
-//				if (ls.size() > 0) {
-//					if (null == m) {
-//						m = new MyAdapter();
-//						lv.setAdapter(m);
-//						lv.setSelection(1);
-//						elasticScrollView.onRefreshComplete();
-//						lv.setOnTouchListener(new OnTouchListener() {
-//
-//							@Override
-//							public boolean onTouch(View v, MotionEvent event) {
-//								// TODO Auto-generated method stub
-//								return true;
-//							}
-//						});
-//						handler1.postDelayed(runnable, 2000);
-//					} else {
-//						elasticScrollView.onRefreshComplete();
-//						m.notifyDataSetChanged();
-//						index1 = 1;
-//						lv.setSelection(1);
-//						handler1.removeCallbacks(runnable);
-//						handler1.postDelayed(runnable, 2000);
-//					}
-//				} else {
-//					elasticScrollView.onRefreshComplete();
-//				}
-//
-//			}
-//
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("G" + e.getMessage());
-//			// 注释的地方
-//			// Toast.makeText(getActivity(),
-//			// e.getMessage(),
-//			// Toast.LENGTH_SHORT).show();
-//		}
-//	}
+	private List<AnLi> lal2;// xia dan
 
-//	private void tryc(String result) {
-//		try {
-//			JSONArray json = new JSONArray(result.trim());
-//			JSONObject tJson;
-//			if (0 != json.length()) {
-//				System.out.println(json.length());
-//				for (int i = 0; i < json.length(); i++) {
-//					tJson = json.getJSONObject(i);
-//					anli = new AnLi();
-//					anli.setImgUrl(tJson.getString("Cgy"));
-//					anli.setDetail(tJson.getString("Content"));
-//					lal.add(anli);
-//				}
-//			}else{
-//				elasticScrollView.onRefreshComplete();
-//			}
-//			getMsg1();
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("G" + e.getMessage());
-//			// Toast.makeText(getActivity(),
-//			// e.getMessage(),
-//			// Toast.LENGTH_SHORT).show();
-//		}
-//	}
+	private void tryc2(String result) {
+		try {
+			JSONArray json = new JSONArray(result.trim());
+			JSONObject tJson;
+			if (0 != json.length()) {
+				System.out.println(json.length());
+				for (int i = 0; i < json.length(); i++) {
+					tJson = json.getJSONObject(i);
+					anli = new AnLi();
+					anli.setImgUrl(tJson.getString("TotalCount"));
+					anli.setDetail(tJson.getString("FinishCount"));
+					lal2.add(anli);
+				}
+			}
+			for (int i = 0; i < lal1.size(); i++) {
+				System.out.println(lal1.get(i).getSex());
+			}
+			if (lal1.size() != 0) {
+				for (int i = 0; i < lal.size(); i++) {
+					System.out.println(lal1.size() + "%$#");
+					if (lal1.get((lal1.size() - 1)).getDetail()
+							.equals(lal.get(i).getImgUrl())) {
+						System.out.println(lal1.size() + "@#$%");
+						ls.add("恭喜" + lal1.get((lal1.size() - 1)).getImgUrl()
+								+ lal1.get(lal1.size() - 1).getSex()
+								+ "下单成功，祝福他们" + lal.get(i).getDetail());
+						ls.add("已接受" + lal2.get(0).getImgUrl() + "个喜宴订单，已完成"
+								+ lal2.get(0).getDetail() + "个订单");
+					}
+				}
+				for (int i = 0; i < lal1.size(); i++) {
+					for (int j = 0; j < lal.size(); j++) {
+						if (lal1.get(i).getDetail()
+								.equals(lal.get(j).getImgUrl())) {
+							ls.add("恭喜" + lal1.get(i).getImgUrl()
+									+ lal1.get(i).getSex() + "下单成功，祝福他们"
+									+ lal.get(j).getDetail());
+							ls.add("已接受" + lal2.get(0).getImgUrl()
+									+ "个喜宴订单，已完成" + lal2.get(0).getDetail()
+									+ "个订单");
+						}
+					}
+				}
+				for (int i = 0; i < lal.size(); i++) {
+					if (lal1.get(0).getDetail().equals(lal.get(i).getImgUrl())) {
+						ls.add("恭喜" + lal1.get(0).getImgUrl()
+								+ lal1.get(0).getSex() + "下单成功，祝福他们"
+								+ lal.get(i).getDetail());
+						ls.add("已接受" + lal2.get(0).getImgUrl() + "个喜宴订单，已完成"
+								+ lal2.get(0).getDetail() + "个订单");
+					}
+				}
+				if (ls.size() > 0) {
+					if (null == m) {
+						m = new MyAdapter();
+						lv.setAdapter(m);
+						lv.setSelection(1);
+						elasticScrollView.onRefreshComplete();
+						lv.setOnTouchListener(new View.OnTouchListener() {
+
+							@Override
+							public boolean onTouch(View v, MotionEvent event) {
+								// TODO Auto-generated method stub
+								return true;
+							}
+						});
+						handler1.postDelayed(runnable, 2000);
+					} else {
+						elasticScrollView.onRefreshComplete();
+						m.notifyDataSetChanged();
+						index1 = 1;
+						lv.setSelection(1);
+						handler1.removeCallbacks(runnable);
+						handler1.postDelayed(runnable, 2000);
+					}
+				} else {
+					elasticScrollView.onRefreshComplete();
+				}
+
+			}
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.println("G" + e.getMessage());
+			// 注释的地方
+			// Toast.makeText(getActivity(),
+			// e.getMessage(),
+			// Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void tryc(String result) {
+		try {
+			JSONArray json = new JSONArray(result.trim());
+			JSONObject tJson;
+			if (0 != json.length()) {
+				System.out.println(json.length());
+				for (int i = 0; i < json.length(); i++) {
+					tJson = json.getJSONObject(i);
+					anli = new AnLi();
+					anli.setImgUrl(tJson.getString("Cgy"));
+					anli.setDetail(tJson.getString("Content"));
+					lal.add(anli);
+				}
+			}else{
+				elasticScrollView.onRefreshComplete();
+			}
+			getMsg1();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.println("G" + e.getMessage());
+			// Toast.makeText(getActivity(),
+			// e.getMessage(),
+			// Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	private boolean isFalse = true;
 	private int ciShu = 0;

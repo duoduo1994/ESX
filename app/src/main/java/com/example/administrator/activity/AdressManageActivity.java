@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.administrator.entity.AddressBean;
@@ -72,8 +73,10 @@ public class AdressManageActivity extends AppCompatActivity {
         });
         addressben = new RetrofitUtil<>(this);
         isLogin(AdressManageActivity.this);
+
          myadapter = new Myadapter();
         rcvAddresslist.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
@@ -121,9 +124,9 @@ public class AdressManageActivity extends AppCompatActivity {
                     else {
                         ischeck="false";
                     }
-                    lists.get(position).setIsDefault(ischeck);
-                    check(position,ischeck);
-                    notifyItemRangeChanged(0, lists.size());
+                    Setmoren("选择默认值",position,ischeck);
+
+
                 }
             });
             holder.rbupdate.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +150,7 @@ public class AdressManageActivity extends AppCompatActivity {
                       notifyItemRemoved(position);
                     if(position != lists.size()){ // 如果移除的是最后一个，忽略
                         notifyItemRangeChanged(position, lists.size() - position);
+                        Setmoren("第一次浏览",1,"diao");
                     }
                 }
             });
@@ -186,7 +190,6 @@ public class AdressManageActivity extends AppCompatActivity {
       //  map.put("UserTel", LocalStorage.get("Usertel").toString());
        // map.put("UserPhyAdd",LocalStorage.get("strUniqueId").toString());
         map.put("UserTel",LocalStorage.get("UserTel").toString());
-        System.out.println(LocalStorage.get("UserTel").toString()+"=================");
         map.put("UserPhyAdd",MainActivity.strUniqueId);
 
         addressben.getListDataFromNet("User", map, AddressBean.class, new RetrofitUtil.CallBack2<AddressBean>(){
@@ -206,6 +209,7 @@ public class AdressManageActivity extends AppCompatActivity {
                 //    System.out.println(list.get(i).getRecvName()+"========================");
                     lists.add(add);
                 }
+                Setmoren("第一次浏览",1,"diao");
                 rcvAddresslist.setAdapter(myadapter);
             }
 
@@ -228,11 +232,7 @@ public class AdressManageActivity extends AppCompatActivity {
 
             @Override
             public void onLoadingDataComplete(String body) {
-
-//                myadapter.notifyDataSetChanged();
-//                rcvAddresslist.setAdapter(myadapter);
                 myadapter.notifyDataSetChanged();
-
 
             }
 
@@ -307,6 +307,73 @@ public class AdressManageActivity extends AppCompatActivity {
 
             @Override
             public void onLoadingDataComplete(String body) {
+                String b = body.substring(7,11);
+                System.out.println(b+"----------------------------");
+                if(b.equals("修改成功")){
+                lists.get(i).setIsDefault(ischeck);
+                myadapter.notifyItemRangeChanged(0, lists.size());
+                }
+                else {
+                    if(ischeck.equals("true")){
+                        lists.get(i).setIsDefault("false");
+                    }
+                    else {lists.get(i).setIsDefault("true");}
+                    myadapter.notifyItemRangeChanged(0, lists.size());
+                    Toast.makeText(AdressManageActivity.this, "选择默认地址失败请重新选择", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onLoadingDataFailed(Throwable t) {
+                System.out.println("++++++++++++++++++++++++");
+
+            }
+        });
+    }
+
+
+    public void Setmoren(String s,int position,String ischeck){
+        int number=-1,i;
+        //Http://120.27.141.95:8221/ashx/User.ashx?Function=HttpSetDefaultRecvAddr&UserTel=15558793823&UserPhyAdd=123456&RecvID= 1
+        for( i=0;i<lists.size();i++){
+            if(lists.get(i).getIsDefault().equals("true")){
+                number=i;
+            }
+        }
+        RetrofitUtil retrofitUtil = new RetrofitUtil(AdressManageActivity.this);
+        Map<String, String> map = new HashMap<>();
+        map.put("Function","HttpSetDefaultRecvAddr");
+        map.put("UserTel",LocalStorage.get("UserTel").toString());
+        map.put("UserPhyAdd",MainActivity.strUniqueId);
+        System.out.println(number+"++++++++++默认值++++++++");
+        if(number==-1) {
+            map.put("RecvID",  "");
+        }
+        else {
+            map.put("RecvID", lists.get(number).getRecvID());
+        }
+        retrofitUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>(){
+            @Override
+            public void onLoadingDataComplete(String body) {
+                String b = body.substring(7,11);
+                System.out.println(b+"========================");
+                if(b.equals("设置成功") && s.equals("第一次浏览")){
+                    System.out.println("++");
+                }
+                else if(b.equals("设置失败") && s.equals("第一次浏览")){
+                    for(int i=0;i<lists.size();i++){
+                        list.get(i).setIsDefault("false");
+                    }
+                    Toast.makeText(AdressManageActivity.this, "默认地址设置失败请重新设置", Toast.LENGTH_SHORT).show();
+                    System.out.println("=-=-=-");
+                }
+                else if(b.equals("设置失败") && s.equals("选择默认值")){
+                    Toast.makeText(AdressManageActivity.this, "选择默认地址失败请重新选择", Toast.LENGTH_SHORT).show();
+                }
+                else if (b.equals("设置成功") && s.equals("选择默认值")){
+                    check(position,ischeck);
+                }
+
+
             }
 
             @Override
@@ -314,6 +381,8 @@ public class AdressManageActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 
 }

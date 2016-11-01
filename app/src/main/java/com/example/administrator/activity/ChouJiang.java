@@ -92,7 +92,7 @@ public class ChouJiang extends BaseActivity {
 	private RadioButton three;
 
 	private String Grade;
-	private String strUniqueId = HomeActivity.strUniqueId;
+	private String strUniqueId = MainActivity.strUniqueId;
 	private String startres, results;
 	@ViewInject(R.id.pp4)
 	private ImageView pp4;

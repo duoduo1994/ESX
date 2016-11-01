@@ -6,31 +6,38 @@ package com.example.administrator.entity;
 
 public class PeiCai {
 
-    private String peicai_ID;
-    private String peicai_name;
-    private String peicai_price;
 
-    public String getPeicai_ID() {
-        return peicai_ID;
+    /**
+     * ID : 1
+     * Name : 小葱
+     * Price : 99.9900
+     */
+
+    private String ID;
+    private String Name;
+    private String Price;
+
+    public String getID() {
+        return ID;
     }
 
-    public void setPeicai_ID(String peicai_ID) {
-        this.peicai_ID = peicai_ID;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public String getPeicai_name() {
-        return peicai_name;
+    public String getName() {
+        return Name;
     }
 
-    public void setPeicai_name(String peicai_name) {
-        this.peicai_name = peicai_name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getPeicai_price() {
-        return peicai_price;
+    public String getPrice() {
+        return Price;
     }
 
-    public void setPeicai_price(String peicai_price) {
-        this.peicai_price = peicai_price;
+    public void setPrice(String Price) {
+        this.Price = Price;
     }
 }

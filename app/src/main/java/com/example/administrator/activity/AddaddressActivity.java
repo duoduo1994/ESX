@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.myapplication.R;
 import com.example.administrator.net.RetrofitUtil;
@@ -27,6 +28,8 @@ import com.example.administrator.utils.LocalStorage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -123,7 +126,31 @@ public class AddaddressActivity extends AppCompatActivity {
 
     private void ClickEvent() {
     //    rlAddressArea.setOnClickListener(v -> initPw());
-          btnSaveAddress.setOnClickListener(v -> SaveAddress());
+          btnSaveAddress.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Pattern pattern = Pattern.compile("^[1][3-8][0-9]{9}$");
+                  Matcher number2 = pattern.matcher(etAddressPhone.getText().toString());
+                  String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+                  Pattern p = Pattern.compile(regEx);
+                  Matcher m = p.matcher(etAddressReceiver.getText().toString());
+                  if(m.find() || (etAddressReceiver.getText().toString()).equals("")|| (etAddressReceiver.getText().toString()).equals(" "))
+                  {
+                      Toast.makeText(AddaddressActivity.this, "姓名中包含特殊符号或为空", Toast.LENGTH_SHORT).show();
+                  }
+                  else if (!number2.matches()) {
+                      // sflag = false;
+                      Toast.makeText(AddaddressActivity.this, "号码输入不合法，请重新输入", Toast.LENGTH_SHORT).show();
+                  }
+                  else if((etDetailAddress.getText().toString()).equals("")){
+                      Toast.makeText(AddaddressActivity.this, "地址不能为空", Toast.LENGTH_SHORT).show();
+                  }
+                  else {
+                      SaveAddress();
+                  }
+
+              }
+          });
         btnBack.setOnClickListener(v -> AddaddressActivity.this.finish());
     }
 //
@@ -137,8 +164,6 @@ public class AddaddressActivity extends AppCompatActivity {
          5.Details;详细地址
          6.IsDefault;是否设为默认,是则为ture
          */
-
-
         String tel = etAddressPhone.getText().toString();
         String name = etAddressReceiver.getText().toString();
         String num2 = String.valueOf(num+1);
@@ -161,10 +186,18 @@ public class AddaddressActivity extends AppCompatActivity {
         retrofitUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>() {
             @Override
             public void onLoadingDataComplete(String body) {
-                System.out.println(body+"000000000000000000000");
-                Intent intent = new Intent(AddaddressActivity.this, AdressManageActivity.class);
-                startActivity(intent);
-                finish();
+                String b = body.substring(7,11);
+                if(b.equals("新建成功")){
+                    Intent intent1 = new Intent(AddaddressActivity.this,AdressManageActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+                else if(b.equals("新建失败")){
+                    Toast.makeText(AddaddressActivity.this,"修改失败请重新编辑",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(AddaddressActivity.this,"尚未登录",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

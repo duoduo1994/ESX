@@ -1,9 +1,11 @@
 package com.example.administrator.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -293,6 +295,21 @@ registerUtil.getStringDataFromNet("User", map, new RetrofitUtil.CallBack<String>
 
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - dianJiShiJian > 500) {
+                dianJiShiJian = System.currentTimeMillis();
+                startActivity(new Intent(RegisterActivity.this, LoginInActivity.class));
+                finish();
+                overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
+
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

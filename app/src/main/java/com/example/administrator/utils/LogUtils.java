@@ -42,7 +42,6 @@ public class LogUtils {
             p1.setText("确定");
             n.setText("返回");
             p1.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View arg0) {
                     // TODO Auto-generated method stub

@@ -12,6 +12,7 @@
         android:src="@mipmap/nuli"
         />
     <LinearLayout
+        android:layout_toLeftOf="@+id/iv_tiaozhuan"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,11 +32,13 @@
             <TextView
                 android:layout_gravity="center"
                 android:text="套餐A"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_taocan_name"
                 />
             <TextView
+                android:layout_marginLeft="6dp"
                 android:layout_gravity="center"
                 android:text="￥688元"
                 android:textColor="@color/orange"
@@ -48,16 +51,20 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp">
-            <ProgressBar
+            <RatingBar
+                android:numStars="5"
+                android:rating="4"
+                android:layout_marginLeft="5dp"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
                 android:layout_gravity="center"
                 android:id="@+id/rb_taocan_stars"
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 />
             <TextView
                 android:layout_gravity="center"
-                android:text="套餐A"
+                android:text="月售2345单"
+                android:textSize="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_taocan_num"
@@ -75,6 +82,7 @@
         <TextView
             android:singleLine="true"
             android:layout_gravity="center"
+            android:textSize="10sp"
             android:text="啦啦啦啦啦啦阿拉啦啦啦啦啦了"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,6 +92,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv_tiaozhuan"
         android:layout_marginRight="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

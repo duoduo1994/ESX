@@ -3,7 +3,6 @@ package com.example.administrator.activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,7 +31,6 @@ import com.example.administrator.utils.ActivityCollector;
 import com.example.administrator.utils.IvListener;
 import com.example.administrator.utils.Load;
 import com.example.administrator.utils.LoadingDialog;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.lidroid.xutils.http.RequestParams;
@@ -470,7 +468,6 @@ public class WeddinghallActivity extends BaseActivity {
             }
         });
 
-
 //		RequestParams r = new RequestParams();
 //		r.add("CityID", "1");
 //		SmartFruitsRestClient.post(
@@ -756,8 +753,8 @@ public class WeddinghallActivity extends BaseActivity {
                     lngIsNull(nth_Halls);
                     return;
                 }
-//				GaodeMapActivity.actionStart(WeddinghallActivity.this,
-//						nth_Halls);
+				GaodeMapActivity.actionStart(WeddinghallActivity.this,
+						nth_Halls);
             }
         });
 
@@ -776,20 +773,27 @@ public class WeddinghallActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                DialogFragment calendarFragment = new CalendarFragment(
-                        toDoItema.getTime(), nth_Halls.getPkHallID(), null,
-                        0, null) {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
-                        super.onDateSet(view, year, monthOfYear, dayOfMonth);
-                        toDoItema.setTime(year, monthOfYear, dayOfMonth);
-//						Date date = toDoItema.getTime();
-                    }
+                DialogFragment calendarFragment = new CalendarFragment(toDoItema.getTime(),nth_Halls.getPkHallID(),null,0,null){
 
                 };
-                calendarFragment.show(getFragmentManager(), "calendarPcker");
+                CalendarFragment calendarFragment2=CalendarFragment.newInstance(toDoItema.getTime(),nth_Halls.getPkHallID(),null,0,null);{
+                }
+//                DialogFragment calendarFragment=CalendarFragment.newInstance(toDoItema.getTime(), nth_Halls.getPkHallID(), null,
+//                        0, null){
+//                DialogFragment calendarFragment = new CalendarFragment(
+//                        toDoItema.getTime(), nth_Halls.getPkHallID(), null,
+//                        0, null) {
+//
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year,
+//                    int monthOfYear, int dayOfMonth) {
+//                        super.onDateSet(view, year, monthOfYear, dayOfMonth);
+//                        toDoItema.setTime(year, monthOfYear, dayOfMonth);
+////						Date date = toDoItema.getTime();
+//                    }
+//
+//                };
+//                calendarFragment.show(getFragmentManager(), "calendarPcker");
             }
         });
     }
@@ -815,43 +819,5 @@ public class WeddinghallActivity extends BaseActivity {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Weddinghall Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.administrator.activity/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Weddinghall Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.administrator.activity/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }

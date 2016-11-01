@@ -25,6 +25,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.R.attr.id;
+
 public class HotTaocanActivity extends AppCompatActivity {
 
     @BindView(R.id.rcv_hot_taocan)
@@ -59,10 +61,11 @@ public class HotTaocanActivity extends AppCompatActivity {
         map.put("ProModule", "FreashSetMeal");
         map.put("Function", "HttpQueryAllEntitys");
         retrofitUtil.getListDataFromNet("Shopping", map, HotTancanAllBean.class, new RetrofitUtil.CallBack2<HotTancanAllBean>() {
+
             @Override
             public void onLoadListDataComplete(List<HotTancanAllBean> list) {
                 listt = list;
-                LogUtils.i("renqitaocan", list.toString() + "fff");
+                LogUtils.i("renqitaocan", list.get(0).toString() + "fff");
                 setAdapter(list);
                 adapter.notifyDataSetChanged();
             }
@@ -73,7 +76,6 @@ public class HotTaocanActivity extends AppCompatActivity {
             }
         });
     }
-
     private void setAdapter(List<HotTancanAllBean> listt) {
         rcvHotTaocan.setLayoutManager(new LinearLayoutManager(HotTaocanActivity.this, LinearLayoutManager.VERTICAL, false));
         adapter = new BaseRecyclerAdapter<HotTancanAllBean>(this, listt, R.layout.taocan_item) {
@@ -95,9 +97,21 @@ public class HotTaocanActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position) {
-                String id = listt.get(position).getBaseDate().getID();
+                String ID = listt.get(position).getBaseDate().getID();
+                String ImageUrl=listt.get(position).getBaseDate().getImageUrl();
+                String Name=listt.get(position).getBaseDate().getName();
+                String Price=listt.get(position).getBaseDate().getPrice();
+                String Sales=listt.get(position).getBaseDate().getSales();
+                //private String ID;
+               // private String ImageUrl;
+               // private String Name;Price
+//                private String Sales;
                 Intent i = new Intent(HotTaocanActivity.this, TaocanActivity.class);
-                i.putExtra("taocanid", id);
+                i.putExtra("taocanid", ID);
+                i.putExtra("taocanImageUrl", ImageUrl);
+                i.putExtra("taocanName", Name);
+                i.putExtra("taocanPrice", Price);
+                i.putExtra("taocanSales", Sales);
                 startActivity(i);
             }
         });
